@@ -1,0 +1,7 @@
+*.log
+*.so
+*.dll
+*.bin
+*.o
+core.*
+local/

@@ -1,0 +1,72 @@
+
+[[flags]]
+=== Flags
+
+Flags in MoonNuklear functions and structs are always represented as plain integers,
+and encoded in the same way as the corresponding flags in the C Nuklear API.
+
+The *nk* table contains the NK_XXX values, renamed as *nk.XXX*
+(e.g. nk.CHART_HOVERING, nk.CHART_CLICKED, etc.).
+
+For each flags type (see the list below), a utility function is also available to map
+an integer code to a list of string literals, each corresponding to an individual bit set 
+in the code, and viceversa to encode an integer value from the individual bits given 
+as a list of string literals. 
+The generic definition of such functions is the following, where *xxxflags* stands for 
+*charteventflags*, *convertresultflags*, etc:
+
+[[xxxflags]]
+* _code_ = *xxxflags*(_s1_, _s2_, _..._) +
+_s1_, _s2_, _..._ = *xxxflags*(_code_) +
+[small]#Maps the integer _code_ to/from the list of string values _s1_, _s2_, _..._.#
+
+// @@ See also the <<flags_snippet, example>> contained in the code snippets section.
+
+
+[[charteventflags]]
+[small]#*charteventflags*: nk.CHART_XXX (_nk_chart_event_) +
+Values: '_hovering_', '_clicked_'.#
+
+[[convertresultflags]]
+[small]#*convertresultflags*: nk.CONVERT_XXX (_nk_convert_result_) +
+Values: '_success_', '_invalid param_', '_command buffer full_', '_vertex buffer full_', '_element buffer full_'.#
+
+[[editeventsflags]]
+[small]#*editeventsflags*: nk.EDIT_XXX (_nk_edit_events_) +
+Values: '_active_', '_inactive_', '_activated_', '_deactivated_', '_commited_'.#
+
+[[editflags]]
+[small]#*editflags*: nk.EDIT_XXX (_nk_edit_flags_, _nk_edit_types_) +
+Values: '_default_', '_read only_', '_auto select_', '_sig enter_', '_allow tab_', '_no cursor_', '_selectable_', '_clipboard_', '_ctrl enter newline_', '_no horizontal scroll_', '_always insert mode_', '_multiline_', '_goto end on activate_'. +
+Combination values: '_simple_', '_field_', '_box_', '_editor_'.#
+
+[[panelflags]]
+[small]#*panelflags*: nk.WINDOW_XXX (_nk_panel_flags_) +
+Values: '_border_', '_movable_', '_scalable_', '_closable_', '_minimizable_', '_no scrollbar_', '_title_', '_scroll auto_hide_', '_background_', '_scale left_', '_no input_'.#
+
+[[paneltypeflags]]
+[small]#*paneltypeflags*: nk.PANEL_XXX (_nk_panel_type_, _nk_panel_set_) +
+Values: '_window_', '_group_', '_popup_', '_contextual_', '_combo_', '_menu_', '_tooltip_'. +
+Combination values: '_set nonblock_', '_set popup_', '_set sub_'.#
+
+[[styleheaderalignflags]]
+[small]#*styleheaderalignflags*: nk.HEADER_XXX (_nk_style_header_align_) +
+Values: '_left_', '_right_'.#
+
+[[textalignflags]]
+[small]#*textalignflags*: nk.TEXT_XXX (_nk_text_align_, _nk_text_alignment_) +
+Values: '_align left_', '_align centered_', '_align right_', '_align top_', '_align middle_', '_align bottom_'. +
+Combination values: '_left_', '_centered_', '_right_'.#
+
+[[widgetlayoutstatesflags]]
+[small]#*widgetlayoutstatesflags*: nk.WIDGET_XXX (_nk_widget_layout_states_) +
+Values: '_invalid_', '_valid_', '_rom_'.#
+
+[[widgetstatesflags]]
+[small]#*widgetstatesflags*: nk.WIDGET_STATE_XXX (_nk_widget_states_) +
+Values: '_modified_', '_inactive_', '_entered_', '_hover_', '_actived_', '_left_', '_hovered_', '_active_'.#
+
+[[windowflags]]
+[small]#*windowflags*: nk.WINDOW_XXX (_nk_window_flags_) +
+Values: '_private_', '_dynamic_', '_rom_', '_not_interactive_', '_hidden_', '_closed_', '_minimized_', '_remove_rom_'.#
+

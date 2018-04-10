@@ -1,0 +1,41 @@
+
+[[style]]
+=== Style
+
+[[style_xxx]]
+* *style_default*(_context_) +
+*style_from_table*(_context_ <<colortable, _colortable_>>, <<color, _defaultcolor_>>) +
+* *style_set_font*(_context_, <<font, _font_>>) +
+*style_push_font*(_context_, <<font, _font_>>) +
+*style_pop_font*(_context_) +
+* *style_load_cursor*(_context_, <<stylecursor, _stylecursor_>>, <<cursor, _cursor_>>) +
+*style_load_all_cursors*(_context_, <<stylecursor, _stylecursor_>>, <<font_atlas, _atlas_>>) +
+*style_set_cursor*(_context_, <<stylecursor, _stylecursor_>>) +
+*style_show_cursor*(_context_) +
+*style_hide_cursor*(_context_) +
+* *style_push_float*(_context_, <<stylefield, _stylefield_>>, _float_) +
+*style_pop_float*(_context_) +
+*style_set_float*(_context_, <<stylefield, _stylefield_>>, _float_) +
+_float_ = *style_get_float*(_context_, <<stylefield, _stylefield_>>) +
+* *style_push_vec2*(_context_, <<stylefield, _stylefield_>>, <<vec2, _vec2_>>) +
+*style_pop_vec2*(_context_) +
+*style_set_vec2*(_context_, <<stylefield, _stylefield_>>, <<vec2, _vec2_>>) +
+<<vec2, _vec2_>> = *style_get_vec2*(_context_, <<stylefield, _stylefield_>>) +
+* *style_push_flags*(_context_, <<stylefield, _stylefield_>>, _flags_) +
+*style_pop_flags*(_context_) +
+*style_set_flags*(_context_, <<stylefield, _stylefield_>>, _flags_) +
+_flags_ = *style_get_flags*(_context_, <<stylefield, _stylefield_>>) +
+* *style_push_color*(_context_, <<stylefield, _stylefield_>>, <<color, _color_>>) +
+*style_pop_color*(_context_) +
+*style_set_color*(_context_, <<stylefield, _stylefield_>>, <<color, _color_>>) +
+<<color, _color_>> = *style_get_color*(_context_, <<stylefield, _stylefield_>>) +
+* *style_push_style_item*(_context_, <<stylefield, _stylefield_>>, <<styleitem, _styleitem_>>) +
+*style_pop_style_item*(_context_) +
+*style_set_style_item*(_context_, <<stylefield, _stylefield_>>, <<styleitem, _styleitem_>>) +
+<<styleitem, _styleitem_>> = *style_get_style_item*(_context_, <<stylefield, _stylefield_>>) +
+* *style_set_boolean*(_context_, <<stylefield, _stylefield_>>, _boolean_) +
+_boolean_ = *style_get_boolean*(_context_, <<stylefield, _stylefield_>>) +
+* *style_set_symboltype*(_context_, <<stylefield, _stylefield_>>, <<symboltype, _symboltype_>>) +
+<<symboltype, _symboltype_>> = *style_get_symboltype*(_context_, <<stylefield, _stylefield_>>) +
+[small]#Rfr: nk_style_xxx(&nbsp;).#
+

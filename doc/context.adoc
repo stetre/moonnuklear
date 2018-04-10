@@ -1,0 +1,16 @@
+
+[[context]]
+=== Context
+
+[[init]]
+* _context_ = *init*([<<font, _font_>>]) +
+_context_++:++*free*( ) +
+[small]#Create/destroy a Nuklear context. +
+Note that if no font is passed to the _init(&nbsp;)_ function, one must be however set
+before entering the event loop (using _<<style_xxx, style_set_font>>(&nbsp;)_). +
+Rfr: nk_init_default(&nbsp;), nk_free(&nbsp;).#
+
+[[context.font]]
+* <<font, _font_>> = _context_++:++*font*( ) +
+[small]#Returns an handle to the font in use by the _context_.#
+

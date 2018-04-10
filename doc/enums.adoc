@@ -1,0 +1,122 @@
+'_buttons_', '_colorformat_', etc).#
+
+Below is the list of the enum types, each with its hint, the list of string values it
+admits (if not too long), and a reference to the original Nuklear enum type where to look
+for semantic and usage information. 
+
+For enum types denoting object info, the type of the info value is also listed.
+
+[[allocationtype]]
+[small]#*allocationtype*: nk.BUFFER_XXX (_nk_allocation_type_) +
+Values: '_fixed_', '_dynamic_'.#
+
+[[bufferallocationtype]]
+[small]#*bufferallocationtype*: nk.BUFFER_XXX (_nk_buffer_allocation_type_) +
+Values: '_front_', '_back_'.#
+
+[[buttonbehavior]]
+[small]#*buttonbehavior*: nk.BUTTON_XXX (_nk_button_behavior_) +
+Values: '_default_', '_repeater_'.#
+
+[[buttons]]
+[small]#*buttons*: nk.BUTTON_XXX (_nk_buttons_) +
+Values: '_left_', '_middle_', '_right_', '_double_'.#
+
+[[charttype]]
+[small]#*charttype*: nk.CHART_XXX (_nk_chart_type_) +
+Values: '_lines_', '_column_'.#
+
+[[commandtype]]
+[small]#*commandtype*: nk.COMMAND_XXX (_nk_command_type_) +
+Values: '_nop_', '_scissor_', '_line_', '_curve_', '_rect_', '_rect filled_', '_rect multi color_', '_circle_', '_circle filled_', '_arc_', '_arc filled_', '_triangle_', '_triangle filled_', '_polygon_', '_polygon filled_', '_polyline_', '_text_', '_image_', '_custom_'.#
+
+[[collapsestates]]
+[small]#*collapsestates*: nk.XXX (_nk_collapse_states_) +
+Values: '_minimized_', '_maximized_'.#
+
+[[colorformat]]
+[small]#*colorformat*: nk.XXX (_nk_color_format_) +
+Values: '_rgb_', '_rgba_'.#
+
+[[drawliststroke]]
+[small]#*drawliststroke*: nk.STROKE_XXX (_nk_draw_list_stroke_) +
+Values: '_open_', '_closed_'.#
+
+[[drawvertexlayoutattribute]]
+[small]#*drawvertexlayoutattribute*: nk.VERTEX_XXX (_nk_draw_vertex_layout_attribute_) +
+Values: '_position_', '_color_', '_texcoord_'.#
+
+[[drawvertexlayoutformat]]
+[small]#*drawvertexlayoutformat*: nk.FORMAT_XXX (_nk_draw_vertex_layout_format_) +
+Values: '_char_', '_short_', '_int_', '_uchar_', '_ushort_', '_uint_', '_float_', '_double_', '_r8g8b8_', '_r16g15b16_', '_r32g32b32_', '_r8g8b8a8_', '_b8g8r8a8_', '_r16g15b16a16_', '_r32g32b32a32_', '_r32g32b32a32 float_', '_r32g32b32a32 double_', '_rgb32_', '_rgba32_'.#
+
+[[filter]]
+[small]#*filter*: nk.filter_xxx (_nk_filter_xxx_) +
+Values: '_default_', '_ascii_', '_float_', '_decimal_', '_hex_', '_oct_', '_binary_'.#
+
+[[fontatlasformat]]
+[small]#*fontatlasformat*: nk.FONT_ATLAS_XXX (_nk_font_atlas_format_) +
+Values: '_alpha8_', '_rgba32_'.#
+
+[[fontcoordtype]]
+[small]#*fontcoordtype*: nk.COORD_XXX (_nk_font_coord_type_) +
+Values: '_uv_', '_pixel_'.#
+
+[[heading]]
+[small]#*heading*: nk.XXX (_nk_heading_) +
+Values: '_up_', '_right_', '_down_', '_left_'.#
+
+[[keys]]
+[small]#*keys*: nk.KEY_XXX (_nk_keys_) +
+Values: '_none_', '_shift_', '_ctrl_', '_del_', '_enter_', '_tab_', '_backspace_', '_copy_', '_cut_', '_paste_', '_up_', '_down_', '_left_', '_right_', '_text insert mode_', '_text replace mode_', '_text reset mode_', '_text line start_', '_text line end_', '_text start_', '_text end_', '_text undo_', '_text redo_', '_text select all_', '_text word left_', '_text word right_', '_scroll start_', '_scroll end_', '_scroll down_', '_scroll up_'.#
+
+[[layoutformat]]
+[small]#*layoutformat*: nk.XXX (_nk_layout_format_) +
+Values: '_dynamic_', '_static_'.#
+
+[[modify]]
+[small]#*modify*: nk.XXX (_nk_modify_) +
+Values: '_fixed_', '_modifiable_'.#
+
+[[orientation]]
+[small]#*orientation*: nk.XXX (_nk_orientation_) +
+Values: '_vertical_', '_horizontal_'.#
+
+[[panelrowlayouttype]]
+[small]#*panelrowlayouttype*: nk.LAYOUT_XXX (_nk_panel_row_layout_type_) +
+Values: '_dynamic fixed _', '_dynamic row_', '_dynamic free_', '_dynamic_', '_static fixed_', '_static row_', '_static free_', '_static_', '_template_'.#
+
+[[popuptype]]
+[small]#*popuptype*: nk.POPUP_XXX (_nk_popup_type_) +
+Values: '_static_', '_dynamic_'.#
+
+[[showstates]]
+[small]#*showstates*: nk.XXX (_nk_show_states_) +
+Values: '_hidden_', '_shown_'.#
+
+[[stylecursor]]
+[small]#*stylecursor*: nk.CURSOR_XXX (_nk_style_cursor_) +
+Values: '_arrow_', '_text_', '_move_', '_resize vertical_', '_resize horizontal_', '_resize top left down right_', '_resize top right down left_'.#
+
+[[styleitemtype]]
+[small]#*styleitemtype*: nk.STYLE_ITEM_XXX (_nk_style_item_type_) +
+Values: '_color_', '_image_'.#
+
+[[symboltype]]
+[small]#*symboltype*: nk.SYMBOL_XXX (_nk_symbol_type_) +
+Values: '_none_', '_x_', '_underscore_', '_circle solid_', '_circle outline_', '_rect solid_', '_rect outline_', '_triangle up_', '_triangle down_', '_triangle left_', '_triangle right_', '_plus_', '_minus_'.#
+
+[[texteditmode]]
+[small]#*texteditmode*: nk.TEXT_EDIT_MODE_XXX (_nk_text_edit_mode_) +
+Values: '_view_', '_insert_', '_replace_'.#
+
+
+[[textedittype]]
+[small]#*textedittype*: nk.TEXT_EDIT_XXX (_nk_text_edit_type_) +
+Values: '_single line_', '_multi line_'.#
+
+[[treetype]]
+[small]#*treetype*: nk.TREE_XXX (_nk_tree_type_) +
+Values: '_node_', '_tab_'.#
+
+

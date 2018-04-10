@@ -1,0 +1,93 @@
+
+[[font]]
+=== Font
+
+////
+A <<font, _font_>> object may be created either with _<<new_user_font, new_user_font>>(&nbsp;)_,
+or with the _atlas:<<atlas.add, add>>(&nbsp;)_ method during the 
+[[new_user_font]]
+* _font_ = *new_user_font*() + @@TODO do we really need this?
+[small]#Creates a font object, handled by the user#.
+////
+
+Fonts in MoonNuklear are represented by <<font, _font_>> objects, that are created 
+with the _atlas:<<atlas.add, add>>(&nbsp;)_ method during the <<font_baking, font baking>> process,
+and have the following methods:
+
+[[font.height]]
+* _height_ = _font_++:++*height*( ) +
+[small]#Returns the height of the given font#.
+
+[[font.width]]
+* _width_ = _font_++:++*width*(_height_, _text_) +
+[small]#Computes the width of the given string of _text_, using _font_ with the given _height_.#
+
+[[font.find_glyph]]
+* <<fontglyph, _fontglyph_>> = _font_++:++*find_glyph*(_codepoint_) +
+[small]#Returns the _font_ metadata for the glyph with the given codepoint (or the
+metadata for the <<fontconfig, fallback_glyph>>, if _codepoint_ is missing in the font).#
+
+[[font.ranges]]
+* {_codepoint_} = _font_++:++*ranges*( ) +
+[small]#Returns the codepoint ranges for the font.#
+
+[[font_baking]]
+=== Font baking
+
+The font baking process creates an image containing the glyphs of one or more fonts
+(that is, a https://en.wikipedia.org/wiki/Texture_atlas[texture atlas]), with the
+metadata needed to retrieve individual glyphs from the image and properly render them.
+
+Fonts are loaded from https://en.wikipedia.org/wiki/TrueType[TrueType] (_.ttf_) files.
+Nuklear also embeds a default font (http://upperbounds.net/[ProggyClean.ttf], by Tristan Grimmer).
+
+To bake fonts, create an <<atlas, _atlas_>> object, call _atlas:<<atlas.begin, begin>>(&nbsp;)_,
+add all your desired fonts with _atlas:<<atlas.add, add>>(&nbsp;)_, then
+call _atlas:<<atlas.bake, bake>>(&nbsp;)_ to create the texture image, and 
+finally call _atlas:<<atlas.done, done>>(&nbsp;)_ to complete the baking process.
+
+[[atlas]]
+* _atlas_ = *font_atlas*( ) +
+_atlas_++:++*free*( ) +
+[small]#Create/destroy a font atlas object. +
+Rfr: nk_font_atlas_init_default(&nbsp;), nk_font_atlas_clear(&nbsp;).#
+
+[[atlas.begin]]
+* _atlas_++:++*begin*( ) +
+[small]#Begin adding fonts to the atlas. +
+Rfr: nk_font_atlas_begin(&nbsp;).#
+
+[[atlas.add]]
+* <<font, _font_>> = _atlas_++:++*add*(_height_, [_filename_], [<<fontconfig, _fontconfig_>>]) +
+[small]#Creates a <<font, _font_>> object and adds it to the _atlas_. +
+The font is created with the given _height_ (in pixels) and loaded from the given _filename_ (a _.ttf_ file). If _filename_ is not given, the default font is used. +
+Rfr: nk_font_atlas_add_xxx(&nbsp;).#
+
+[[font_atlas_bake]]
+* _data_, _width_, _height_ = _atlas_++:++*bake*(<<fontatlasformat, _fontatlasformat_>>) +
+[small]#Performs the baking process, that creates an image with all the glyphs of the fonts
+previously added to the atlas. +
+Returns the pixel data (binary string) for the created image, and its dimensions in pixels. +
+The image should be used to create a texture with the specific system API being used. +
+Rfr: nk_font_atlas_bake(&nbsp;).#
+
+[[atlas.done]]
+* _texid_, <<vec2, _uv_>> = _atlas_++:++*done*(_texid_) +
+[small]#Ends the baking process and returns the texture id and uv coords for a white pixel
+('null texture'), as expected in the <<convert, convert configuration>>. +
+Notice that the method is called *done* because 'end' is a reserved keyword in Lua. +
+Rfr: nk_font_atlas_end(&nbsp;), nk_draw_null_texture.#
+
+[[font_atlas_cleanup]]
+* _atlas_++:++*cleanup*( ) +
+[small]#Rfr: nk_font_atlas_cleanup(&nbsp;).#
+
+[[atlas.default_font]]
+* <<font, _font_>> = _atlas_++:++*default_font*( ) +
+[small]#Returns the default font for the atlas, if it has one (otherwise returns _nil_).#
+
+[[atlas.cursor]]
+* <<cursor, _cursor_>> = _atlas_++:++*cursor*(<<stylecursor, _stylecursor_>>) +
+[small]#Returns the cursor stored in the atlas at the _stylecursor_ entry.#
+
+

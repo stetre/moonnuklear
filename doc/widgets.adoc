@@ -1,0 +1,212 @@
+
+[[widgets]]
+=== Widgets
+
+////
+[small]#<<widget, widget>> +
+{tH} <<widget.button, button>> +
+{tH} <<widget.chart, chart>> +
+{tH} <<widget.check, check>> +
+{tH} <<widget.checkbox, checkbox>> +
+{tH} <<widget.color_picker, color picker>> +
+{tH} <<widget.combo, combo>> +
+{tH} <<widget.abstract_combo, combo (abstract)>> +
+{tH} <<widget.contextual, contextual>> +
+{tH} <<widget.edit, edit>> +
+{tH} <<widget.image, image>> +
+{tH} <<widget.label, label (text)>> +
+{tH} <<widget.menu, menu>> +
+{tH} <<widget.menubar, menubar>> +
+{tH} <<widget.option, option (radio button)>> +
+{tH} <<widget.popup, popup>> +
+{tH} <<widget.progress, progress>> +
+{tH} <<widget.property, property>> +
+{tH} <<widget.selectable, selectable>> +
+{tH} <<widget.slider, slider>> +
+{tH} <<widget.tooltip, tooltip>> +
+{tL} <<widget.tree, tree>>#
+//{tL} <<widget.value, value>>#
+////
+
+[[widget]]
+* <<widgetlayoutstatesflags, _widgetlayoutstatesflags_>>, <<rect, _bounds_>> = *widget*(_context_, <<rect, _bounds_>>, [<<vec2, _padding_>>]) +
+<<rect, _bounds_>> = *widget_bounds*(_context_) +
+<<vec2, _position_>> = *widget_position*(_context_) +
+<<vec2, _size_>> = *widget_size*(_context_) +
+_float_ = *widget_width*(_context_) +
+_float_ = *widget_height*(_context_) +
+_boolean_ = *widget_is_hovered*(_context_) +
+_boolean_ = *widget_is_mouse_clicked*(_context_, <<buttons, _buttons_>>) +
+_boolean_ = *widget_has_mouse_click_down*(_context_, <<buttons, _buttons_>>, _boolean_) +
+*spacing*(_context_, _columns_) +
+[small]#Rfr: nk_widget_xxx(&nbsp;), nk_spacing(&nbsp;).#
+
+[[widget.button]]
+==== button
+* _clicked_ = *button*(_context_, _nil_, _text_) +
+_clicked_ = *button*(_context_, <<color, _color_>>) +
+_clicked_ = *button*(_context_, <<image, _image_>>|<<symboltype, _symboltype_>>, [_text_, <<textalignflags, _textalignflags_>>]) +
+*button_set_behavior*(_context_, <<buttonbehavior, _buttonbehavior_>>) +
+_ok_ = *button_push_behavior*(_context_, <<buttonbehavior, _buttonbehavior_>>) +
+_ok_ = *button_pop_behavior*(_context_) +
+[small]#Rfr: nk_button_xxx(&nbsp;).#
+
+[[widget.chart]]
+==== chart
+
+
+* _ok_ = *chart_begin*(_context_, <<charttype, _charttype_>>, _count_, _min_, _max_, [<<color, _color_>>, <<color, _highlightcolor_>>]) +
+*chart_add_slot*(_context_, <<charttype, _charttype_>>, _count_, _min_, _max_, [<<color, _color_>>, <<color, _highlightcolor_>>]) +
+<<charteventflags, _charteventflags_>> = *chart_push*(_context_, _value_, [_slot=1_]) +
+*chart_end*(_context_) +
+[small]#_slot_: 1-based integer (the default slot is _slot=1_, subsequently added slots are _2_, _3_ and so on). +
+Rfr: nk_chart_xxx(&nbsp;).#
+
+* *plot*(_context_, <<charttype, _charttype_>>, {_value_}, _count_, _offset_) +
+*plot_function*(_context_, <<charttype, _charttype_>>, _valuegetfunc_, _count_, _offset_) +
+[small]#The _valuegetfunc_ callback (a Lua function) is executed as *_value = valuegetfunc(index)_* and is expected to return the value (number) corresponding to _index_ (integer in the range _offset+1_ .. _offset+count_). +
+Rfr: nk_plot_xxx(&nbsp;).#
+
+[[widget.check]]
+==== check, checkbox
+* _active_ = *check*(_context_, _text_, _active_) +
+_flags_ = *check_flags*(_context_, _text_, _flags_, _value_) +
+[small]#Rfr: nk_check_xxx(&nbsp;).#
+
+[[widget.checkbox]]
+* _active_ = *checkbox*(_context_, _text_, _active_) +
+_flags_ = *checkbox_flags*(_context_, _text_, _flags_, _value_) +
+[small]#Rfr: nk_checkbox_xxx(&nbsp;).#
+
+[[widget.color_picker]]
+==== color_picker
+* <<color, _color_>> = *color_picker*(_context_, <<color, _color_>>, <<colorformat, _colorformat_>>) +
+[small]#Rfr: nk_color_picker(&nbsp;).#
+
+[[widget.combo]]
+==== combo
+* _selected_ = *combo*(_context_, {_item_}, _selected_, _itemheight_, <<vec2, _size_>>) +
+_selected_  = *combo_callback*(_context_, _itemgetfunc_, _selected_, _count_, _itemheight_, <<vec2, _size_>>) +
+[small]#{_item_} is a list of string items, and _selected_ is the 1-based index of the selected item in that list. +
+The _itemgetfunc_ callback (a Lua function) is executed as *_item = itemgetfunc(selected)_* and is expected to return the item (a string) corresponding to the _selected_ argument. +
+Rfr: nk_combo_xxx(&nbsp;).#
+
+[[widget.abstract_combo]]
+* _ok_ = *combo_begin*(_context_, _nil_, _text_, <<vec2, _size_>>) +
+_ok_ = *combo_begin*(_context_, <<color, _color_>>, _nil_, <<vec2, _size_>>) +
+_ok_ = *combo_begin*(_context_, <<image, _image_>>|<<symboltype, _symboltype_>>, [_text_], <<vec2, _size_>>) +
+_selected_ =  *combo_item*(_context_, [<<image, _image_>>|<<symboltype, _symboltype_>>], _text_, <<textalignflags, _textalignflags_>>) +
+*combo_close*(_context_) +
+*combo_end*(_context_) +
+[small]#Rfr: nk_combo_xxx(&nbsp;).#
+
+
+[[widget.contextual]]
+==== contextual
+* _ok_ = *contextual_begin*(_context_, <<panelflags, _panelflags_>>, <<vec2, _size_>>, <<rect, _triggerbounds_>>) +
+_selected_ =  *contextual_item*(_context_, [<<image, _image_>>|<<symboltype, _symboltype_>>], _text_, <<textalignflags, _textalignflags_>>) +
+*contextual_close*(_context_) +
+*contextual_end*(_context_) +
+[small]#Rfr: nk_contextual_xxx(&nbsp;).#
+
+[[widget.edit]]
+==== edit
+* _text_, <<widgetlayoutstatesflags, _widgetlayoutstatesflags_>> = *edit_string*(_context_, <<editflags, _editflags_>>, _text_, _max_, [<<filter, _filter_>>|_filterfunc_]) +
+*edit_focus*(_context_, <<editflags, _editflags_>>) +
+*edit_unfocus*(_context_) +
+[small]#The _filterfunc_ callback (a Lua function) can be used to implement custom filters in Lua.
+It is executed as *_boolean = filterfunc(edit, codepoint)_*, where _edit_ is the <<edit, edit>>
+associated with the _context_, and it is expected to return a boolean indicating whether the given
+_codepoint_ is accepted by the filter or not. +
+If neither _filter_ nor _filterfunc_ are given, the '_default_' filter is used. +
+Rfr: nk_textedit_xxx(&nbsp;), nk_plugin_filter.#
+
+
+[[widget.image]]
+==== image
+* *image*(_context_, <<image, _image_>>) +
+[small]#Rfr: nk_image(&nbsp;).#
+
+[[widget.label]]
+==== label (text)
+* *label*(_context_, _text_, <<textalignflags, _textalignflags_>>, [<<color, _color_>>]) +
+*label_wrap*(_context_, _text_, [<<color, _color_>>]) +
+[small]#Rfr: nk_label_xxx(&nbsp;), nk_text_xxx(&nbsp;).#
+
+[[widget.menu]]
+==== menu, menubar
+* _ok_ =  *menu_begin*(_context_, [<<image, _image_>>|<<symboltype, _symboltype_>>], _text_, <<textalignflags, _textalignflags_>>) +
+_selected_ =  *menu_item*(_context_, [<<image, _image_>>|<<symboltype, _symboltype_>>], _text_, <<textalignflags, _textalignflags_>>) +
+*menu_close*(_context_) +
+*menu_end*(_context_) +
+[small]#Rfr: nk_menu_xxx(&nbsp;).#
+
+[[widget.menubar]]
+* *menubar_begin*(_context_) +
+*menubar_end*(_context_) +
+[small]#Rfr: nk_menubar_xxx(&nbsp;).#
+
+[[widget.option]]
+==== option (radio)
+* _active_, _changed_ = *option*(_context_, _text_, _active_) +
+[small]#_active_, _changed_: boolean. +
+Rfr: nk_option_xxx(&nbsp;), nk_radio_xxx(&nbsp;).#
+
+[[widget.popup]]
+==== popup
+* _ok_ = *popup_begin*(_context_, <<popuptype, _popuptype_>>, _text_, <<windowflags, _windowflags_>>, <<rect, _bounds_>>) +
+*popup_close*(_context_) +
+*popup_end*(_context_) +
+[small]#Rfr: nk_popup_xxx(&nbsp;).#
+
+[[widget.progress]]
+==== progress
+* _value_ = *progress*(_context_, _value_, _max_, <<modify, __modify_>>) +
+[small]#Rfr: nk_progress(&nbsp;).#
+
+[[widget.property]]
+==== property
+* _value_ = *property*(_context_, _text_, _min_, _value_, _max_, _step_, _incrperpixel_) +
+[small]#Rfr: nk_property_xxx(&nbsp;).#
+
+[[widget.selectable]]
+==== selectable
+* _selected_, _changed_ = *selectable*(_context_, [<<image, _image_>>], _text_, <<textalignflags, _textalignflags_>>, _selected_) +
+[small]#_selected_, _changed_: boolean. +
+Rfr: nk_selectable_xxx(&nbsp;).#
+
+[[widget.slider]]
+==== slider
+* _value_ = *slider*(_context_, _min_, _value_, _max_, _step_) +
+[small]#Rfr: nk_slider_xxx(&nbsp;).#
+
+[[widget.tooltip]]
+==== tooltip
+* *tooltip*(_context_, _text_) +
+* _ok_ = *tooltip_begin*(_context_, _width_) +
+*tooltip_end*(_context_) +
+[small]#Rfr: nk_tooltip_xxx(&nbsp;).#
+
+[[widget.tree]]
+==== tree
+* _ok_ = *tree_push*(_context_, <<treetype, _treetype_>>, _title_, <<collapsestates, _collapsestates_>>, _hash_) +
+*tree_pop*(_context_) +
+_ok_, <<collapsestates, _collapsestates_>> = *tree_state_push*(_context_, <<treetype, _treetype_>>, _title_, <<collapsestates, _collapsestates_>>) +
+_ok_, <<collapsestates, _collapsestates_>> = *tree_state_image_push*(_context_, <<treetype, _treetype_>>, <<image, _image_>>, <<collapsestates, _collapsestates_>>) +
+*tree_state_pop*(_context_) +
+[small]#Note: the _hash_ parameter (a string) passed to _context:tree_push_(&nbsp;) must be unique within the application. +
+Rfr: nk_tree_xxx(&nbsp;).#
+
+////
+[[widget.value]]
+* *value_bool*(_context_, _text_, _value_) +
+*value_int*(_context_, _text_, _value_) +
+*value_uint*(_context_, _text_, _value_) +
+*value_float*(_context_, _text_, _value_) +
+*value_color_byte*(_context_, _text_, <<color, _color_>>) +
+*value_color_float*(_context_, _text_, <<color, _color_>>) +
+*value_color_hex*(_context_, _text_, <<color, _color_>>) +
+[small]#Rfr: nk_value_xxx(&nbsp;).#
+////
+
+

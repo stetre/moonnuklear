@@ -1,0 +1,19 @@
+
+[[clipboard]]
+=== Clipboard
+
+Use the following methods to connect the context with the system clipboard.
+
+[[context.set_clipboard_paste]]
+* _context_++:++*set_clipboard_paste*(_func_) +
+[small]#Set the 'paste' callback for the context. +
+The callback (a Lua function) is executed as *_func(edit)_*, and is expected to paste the current contents of the clipboard to 
+the given <<edit, _edit_>>. +
+Rfr: nk_plugin_paste.#
+
+[[context.set_clipboard_copy]]
+* _context_++:++*set_clipboard_copy*(_func_) +
+[small]#Set the 'copy' callback for the context. +
+The callback (a Lua function) is executed as *_func(text)_*, and is expected to copy the given _text_ (a string) to the clipboard. +
+Rfr: nk_plugin_copy.#
+

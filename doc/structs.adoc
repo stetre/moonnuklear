@@ -1,0 +1,164 @@
+
+[[structs]]
+=== Structs and types
+
+* [[color]]
+[small]#*color* = {float}[4] (normalized RGBA components, see also the <<colors, Colors>> section)#
+
+* [[hsvacolor]]
+[small]#*hsvacolor* = {float}[4] (normalized HSVA components)#
+
+* [[rect]]
+[small]#*rect* = {float}[4] (xywh, aliases: *bounds*)#
+
+* [[vec2]]
+[small]#*vec2* = {float}[2] (xy or wh, aliases: *position*, *size*, *padding*)#
+
+* [[vec2i]]
+[small]#*vec2i* = {integer}[2] (xy, aliases: *point*)#
+
+* [[styleitem]]
+[small]#*styleitem* = <<image, image>>|<<color, color>>|'_hide_' (Rfr: nk_style_item)#
+
+* [[colortable]]
+[small]#*colortable* = { +
+_text_: <<color, color>>, +
+_window_: <<color, color>>, +
+_header_: <<color, color>>, +
+_border_: <<color, color>>, +
+_button_: <<color, color>>, +
+_button_hover_: <<color, color>>, +
+_button_active_: <<color, color>>, +
+_toggle_: <<color, color>>, +
+_toggle_hover_: <<color, color>>, +
+_toggle_cursor_: <<color, color>>, +
+_select_: <<color, color>>, +
+_select_active_: <<color, color>>, +
+_slider_: <<color, color>>, +
+_slider_cursor_: <<color, color>>, +
+_slider_cursor_hover_: <<color, color>>, +
+_slider_cursor_active_: <<color, color>>, +
+_property_: <<color, color>>, +
+_edit_: <<color, color>>, +
+_edit_cursor_: <<color, color>>, +
+_combo_: <<color, color>>, +
+_chart_: <<color, color>>, +
+_chart_color_: <<color, color>>, +
+_chart_color_highlight_: <<color, color>>, +
+_scrollbar_: <<color, color>>, +
+_scrollbar_cursor_: <<color, color>>, +
+_scrollbar_cursor_hover_: <<color, color>>, +
+_scrollbar_cursor_active_: <<color, color>>, +
+_tab_header_: <<color, color>>, +
+}#
+
+* [[keytable]]
+[small]#*keytable* = { +
+_shift_: boolean, +
+_ctrl_: boolean, +
+_del_: boolean, +
+_enter_: boolean, +
+_tab_: boolean, +
+_backspace_: boolean, +
+_copy_: boolean, +
+_cut_: boolean, +
+_paste_: boolean, +
+_up_: boolean, +
+_down_: boolean, +
+_left_: boolean, +
+_right_: boolean, +
+_text_insert_mode_: boolean, +
+_text_replace_mode_: boolean, +
+_text_reset_mode_: boolean, +
+_text_line_start_: boolean, +
+_text_line_end_: boolean, +
+_text_start_: boolean, +
+_text_end_: boolean, +
+_text_undo_: boolean, +
+_text_redo_: boolean, +
+_text_select_all_: boolean, +
+_text_word_left_: boolean, +
+_text_word_right_: boolean, +
+_scroll_start_: boolean, +
+_scroll_end_: boolean, +
+_scroll_down_: boolean, +
+_scroll_up_: boolean, +
+}#
+
+* [[drawvertexlayoutelement]]
+[small]#*drawvertexlayoutelement* = { _attribute_, _format_, _offset_ }, where: +
+_attribute_: <<drawvertexlayoutattribute, _drawvertexlayoutattribute_>>, +
+_format_: <<drawvertexlayoutformat, _drawvertexlayoutformat_>>, +
+_offset_: integer (opt., defaults to 0) +
+(Rfr: nk_draw_vertex_layout_element)#
+
+* [[memorystatus]]
+[small]#*memorystatus* = { +
+_size_: integer, +
+_allocated_: integer, +
+_needed_: integer, +
+_calls_: integer, +
+_ptr_: lightuserdata (_void*_), +
+} (Rfr: nk_memory_status)#
+
+* [[fontglyph]]
+[small]#*fontglyph* = { +
+_codepoint_: integer, +
+_xadvance_: float, +
+_x0_, _y0_, _x1_, _y1_: float, +
+_u0_, _v0_, _u1_, _v1_: float, +
+_w_, _h_: float, +
+} (Rfr: nk_font_glyph)#
+
+* [[fontconfig]]
+[small]#*fontconfig* = { +
+_coord_type_: <<fontcoordtype, _fontcoordtype_>> (defaults to '_uv_'), +
+_oversample_v_: integer (defaults to _1_), +
+_oversample_h_: integer (defaults to _3_), +
+_fallback_glyph_: codepoint (defaults to _63_, i.e. _'?'_), +
+_spacing_; <<vec2, vec2>> (defaults to _{0, 0}_) +
+_ranges_: {codepoint} (defaults to _<<glyph_ranges, font_default_glyph_ranges>>(&nbsp;)_), +
+} (Rfr: nk_font_config)#
+
+* [[glyph_ranges]]
+[small]#_{codepoint}_ = *font_default_glyph_ranges*( ) +
+_{codepoint}_ = *font_chinese_glyph_ranges*( ) +
+_{codepoint}_ = *font_cyrillic_glyph_ranges*( ) +
+_{codepoint}_ = *font_korean_glyph_ranges*( ) +
+These functions return the codepoint ranges for some languages.#
+
+'''
+
+* [[drawcommand]]
+[small]#*drawcommand* = { +
+_elem_count_: integer, +
+_clip_rect_: <<rect, rect>>, +
+_texture_id_: integer, +
+} (Rfr: nk_draw_command)#
+
+'''
+
+* [[command]]
+[small]#*command* = { _type_: <<commandtype, commandtype>>, ... type-dependent contents (see below) ...
+} (Rfr: nk_command) +
+Commands: +
+{ _type_=*_'nop'_* } +
+{ _type_=*_'scissor'_*, _x_, _y_, _w_, _h_: integer } +
+{ _type_=*_'line'_*, _line_thickness_: integer, _start_: <<vec2i, point>>, _stop_: <<vec2i, point>>, _color_: <<color, color>> } +
+{ _type_=*_'curve'_*, _line_thickness_: integer, _start_: <<vec2i, point>>, _stop_: <<vec2i, point>>, _ctrl_: {<<vec2i, point>>}[2], _color_: <<color, color>> } +
+{ _type_=*_'rect'_*, _rounding_: integer, _line_thickness_: integer, _x_, _y_, _w_, _h_: integer, _color_: <<color, color>> } +
+{ _type_=*_'rect filled'_*, _rounding_: integer, _x_, _y_, _w_, _h_: integer, _color_: <<color, color>> } +
+{ _type_=*_'rect multi color'_*, _x_, _y_, _w_, _h_: integer, _left_, _top_, _bottom_, _right_: <<color, color>> } +
+{ _type_=*_'triangle'_*, _line_thickness_: integer, _a_, _b_, _c_: <<vec2i, point>>, _color_: <<color, color>> } +
+{ _type_=*_'triangle filled'_*, _a_, _b_, _c_: <<vec2i, point>>, _color_: <<color, color>> } +
+{ _type_=*_'circle'_*, _line_thickness_: integer, _x_, _y_, _w_, _h_: integer, _color_: <<color, color>> } +
+{ _type_=*_'circle filled'_*, _x_, _y_, _w_, _h_: integer, _color_: <<color, color>> } +
+{ _type_=*_'arc'_*, _line_thickness_: integer, _cx_, _cy_: integer, _r_: integer, _a_: {float}[2], _color_: <<color, color>> } +
+{ _type_=*_'arc filled'_*, _cx_, _cy_: integer, _r_: integer, _a_: {float}[2], _color_: <<color, color>> } +
+{ _type_=*_'polygon'_*, _line_thickness_: integer, _points_: {<<vec2i, point>>}, _color_: <<color, color>> } +
+{ _type_=*_'polygon filled'_*, _points_: {<<vec2i, point>>}, _color_: <<color, color>> } +
+{ _type_=*_'polyline'_*, _line_thickness_: integer, _points_: {<<vec2i, point>>}, _color_: <<color, color>> } +
+{ _type_=*_'image'_*, _image_: <<image, image>>, _x_, _y_, _w_, _h_: integer, _color_: <<color, color>> } +
+{ _type_=*_'text'_*, _font_: <<user_font, user_font>>, _x_, _y_, _w_, _h_: integer, _background_, _foreground_: <<color, color>>, _text_: string, }#
+
+

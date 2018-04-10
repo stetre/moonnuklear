@@ -1,0 +1,43 @@
+
+== Overview
+
+To create a GUI application with MoonNuklear, you first need to create a Nuklear 
+<<context, *context*>> with _<<init, nk.init>>(&nbsp;)_.
+You also need to provide Nuklear with a <<font, *font*>> to use for text rendering
+(you can provide it now, or later in the initialization phase). 
+
+The Nuklear context mantains minimal state for your appplication and links together the two main
+parts it is composed of: 
+
+* the *front-end*, whose task is to define and draw the GUI independently of the *'system API'*
+(by which we mean the set of APIs used for interfacing with the window system, handling input,
+and rendering pixels on the screen, e.g. GLFW an OpenGL), and
+* the *back-end*, that interfaces with the system API, acting as translator and bridge between the system itself and Nuklear.
+
+After having created the context - and performed any other initialization such as those required by
+the system API - the application enters the main *event loop* where (ideally) each iteration reacts
+to input events and ends up rendering a frame on the screen. 
+
+Omitting the details, each iteration consists of the following steps:
+
+1. (_back-end_) Collect input information via the system API.
+2. (_back-end_) <<input_mirroring, Mirror the input>>, i.e. relay the collected input information to Nuklear.
+3. (_front-end_) Draw the GUI using Nuklear's front-end API (<<window, window>>, <<layout, layout>>, <<widgets, widgets>>, etc).
+This generates vertex data and abstract draw commands ('abstract' in the sense that they do not depend
+on any particular system API).
+4. (_back-end_) <<convert, Convert>> the vertex data to the format expected by the system API and
+retrieve the list of abstract draw commands.
+5. (_back-end_) Eventually render the frame, by mapping the abstract draw commands to concrete system API calls.
+
+The rest of this manual lists the MoonNuklear Lua bindings to the functions provided by Nuklear for 
+the above operations, while a few examples can be found in the *examples/* directory of the repository,
+mostly portings to Lua of the original examples that come with Nuklear (including the comprehensive demo).
+
+The examples implement OpenGL/GLFW backends via the https://github.com/stetre/moongl[MoonGL] 
+and https://github.com/stetre/moonglfw[MoonGLFW] bindings.
+Note however that MoonNuklear - like Nuklear - is agnostic with respect to the system API
+(that is, you can use whatever system API you like for the backend, provided you have means
+to access them from Lua).
+
+
+

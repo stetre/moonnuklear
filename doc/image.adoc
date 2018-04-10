@@ -1,0 +1,22 @@
+
+[[image]]
+=== Image
+
+An <<image, _image_>> object encapsulates information about an image or texture,
+with the sole purpose to pass it across the Nuklear API and back to the application.
+It may cointain either a texture id (integer) or a lightuserdata with image
+information opaque to Nuklear. It may also represent a portion of an image (i.e. a 'subimage').
+
+[[new_image]]
+* _image_ = *new_image*(_id|ptr_) +
+_image_ = *new_subimage*(_id|ptr_, _w_, _h_, <<rect, _subregion_>>) +
+_image_++:++*free*( ) +
+[small]#_id_, _w_, _h_: integer,
+_ptr_: lightuserdata containing image information opaque to Nuklear. +
+Rfr: nk_image.#
+
+[[image_info]]
+* _id|ptr_, _w_, _h_, <<rect, _subregion_>> = _image_++:++*info*( ) +
+[small]#If _image_ is not a subimage, then only the _id_ or _ptr_ is returned.#
+
+

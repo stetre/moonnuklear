@@ -1,0 +1,47 @@
+= MoonNuklear Reference Manual
+Stefano Trettel
+v0.1, 2018-04-10
+:toc: left
+:toclevels: 3
+:stylesdir: ./
+:stylesheet: colony.css
+:source-highlighter: pygments
+:pygments-style: autumn
+:source-language: lua
+:exampledir: ../examples
+
+image::powered-by-lua.gif[Lua logo, link=http://www.lua.org]
+
+// Macros for trees: {tS} = "   ", {tI} = "│  ", {tH} = "├─ ", {tL} = "└─ "
+:tS: &#8192;&#8192;&#8192;&#8192;
+:tI: &#9474;&#8192;&#8192;&#8192;
+:tH: &#9500;&#9472;&#8192;
+:tL: &#9492;&#9472;&#8192;
+
+
+include::preface.adoc[]
+
+include::overview.adoc[]
+
+== API bindings
+include::context.adoc[]
+include::input.adoc[]
+include::clipboard.adoc[]
+include::convert.adoc[]
+
+include::window.adoc[]
+include::layout.adoc[]
+include::widgets.adoc[]
+include::edit.adoc[]
+include::canvas.adoc[]
+include::colors.adoc[]
+include::style.adoc[]
+
+include::font.adoc[]
+include::buffer.adoc[]
+include::image.adoc[]
+include::structs.adoc[]
+include::enums.adoc[]
+include::flags.adoc[]
+include::stylefields.adoc[]
+

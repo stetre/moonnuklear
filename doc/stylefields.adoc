@@ -1,0 +1,523 @@
+
+
+[[stylefields]]
+
+=== List of style fields
+
+Listed in this section are the accessible <<style, style>> fields of a _context_, together with their type. 
+
+The string literal for each field corresponds to its name in the _style_ field of the _nk_context_ struct in C (for example, '_button.border_' identifies the _context->style.button.border_ field which is a _float_).
+
+[small]#'_button.border_' : _float_ +
+'_button.rounding_' : _float_ +
+'_contextual_button.border_' : _float_ +
+'_contextual_button.rounding_' : _float_ +
+'_menu_button.border_' : _float_ +
+'_menu_button.rounding_' : _float_ +
+'_checkbox.border_' : _float_ +
+'_checkbox.spacing_' : _float_ +
+'_option.border_' : _float_ +
+'_option.spacing_' : _float_ +
+'_selectable.rounding_' : _float_ +
+'_slider.bar_height_' : _float_ +
+'_slider.rounding_' : _float_ +
+'_slider.inc_button.border_' : _float_ +
+'_slider.inc_button.rounding_' : _float_ +
+'_slider.dec_button.border_' : _float_ +
+'_slider.dec_button.rounding_' : _float_ +
+'_progress.rounding_' : _float_ +
+'_progress.border_' : _float_ +
+'_progress.cursor_rounding_' : _float_ +
+'_progress.cursor_border_' : _float_ +
+'_scrollh.border_' : _float_ +
+'_scrollh.rounding_' : _float_ +
+'_scrollh.border_cursor_' : _float_ +
+'_scrollh.rounding_cursor_' : _float_ +
+'_scrollv.border_' : _float_ +
+'_scrollv.rounding_' : _float_ +
+'_scrollv.border_cursor_' : _float_ +
+'_scrollv.rounding_cursor_' : _float_ +
+'_scrollh.inc_button.border_' : _float_ +
+'_scrollh.inc_button.rounding_' : _float_ +
+'_scrollh.dec_button.border_' : _float_ +
+'_scrollh.dec_button.rounding_' : _float_ +
+'_scrollv.inc_button.border_' : _float_ +
+'_scrollv.inc_button.rounding_' : _float_ +
+'_scrollv.dec_button.border_' : _float_ +
+'_scrollv.dec_button.rounding_' : _float_ +
+'_edit.row_padding_' : _float_ +
+'_edit.cursor_size_' : _float_ +
+'_edit.border_' : _float_ +
+'_edit.rounding_' : _float_ +
+'_edit.scrollbar.border_' : _float_ +
+'_edit.scrollbar.rounding_' : _float_ +
+'_edit.scrollbar.border_cursor_' : _float_ +
+'_edit.scrollbar.rounding_cursor_' : _float_ +
+'_edit.scrollbar.inc_button.border_' : _float_ +
+'_edit.scrollbar.inc_button.rounding_' : _float_ +
+'_edit.scrollbar.dec_button.border_' : _float_ +
+'_edit.scrollbar.dec_button.rounding_' : _float_ +
+'_property.border_' : _float_ +
+'_property.rounding_' : _float_ +
+'_property.dec_button.border_' : _float_ +
+'_property.dec_button.rounding_' : _float_ +
+'_property.inc_button.border_' : _float_ +
+'_property.inc_button.rounding_' : _float_ +
+'_property.edit.cursor_size_' : _float_ +
+'_property.edit.border_' : _float_ +
+'_property.edit.rounding_' : _float_ +
+'_chart.border_' : _float_ +
+'_chart.rounding_' : _float_ +
+'_combo.border_' : _float_ +
+'_combo.rounding_' : _float_ +
+'_combo.button.border_' : _float_ +
+'_combo.button.rounding_' : _float_ +
+'_tab.indent_' : _float_ +
+'_tab.border_' : _float_ +
+'_tab.rounding_' : _float_ +
+'_tab.tab_minimize_button.border_' : _float_ +
+'_tab.tab_minimize_button.rounding_' : _float_ +
+'_tab.tab_maximize_button.border_' : _float_ +
+'_tab.tab_maximize_button.rounding_' : _float_ +
+'_tab.node_minimize_button.border_' : _float_ +
+'_tab.node_minimize_button.rounding_' : _float_ +
+'_tab.node_maximize_button.border_' : _float_ +
+'_tab.node_maximize_button.rounding_' : _float_ +
+'_window.header.close_button.border_' : _float_ +
+'_window.header.close_button.rounding_' : _float_ +
+'_window.header.minimize_button.border_' : _float_ +
+'_window.header.minimize_button.rounding_' : _float_ +
+'_window.rounding_' : _float_ +
+'_window.combo_border_' : _float_ +
+'_window.contextual_border_' : _float_ +
+'_window.menu_border_' : _float_ +
+'_window.group_border_' : _float_ +
+'_window.tooltip_border_' : _float_ +
+'_window.popup_border_' : _float_ +
+'_window.border_' : _float_ +
+'_window.min_row_height_padding_' : _float_ +
+'_text.padding_' : <<vec2, _vec2_>> +
+'_button.padding_' : <<vec2, _vec2_>> +
+'_button.image_padding_' : <<vec2, _vec2_>> +
+'_button.touch_padding_' : <<vec2, _vec2_>> +
+'_contextual_button.padding_' : <<vec2, _vec2_>> +
+'_contextual_button.touch_padding_' : <<vec2, _vec2_>> +
+'_menu_button.padding_' : <<vec2, _vec2_>> +
+'_menu_button.touch_padding_' : <<vec2, _vec2_>> +
+'_checkbox.padding_' : <<vec2, _vec2_>> +
+'_checkbox.touch_padding_' : <<vec2, _vec2_>> +
+'_option.padding_' : <<vec2, _vec2_>> +
+'_option.touch_padding_' : <<vec2, _vec2_>> +
+'_selectable.padding_' : <<vec2, _vec2_>> +
+'_selectable.touch_padding_' : <<vec2, _vec2_>> +
+'_slider.cursor_size_' : <<vec2, _vec2_>> +
+'_slider.padding_' : <<vec2, _vec2_>> +
+'_slider.spacing_' : <<vec2, _vec2_>> +
+'_slider.inc_button.padding_' : <<vec2, _vec2_>> +
+'_slider.inc_button.touch_padding_' : <<vec2, _vec2_>> +
+'_slider.dec_button.padding_' : <<vec2, _vec2_>> +
+'_slider.dec_button.touch_padding_' : <<vec2, _vec2_>> +
+'_progress.padding_' : <<vec2, _vec2_>> +
+'_scrollh.padding_' : <<vec2, _vec2_>> +
+'_scrollv.padding_' : <<vec2, _vec2_>> +
+'_scrollh.inc_button.padding_' : <<vec2, _vec2_>> +
+'_scrollh.inc_button.touch_padding_' : <<vec2, _vec2_>> +
+'_scrollh.dec_button.padding_' : <<vec2, _vec2_>> +
+'_scrollh.dec_button.touch_padding_' : <<vec2, _vec2_>> +
+'_scrollv.inc_button.padding_' : <<vec2, _vec2_>> +
+'_scrollv.inc_button.touch_padding_' : <<vec2, _vec2_>> +
+'_scrollv.dec_button.padding_' : <<vec2, _vec2_>> +
+'_scrollv.dec_button.touch_padding_' : <<vec2, _vec2_>> +
+'_edit.scrollbar_size_' : <<vec2, _vec2_>> +
+'_edit.padding_' : <<vec2, _vec2_>> +
+'_edit.scrollbar.padding_' : <<vec2, _vec2_>> +
+'_edit.scrollbar.inc_button.padding_' : <<vec2, _vec2_>> +
+'_edit.scrollbar.inc_button.touch_padding_' : <<vec2, _vec2_>> +
+'_edit.scrollbar.dec_button.padding_' : <<vec2, _vec2_>> +
+'_edit.scrollbar.dec_button.touch_padding_' : <<vec2, _vec2_>> +
+'_property.padding_' : <<vec2, _vec2_>> +
+'_property.dec_button.padding_' : <<vec2, _vec2_>> +
+'_property.dec_button.touch_padding_' : <<vec2, _vec2_>> +
+'_property.inc_button.padding_' : <<vec2, _vec2_>> +
+'_property.inc_button.touch_padding_' : <<vec2, _vec2_>> +
+'_property.edit.padding_' : <<vec2, _vec2_>> +
+'_chart.padding_' : <<vec2, _vec2_>> +
+'_combo.content_padding_' : <<vec2, _vec2_>> +
+'_combo.button_padding_' : <<vec2, _vec2_>> +
+'_combo.spacing_' : <<vec2, _vec2_>> +
+'_combo.button.padding_' : <<vec2, _vec2_>> +
+'_combo.button.touch_padding_' : <<vec2, _vec2_>> +
+'_tab.padding_' : <<vec2, _vec2_>> +
+'_tab.spacing_' : <<vec2, _vec2_>> +
+'_tab.tab_minimize_button.padding_' : <<vec2, _vec2_>> +
+'_tab.tab_minimize_button.touch_padding_' : <<vec2, _vec2_>> +
+'_tab.tab_maximize_button.padding_' : <<vec2, _vec2_>> +
+'_tab.tab_maximize_button.touch_padding_' : <<vec2, _vec2_>> +
+'_tab.node_minimize_button.padding_' : <<vec2, _vec2_>> +
+'_tab.node_minimize_button.touch_padding_' : <<vec2, _vec2_>> +
+'_tab.node_maximize_button.padding_' : <<vec2, _vec2_>> +
+'_tab.node_maximize_button.touch_padding_' : <<vec2, _vec2_>> +
+'_window.header.label_padding_' : <<vec2, _vec2_>> +
+'_window.header.padding_' : <<vec2, _vec2_>> +
+'_window.header.spacing_' : <<vec2, _vec2_>> +
+'_window.header.close_button.padding_' : <<vec2, _vec2_>> +
+'_window.header.close_button.touch_padding_' : <<vec2, _vec2_>> +
+'_window.header.minimize_button.padding_' : <<vec2, _vec2_>> +
+'_window.header.minimize_button.touch_padding_' : <<vec2, _vec2_>> +
+'_window.spacing_' : <<vec2, _vec2_>> +
+'_window.scrollbar_size_' : <<vec2, _vec2_>> +
+'_window.min_size_' : <<vec2, _vec2_>> +
+'_window.padding_' : <<vec2, _vec2_>> +
+'_window.group_padding_' : <<vec2, _vec2_>> +
+'_window.popup_padding_' : <<vec2, _vec2_>> +
+'_window.combo_padding_' : <<vec2, _vec2_>> +
+'_window.contextual_padding_' : <<vec2, _vec2_>> +
+'_window.menu_padding_' : <<vec2, _vec2_>> +
+'_window.tooltip_padding_' : <<vec2, _vec2_>> +
+'_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_contextual_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_menu_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_slider.inc_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_slider.dec_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_scrollh.inc_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_scrollh.dec_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_scrollv.inc_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_scrollv.dec_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_edit.scrollbar.inc_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_edit.scrollbar.dec_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_property.dec_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_property.inc_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_combo.button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_tab.tab_minimize_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_tab.tab_maximize_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_tab.node_minimize_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_tab.node_maximize_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_window.header.close_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_window.header.minimize_button.text_alignment_' : <<textalignflags, _textalignflags_>> +
+'_window.header.align_' : <<styleheaderalignflags, _styleheaderalignflags_>>
+'_text.color_' : <<color, _color_>> +
+'_button.border_color_' : <<color, _color_>> +
+'_button.text_background_' : <<color, _color_>> +
+'_button.text_normal_' : <<color, _color_>> +
+'_button.text_hover_' : <<color, _color_>> +
+'_button.text_active_' : <<color, _color_>> +
+'_contextual_button.border_color_' : <<color, _color_>> +
+'_contextual_button.text_background_' : <<color, _color_>> +
+'_contextual_button.text_normal_' : <<color, _color_>> +
+'_contextual_button.text_hover_' : <<color, _color_>> +
+'_contextual_button.text_active_' : <<color, _color_>> +
+'_menu_button.border_color_' : <<color, _color_>> +
+'_menu_button.text_background_' : <<color, _color_>> +
+'_menu_button.text_normal_' : <<color, _color_>> +
+'_menu_button.text_hover_' : <<color, _color_>> +
+'_menu_button.text_active_' : <<color, _color_>> +
+'_checkbox.text_background_' : <<color, _color_>> +
+'_checkbox.text_normal_' : <<color, _color_>> +
+'_checkbox.text_hover_' : <<color, _color_>> +
+'_checkbox.text_active_' : <<color, _color_>> +
+'_checkbox.border_color_' : <<color, _color_>> +
+'_option.text_background_' : <<color, _color_>> +
+'_option.text_normal_' : <<color, _color_>> +
+'_option.text_hover_' : <<color, _color_>> +
+'_option.text_active_' : <<color, _color_>> +
+'_option.border_color_' : <<color, _color_>> +
+'_selectable.text_normal_' : <<color, _color_>> +
+'_selectable.text_hover_' : <<color, _color_>> +
+'_selectable.text_pressed_' : <<color, _color_>> +
+'_selectable.text_normal_active_' : <<color, _color_>> +
+'_selectable.text_hover_active_' : <<color, _color_>> +
+'_selectable.text_pressed_active_' : <<color, _color_>> +
+'_slider.bar_normal_' : <<color, _color_>> +
+'_slider.bar_hover_' : <<color, _color_>> +
+'_slider.bar_active_' : <<color, _color_>> +
+'_slider.bar_filled_' : <<color, _color_>> +
+'_slider.inc_button.border_color_' : <<color, _color_>> +
+'_slider.inc_button.text_background_' : <<color, _color_>> +
+'_slider.inc_button.text_normal_' : <<color, _color_>> +
+'_slider.inc_button.text_hover_' : <<color, _color_>> +
+'_slider.inc_button.text_active_' : <<color, _color_>> +
+'_slider.dec_button.border_color_' : <<color, _color_>> +
+'_slider.dec_button.text_background_' : <<color, _color_>> +
+'_slider.dec_button.text_normal_' : <<color, _color_>> +
+'_slider.dec_button.text_hover_' : <<color, _color_>> +
+'_slider.dec_button.text_active_' : <<color, _color_>> +
+'_progress.border_color_' : <<color, _color_>> +
+'_progress.cursor_border_color_' : <<color, _color_>> +
+'_scrollh.border_color_' : <<color, _color_>> +
+'_scrollh.cursor_border_color_' : <<color, _color_>> +
+'_scrollv.border_color_' : <<color, _color_>> +
+'_scrollv.cursor_border_color_' : <<color, _color_>> +
+'_scrollh.inc_button.border_color_' : <<color, _color_>> +
+'_scrollh.inc_button.text_background_' : <<color, _color_>> +
+'_scrollh.inc_button.text_normal_' : <<color, _color_>> +
+'_scrollh.inc_button.text_hover_' : <<color, _color_>> +
+'_scrollh.inc_button.text_active_' : <<color, _color_>> +
+'_scrollh.dec_button.border_color_' : <<color, _color_>> +
+'_scrollh.dec_button.text_background_' : <<color, _color_>> +
+'_scrollh.dec_button.text_normal_' : <<color, _color_>> +
+'_scrollh.dec_button.text_hover_' : <<color, _color_>> +
+'_scrollh.dec_button.text_active_' : <<color, _color_>> +
+'_scrollv.inc_button.border_color_' : <<color, _color_>> +
+'_scrollv.inc_button.text_background_' : <<color, _color_>> +
+'_scrollv.inc_button.text_normal_' : <<color, _color_>> +
+'_scrollv.inc_button.text_hover_' : <<color, _color_>> +
+'_scrollv.inc_button.text_active_' : <<color, _color_>> +
+'_scrollv.dec_button.border_color_' : <<color, _color_>> +
+'_scrollv.dec_button.text_background_' : <<color, _color_>> +
+'_scrollv.dec_button.text_normal_' : <<color, _color_>> +
+'_scrollv.dec_button.text_hover_' : <<color, _color_>> +
+'_scrollv.dec_button.text_active_' : <<color, _color_>> +
+'_edit.cursor_normal_' : <<color, _color_>> +
+'_edit.cursor_hover_' : <<color, _color_>> +
+'_edit.cursor_text_normal_' : <<color, _color_>> +
+'_edit.cursor_text_hover_' : <<color, _color_>> +
+'_edit.border_color_' : <<color, _color_>> +
+'_edit.text_normal_' : <<color, _color_>> +
+'_edit.text_hover_' : <<color, _color_>> +
+'_edit.text_active_' : <<color, _color_>> +
+'_edit.selected_normal_' : <<color, _color_>> +
+'_edit.selected_hover_' : <<color, _color_>> +
+'_edit.selected_text_normal_' : <<color, _color_>> +
+'_edit.selected_text_hover_' : <<color, _color_>> +
+'_edit.scrollbar.border_color_' : <<color, _color_>> +
+'_edit.scrollbar.cursor_border_color_' : <<color, _color_>> +
+'_edit.scrollbar.inc_button.border_color_' : <<color, _color_>> +
+'_edit.scrollbar.inc_button.text_background_' : <<color, _color_>> +
+'_edit.scrollbar.inc_button.text_normal_' : <<color, _color_>> +
+'_edit.scrollbar.inc_button.text_hover_' : <<color, _color_>> +
+'_edit.scrollbar.inc_button.text_active_' : <<color, _color_>> +
+'_edit.scrollbar.dec_button.border_color_' : <<color, _color_>> +
+'_edit.scrollbar.dec_button.text_background_' : <<color, _color_>> +
+'_edit.scrollbar.dec_button.text_normal_' : <<color, _color_>> +
+'_edit.scrollbar.dec_button.text_hover_' : <<color, _color_>> +
+'_edit.scrollbar.dec_button.text_active_' : <<color, _color_>> +
+'_property.border_color_' : <<color, _color_>> +
+'_property.label_normal_' : <<color, _color_>> +
+'_property.label_hover_' : <<color, _color_>> +
+'_property.label_active_' : <<color, _color_>> +
+'_property.dec_button.border_color_' : <<color, _color_>> +
+'_property.dec_button.text_background_' : <<color, _color_>> +
+'_property.dec_button.text_normal_' : <<color, _color_>> +
+'_property.dec_button.text_hover_' : <<color, _color_>> +
+'_property.dec_button.text_active_' : <<color, _color_>> +
+'_property.inc_button.border_color_' : <<color, _color_>> +
+'_property.inc_button.text_background_' : <<color, _color_>> +
+'_property.inc_button.text_normal_' : <<color, _color_>> +
+'_property.inc_button.text_hover_' : <<color, _color_>> +
+'_property.inc_button.text_active_' : <<color, _color_>> +
+'_property.edit.border_color_' : <<color, _color_>> +
+'_property.edit.cursor_normal_' : <<color, _color_>> +
+'_property.edit.cursor_hover_' : <<color, _color_>> +
+'_property.edit.cursor_text_normal_' : <<color, _color_>> +
+'_property.edit.cursor_text_hover_' : <<color, _color_>> +
+'_property.edit.text_normal_' : <<color, _color_>> +
+'_property.edit.text_hover_' : <<color, _color_>> +
+'_property.edit.text_active_' : <<color, _color_>> +
+'_property.edit.selected_normal_' : <<color, _color_>> +
+'_property.edit.selected_hover_' : <<color, _color_>> +
+'_property.edit.selected_text_normal_' : <<color, _color_>> +
+'_property.edit.selected_text_hover_' : <<color, _color_>> +
+'_chart.border_color_' : <<color, _color_>> +
+'_chart.selected_color_' : <<color, _color_>> +
+'_chart.color_' : <<color, _color_>> +
+'_combo.border_color_' : <<color, _color_>> +
+'_combo.label_normal_' : <<color, _color_>> +
+'_combo.label_hover_' : <<color, _color_>> +
+'_combo.label_active_' : <<color, _color_>> +
+'_combo.button.border_color_' : <<color, _color_>> +
+'_combo.button.text_background_' : <<color, _color_>> +
+'_combo.button.text_normal_' : <<color, _color_>> +
+'_combo.button.text_hover_' : <<color, _color_>> +
+'_combo.button.text_active_' : <<color, _color_>> +
+'_tab.border_color_' : <<color, _color_>> +
+'_tab.text_' : <<color, _color_>> +
+'_tab.tab_minimize_button.border_color_' : <<color, _color_>> +
+'_tab.tab_minimize_button.text_background_' : <<color, _color_>> +
+'_tab.tab_minimize_button.text_normal_' : <<color, _color_>> +
+'_tab.tab_minimize_button.text_hover_' : <<color, _color_>> +
+'_tab.tab_minimize_button.text_active_' : <<color, _color_>> +
+'_tab.tab_maximize_button.border_color_' : <<color, _color_>> +
+'_tab.tab_maximize_button.text_background_' : <<color, _color_>> +
+'_tab.tab_maximize_button.text_normal_' : <<color, _color_>> +
+'_tab.tab_maximize_button.text_hover_' : <<color, _color_>> +
+'_tab.tab_maximize_button.text_active_' : <<color, _color_>> +
+'_tab.node_minimize_button.border_color_' : <<color, _color_>> +
+'_tab.node_minimize_button.text_background_' : <<color, _color_>> +
+'_tab.node_minimize_button.text_normal_' : <<color, _color_>> +
+'_tab.node_minimize_button.text_hover_' : <<color, _color_>> +
+'_tab.node_minimize_button.text_active_' : <<color, _color_>> +
+'_tab.node_maximize_button.border_color_' : <<color, _color_>> +
+'_tab.node_maximize_button.text_background_' : <<color, _color_>> +
+'_tab.node_maximize_button.text_normal_' : <<color, _color_>> +
+'_tab.node_maximize_button.text_hover_' : <<color, _color_>> +
+'_tab.node_maximize_button.text_active_' : <<color, _color_>> +
+'_window.header.label_normal_' : <<color, _color_>> +
+'_window.header.label_hover_' : <<color, _color_>> +
+'_window.header.label_active_' : <<color, _color_>> +
+'_window.header.close_button.border_color_' : <<color, _color_>> +
+'_window.header.close_button.text_background_' : <<color, _color_>> +
+'_window.header.close_button.text_normal_' : <<color, _color_>> +
+'_window.header.close_button.text_hover_' : <<color, _color_>> +
+'_window.header.close_button.text_active_' : <<color, _color_>> +
+'_window.header.minimize_button.border_color_' : <<color, _color_>> +
+'_window.header.minimize_button.text_background_' : <<color, _color_>> +
+'_window.header.minimize_button.text_normal_' : <<color, _color_>> +
+'_window.header.minimize_button.text_hover_' : <<color, _color_>> +
+'_window.header.minimize_button.text_active_' : <<color, _color_>> +
+'_window.background_' : <<color, _color_>> +
+'_window.border_color_' : <<color, _color_>> +
+'_window.popup_border_color_' : <<color, _color_>> +
+'_window.combo_border_color_' : <<color, _color_>> +
+'_window.contextual_border_color_' : <<color, _color_>> +
+'_window.menu_border_color_' : <<color, _color_>> +
+'_window.group_border_color_' : <<color, _color_>> +
+'_window.tooltip_border_color_' : <<color, _color_>> +
+'_button.normal_' : <<styleitem, _styleitem_>> +
+'_button.hover_' : <<styleitem, _styleitem_>> +
+'_button.active_' : <<styleitem, _styleitem_>> +
+'_contextual_button.normal_' : <<styleitem, _styleitem_>> +
+'_contextual_button.hover_' : <<styleitem, _styleitem_>> +
+'_contextual_button.active_' : <<styleitem, _styleitem_>> +
+'_menu_button.normal_' : <<styleitem, _styleitem_>> +
+'_menu_button.hover_' : <<styleitem, _styleitem_>> +
+'_menu_button.active_' : <<styleitem, _styleitem_>> +
+'_checkbox.normal_' : <<styleitem, _styleitem_>> +
+'_checkbox.hover_' : <<styleitem, _styleitem_>> +
+'_checkbox.active_' : <<styleitem, _styleitem_>> +
+'_checkbox.cursor_normal_' : <<styleitem, _styleitem_>> +
+'_checkbox.cursor_hover_' : <<styleitem, _styleitem_>> +
+'_option.normal_' : <<styleitem, _styleitem_>> +
+'_option.hover_' : <<styleitem, _styleitem_>> +
+'_option.active_' : <<styleitem, _styleitem_>> +
+'_option.cursor_normal_' : <<styleitem, _styleitem_>> +
+'_option.cursor_hover_' : <<styleitem, _styleitem_>> +
+'_selectable.normal_' : <<styleitem, _styleitem_>> +
+'_selectable.hover_' : <<styleitem, _styleitem_>> +
+'_selectable.pressed_' : <<styleitem, _styleitem_>> +
+'_selectable.normal_active_' : <<styleitem, _styleitem_>> +
+'_selectable.hover_active_' : <<styleitem, _styleitem_>> +
+'_selectable.pressed_active_' : <<styleitem, _styleitem_>> +
+'_slider.normal_' : <<styleitem, _styleitem_>> +
+'_slider.hover_' : <<styleitem, _styleitem_>> +
+'_slider.active_' : <<styleitem, _styleitem_>> +
+'_slider.cursor_normal_' : <<styleitem, _styleitem_>> +
+'_slider.cursor_hover_' : <<styleitem, _styleitem_>> +
+'_slider.cursor_active_' : <<styleitem, _styleitem_>> +
+'_slider.inc_button.normal_' : <<styleitem, _styleitem_>> +
+'_slider.inc_button.hover_' : <<styleitem, _styleitem_>> +
+'_slider.inc_button.active_' : <<styleitem, _styleitem_>> +
+'_slider.dec_button.normal_' : <<styleitem, _styleitem_>> +
+'_slider.dec_button.hover_' : <<styleitem, _styleitem_>> +
+'_slider.dec_button.active_' : <<styleitem, _styleitem_>> +
+'_progress.normal_' : <<styleitem, _styleitem_>> +
+'_progress.hover_' : <<styleitem, _styleitem_>> +
+'_progress.active_' : <<styleitem, _styleitem_>> +
+'_progress.cursor_normal_' : <<styleitem, _styleitem_>> +
+'_progress.cursor_hover_' : <<styleitem, _styleitem_>> +
+'_progress.cursor_active_' : <<styleitem, _styleitem_>> +
+'_scrollh.normal_' : <<styleitem, _styleitem_>> +
+'_scrollh.hover_' : <<styleitem, _styleitem_>> +
+'_scrollh.active_' : <<styleitem, _styleitem_>> +
+'_scrollh.cursor_normal_' : <<styleitem, _styleitem_>> +
+'_scrollh.cursor_hover_' : <<styleitem, _styleitem_>> +
+'_scrollh.cursor_active_' : <<styleitem, _styleitem_>> +
+'_scrollv.normal_' : <<styleitem, _styleitem_>> +
+'_scrollv.hover_' : <<styleitem, _styleitem_>> +
+'_scrollv.active_' : <<styleitem, _styleitem_>> +
+'_scrollv.cursor_normal_' : <<styleitem, _styleitem_>> +
+'_scrollv.cursor_hover_' : <<styleitem, _styleitem_>> +
+'_scrollv.cursor_active_' : <<styleitem, _styleitem_>> +
+'_scrollh.inc_button.normal_' : <<styleitem, _styleitem_>> +
+'_scrollh.inc_button.hover_' : <<styleitem, _styleitem_>> +
+'_scrollh.inc_button.active_' : <<styleitem, _styleitem_>> +
+'_scrollh.dec_button.normal_' : <<styleitem, _styleitem_>> +
+'_scrollh.dec_button.hover_' : <<styleitem, _styleitem_>> +
+'_scrollh.dec_button.active_' : <<styleitem, _styleitem_>> +
+'_scrollv.inc_button.normal_' : <<styleitem, _styleitem_>> +
+'_scrollv.inc_button.hover_' : <<styleitem, _styleitem_>> +
+'_scrollv.inc_button.active_' : <<styleitem, _styleitem_>> +
+'_scrollv.dec_button.normal_' : <<styleitem, _styleitem_>> +
+'_scrollv.dec_button.hover_' : <<styleitem, _styleitem_>> +
+'_scrollv.dec_button.active_' : <<styleitem, _styleitem_>> +
+'_edit.normal_' : <<styleitem, _styleitem_>> +
+'_edit.hover_' : <<styleitem, _styleitem_>> +
+'_edit.active_' : <<styleitem, _styleitem_>> +
+'_edit.scrollbar.normal_' : <<styleitem, _styleitem_>> +
+'_edit.scrollbar.hover_' : <<styleitem, _styleitem_>> +
+'_edit.scrollbar.active_' : <<styleitem, _styleitem_>> +
+'_edit.scrollbar.cursor_normal_' : <<styleitem, _styleitem_>> +
+'_edit.scrollbar.cursor_hover_' : <<styleitem, _styleitem_>> +
+'_edit.scrollbar.cursor_active_' : <<styleitem, _styleitem_>> +
+'_edit.scrollbar.inc_button.normal_' : <<styleitem, _styleitem_>> +
+'_edit.scrollbar.inc_button.hover_' : <<styleitem, _styleitem_>> +
+'_edit.scrollbar.inc_button.active_' : <<styleitem, _styleitem_>> +
+'_edit.scrollbar.dec_button.normal_' : <<styleitem, _styleitem_>> +
+'_edit.scrollbar.dec_button.hover_' : <<styleitem, _styleitem_>> +
+'_edit.scrollbar.dec_button.active_' : <<styleitem, _styleitem_>> +
+'_property.normal_' : <<styleitem, _styleitem_>> +
+'_property.hover_' : <<styleitem, _styleitem_>> +
+'_property.active_' : <<styleitem, _styleitem_>> +
+'_property.dec_button.normal_' : <<styleitem, _styleitem_>> +
+'_property.dec_button.hover_' : <<styleitem, _styleitem_>> +
+'_property.dec_button.active_' : <<styleitem, _styleitem_>> +
+'_property.inc_button.normal_' : <<styleitem, _styleitem_>> +
+'_property.inc_button.hover_' : <<styleitem, _styleitem_>> +
+'_property.inc_button.active_' : <<styleitem, _styleitem_>> +
+'_property.edit.normal_' : <<styleitem, _styleitem_>> +
+'_property.edit.hover_' : <<styleitem, _styleitem_>> +
+'_property.edit.active_' : <<styleitem, _styleitem_>> +
+'_chart.background_' : <<styleitem, _styleitem_>> +
+'_combo.normal_' : <<styleitem, _styleitem_>> +
+'_combo.hover_' : <<styleitem, _styleitem_>> +
+'_combo.active_' : <<styleitem, _styleitem_>> +
+'_combo.button.normal_' : <<styleitem, _styleitem_>> +
+'_combo.button.hover_' : <<styleitem, _styleitem_>> +
+'_combo.button.active_' : <<styleitem, _styleitem_>> +
+'_tab.background_' : <<styleitem, _styleitem_>> +
+'_tab.tab_minimize_button.normal_' : <<styleitem, _styleitem_>> +
+'_tab.tab_minimize_button.hover_' : <<styleitem, _styleitem_>> +
+'_tab.tab_minimize_button.active_' : <<styleitem, _styleitem_>> +
+'_tab.tab_maximize_button.normal_' : <<styleitem, _styleitem_>> +
+'_tab.tab_maximize_button.hover_' : <<styleitem, _styleitem_>> +
+'_tab.tab_maximize_button.active_' : <<styleitem, _styleitem_>> +
+'_tab.node_minimize_button.normal_' : <<styleitem, _styleitem_>> +
+'_tab.node_minimize_button.hover_' : <<styleitem, _styleitem_>> +
+'_tab.node_minimize_button.active_' : <<styleitem, _styleitem_>> +
+'_tab.node_maximize_button.normal_' : <<styleitem, _styleitem_>> +
+'_tab.node_maximize_button.hover_' : <<styleitem, _styleitem_>> +
+'_tab.node_maximize_button.active_' : <<styleitem, _styleitem_>> +
+'_window.header.normal_' : <<styleitem, _styleitem_>> +
+'_window.header.hover_' : <<styleitem, _styleitem_>> +
+'_window.header.active_' : <<styleitem, _styleitem_>> +
+'_window.header.close_button.normal_' : <<styleitem, _styleitem_>> +
+'_window.header.close_button.hover_' : <<styleitem, _styleitem_>> +
+'_window.header.close_button.active_' : <<styleitem, _styleitem_>> +
+'_window.header.minimize_button.normal_' : <<styleitem, _styleitem_>> +
+'_window.header.minimize_button.hover_' : <<styleitem, _styleitem_>> +
+'_window.header.minimize_button.active_' : <<styleitem, _styleitem_>> +
+'_window.fixed_background_' : <<styleitem, _styleitem_>> +
+'_window.scaler_' : <<styleitem, _styleitem_>> +
+'_slider.show_buttons_' : _boolean_ +
+'_scrollh.show_buttons_' : _boolean_ +
+'_scrollv.show_buttons_' : _boolean_ +
+'_edit.scrollbar.show_buttons_' : _boolean_ +
+'_slider.inc_symbol_' : <<symboltype, _symboltype_>> +
+'_slider.dec_symbol_' : <<symboltype, _symboltype_>> +
+'_scrollh.dec_symbol_' : <<symboltype, _symboltype_>> +
+'_scrollh.inc_symbol_' : <<symboltype, _symboltype_>> +
+'_scrollv.dec_symbol_' : <<symboltype, _symboltype_>> +
+'_scrollv.inc_symbol_' : <<symboltype, _symboltype_>> +
+'_edit.scrollbar.dec_symbol_' : <<symboltype, _symboltype_>> +
+'_edit.scrollbar.inc_symbol_' : <<symboltype, _symboltype_>> +
+'_property.sym_left_' : <<symboltype, _symboltype_>> +
+'_property.sym_right_' : <<symboltype, _symboltype_>> +
+'_combo.sym_normal_' : <<symboltype, _symboltype_>> +
+'_combo.sym_hover_' : <<symboltype, _symboltype_>> +
+'_combo.sym_active_' : <<symboltype, _symboltype_>> +
+'_tab.sym_minimize_' : <<symboltype, _symboltype_>> +
+'_tab.sym_maximize_' : <<symboltype, _symboltype_>> +
+'_window.header.close_symbol_' : <<symboltype, _symboltype_>> +
+'_window.header.minimize_symbol_' : <<symboltype, _symboltype_>> +
+'_window.header.maximize_symbol_' : <<symboltype, _symboltype_>> +
+Rfr: nk_context.style.#
+

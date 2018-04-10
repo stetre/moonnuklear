@@ -1,0 +1,19 @@
+
+[[edit]]
+=== Edit
+
+[[context.edit]]
+* <<edit, _edit_>> = _context_++:++*edit*( ) +
+[small]#Returns an handle to the <<edit, edit>> associated with the _context_.#
+
+* _edit_++:++*text*(_text_) +
+_edit_++:++*delete*(_where_, _len_) +
+_edit_++:++*delete_selection*( ) +
+_edit_++:++*select_all*( ) +
+_edit_++:++*cut*( ) +
+_edit_++:++*paste*(_text_) +
+_edit_++:++*undo*( ) +
+_edit_++:++*redo*( ) +
+[small]#Rfr: nk_textedit_xxx(&nbsp;), nk_text_edit.#
+
+

@@ -1,0 +1,32 @@
+
+[[Canvas]]
+=== Canvas
+
+[[window_get_canvas]]
+* _canvas_ = *window_get_canvas*(_context_) +
+[small]#Returns an handle to the canvas of the current <<window, window or group>>. +
+Rfr: nk_window_get_canvas(&nbsp;).#
+
+The following methods can be used to draw to the _canvas_:
+
+[[canvas.xxx]]
+* _canvas_++:++*stroke_line*(_x0_, _y0_, _x1_, _y1_, _linethickness_, <<color, _color_>>) +
+_canvas_++:++*stroke_curve*(_ax_, _ay_, _ctrl0x_, _ctrl0y_, _ctrl1x_, _ctrl1y_, _bx_, _by_, _linethickness_, <<color, _color_>>) +
+_canvas_++:++*stroke_rect*(<<rect, _rect_>>, _rounding_, _linethickness_, <<color, _color_>>) +
+_canvas_++:++*stroke_circle*(<<rect, _rect_>>, _linethickness_, <<color, _color_>>) +
+_canvas_++:++*stroke_arc*(_cx_, _cy_, _radius_, _amin_, _amax_, _linethickness_, <<color, _color_>>) +
+_canvas_++:++*stroke_triangle*(_x0_, _y0_, _x1_, _y1_, _x2_, _y2_, _linethickness_, <<color, _color_>>) +
+_canvas_++:++*stroke_polyline*(_{<<vec2, vec2>>}_, _linethickness_, <<color, _color_>>) +
+_canvas_++:++*stroke_polygon*(_{<<vec2, vec2>>}_, _linethickness_, <<color, _color_>>) +
+* _canvas_++:++*fill_rect*(<<rect, _rect_>>, _rounding_, <<color, _color_>>) +
+_canvas_++:++*fill_rect_multi_color*(<<rect, _rect_>>, <<color, _leftcolor_>>, <<color, _topcolor_>>, <<color, _rightcolor_>>, <<color, _bottomcolor_>>) +
+_canvas_++:++*fill_circle*(<<rect, _rect_>>, <<color, _color_>>) +
+_canvas_++:++*fill_arc*(_cx_, _cy_, _radius_, _amin_, _amax_, <<color, _color_>>) +
+_canvas_++:++*fill_triangle*(_x0_, _y0_, _x1_, _y1_, _x2_, _y2_, <<color, _color_>>) +
+_canvas_++:++*fill_polygon*(_{<<vec2, vec2>>}_, <<color, _color_>>) +
+* _canvas_++:++*draw_image*(<<rect, _rect_>>, <<image, _image_>>, <<color, _color_>>) +
+_canvas_++:++*draw_text*(<<rect, _rect_>>, _text_, <<color, _bgcolor_>>, <<color, _fgcolor_>>) +
+* _canvas_++:++*push_scissor*(<<rect, _rect_>>) +
+[small]#Rfr: nk_stroke_xxx(&nbsp;), nk_fill_xxx(&nbsp;), etc.#
+
+

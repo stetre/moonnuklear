@@ -1,0 +1,52 @@
+
+[[window]]
+=== Windows and groups
+
+See the https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.4[Window] 
+and https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.6[Group] 
+sections in the Nuklear documentation.
+
+[[window_begin]]
+* _ok_ = *window_begin*(_context_, _title_, <<rect, _bounds_>>, <<panelflags, _panelflags_>>, [_name_]) +
+*window_end*(_context_) +
+[small]#_name_: string (optional unique name). +
+Rfr: nk_begin(&nbsp;), nk_begin_titled(&nbsp;), nk_end(&nbsp;).#
+
+[[group]]
+* _ok_ = *group_begin*(_context_, _title_, <<panelflags, _panelflags_>>, [_name_]) +
+_ok_, <<vec2, _offset_>> = *group_scrolled_begin*(_context_, _title_, <<panelflags, _panelflags_>>) +
+*group_end*(_context_) +
+*group_scrolled_end*(_context_) +
+[small]#_title_: string, _name_: string (optional unique name). +
+Rfr: nk_group_xxx(&nbsp;).#
+
+[[window_xxx]]
+* <<rect, _bounds_>> = *window_get_bounds*(_context_) +
+<<vec2, _position_>> = *window_get_position*(_context_) +
+<<vec2, _size_>> = *window_get_size*(_context_) +
+_float_ = *window_get_width*(_context_) +
+_float_ = *window_get_height*(_context_) +
+<<rect, _bounds_>> = *window_get_content_region*(_context_) +
+<<vec2, _position_>> = *window_get_content_region_min*(_context_) +
+<<vec2, _position_>> = *window_get_content_region_max*(_context_) +
+<<vec2, _size_>> = *window_get_content_region_size*(_context_) +
+_boolean_ = *window_has_focus*(_context_) +
+_boolean_ = *window_is_hovered*(_context_) +
+_boolean_ = *window_is_any_hovered*(_context_) +
+_boolean_ = *window_is_collapsed*(_context_, _name_) +
+_boolean_ = *window_is_closed*(_context_, _name_) +
+_boolean_ = *window_is_hidden*(_context_, _name_) +
+_boolean_ = *window_is_active*(_context_, _name_) +
+_boolean_ = *item_is_any_active*(_context_) +
+*window_set_bounds*(_context_, _name_, <<rect, _bounds_>>) +
+*window_set_position*(_context_, _name_, <<vec2, _position_>>) +
+*window_set_size*(_context_, _name_, <<vec2, _size_>>) +
+*window_set_focus*(_context_, _name_) +
+*window_close*(_context_, _name_) +
+*window_collapse*(_context_, _name_, <<collapsestates, _collapsestates_>>) +
+*window_collapse_if*(_context_, _name_, <<collapsestates, _collapsestates_>>, _condition_) +
+*window_show*(_context_, _name_, <<showstates, _showstates_>>) +
+*window_show_if*(_context_, _name_, <<showstates, _showstates_>>, _condition_) +
+[small]#Rfr: nk_window_xxx(&nbsp;).#
+
+
