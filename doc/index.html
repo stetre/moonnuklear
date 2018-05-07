@@ -1556,9 +1556,15 @@ Rfr: nk_selectable_xxx(&nbsp;).</span></p>
 <div class="ulist">
 <ul>
 <li>
-<p><em>ok</em> = <strong>tree_push</strong>(<em>context</em>, <a href="#treetype"><em>treetype</em></a>, <em>title</em>, <a href="#collapsestates"><em>collapsestates</em></a>, <em>hash</em>)<br>
-<strong>tree_pop</strong>(<em>context</em>)<br>
-<em>ok</em>, <a href="#collapsestates"><em>collapsestates</em></a> = <strong>tree_state_push</strong>(<em>context</em>, <a href="#treetype"><em>treetype</em></a>, <em>title</em>, <a href="#collapsestates"><em>collapsestates</em></a>)<br>
+<p><em>ok</em> = <strong>tree_push</strong>(<em>context</em>, <a href="#treetype"><em>treetype</em></a>, <em>title</em>, <a href="#collapsestates"><em>collapsestates</em></a>, <em>hash</em>, [<a href="#image"><em>image</em></a>])<br>
+<strong>tree_pop</strong>(<em>context</em>)<br></p>
+</li>
+<li>
+<p><em>ok</em>, <em>selected</em> = <strong>tree_element_push</strong>(<em>context</em>, <a href="#treetype"><em>treetype</em></a>, <em>title</em>, <a href="#collapsestates"><em>collapsestates</em></a>, <em>selected</em>, <em>hash</em>, [<a href="#image"><em>image</em></a>])<br>
+<strong>tree_element_pop</strong>(<em>context</em>)<br></p>
+</li>
+<li>
+<p><em>ok</em>, <a href="#collapsestates"><em>collapsestates</em></a> = <strong>tree_state_push</strong>(<em>context</em>, <a href="#treetype"><em>treetype</em></a>, <em>title</em>, <a href="#collapsestates"><em>collapsestates</em></a>)<br>
 <em>ok</em>, <a href="#collapsestates"><em>collapsestates</em></a> = <strong>tree_state_image_push</strong>(<em>context</em>, <a href="#treetype"><em>treetype</em></a>, <a href="#image"><em>image</em></a>, <a href="#collapsestates"><em>collapsestates</em></a>)<br>
 <strong>tree_state_pop</strong>(<em>context</em>)<br>
 <span class="small">Note: the <em>hash</em> parameter (a string) passed to <em>context:tree_push</em>(&nbsp;) must be unique within the application.<br>

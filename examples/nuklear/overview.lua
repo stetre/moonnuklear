@@ -726,6 +726,9 @@ local layout = {
    selected_right_bottom = {},
    vertical = { a = 100, b = 100, c = 100 },
    horizontal = { a = 100, b = 100, c = 100 },
+   root_selected = false,
+   selected = { false,false,false,false,false,false,false,false },
+   sel_nodes = { false,false,false,false },
 }
 
 local function Layout(ctx)
@@ -835,6 +838,38 @@ local function Layout(ctx)
                sel[i] = nk.selectable(ctx, nil, sel[i] and "Selected" or "Unselected", CENTERED, sel[i])
             end
            nk.group_end(ctx)
+         end
+         nk.tree_pop(ctx)
+      end
+      -----------------------------------------------------
+      if nk.tree_push(ctx, 'node', "Tree", 'minimized', 'layout tree') then
+         local sel, ok = layout.root_selected, nil
+         ok, sel = nk.tree_element_push(ctx, 'node', "Root", 'minimized', sel, "layout tree root")
+         if ok then
+            if sel ~= layout.root_selected then
+               layout.root_selected = sel
+               for i=1, 8 do layout.selected[i] = sel end
+            end
+            local sel = layout.selected[1]
+            ok, sel = nk.tree_element_push(ctx, 'node', "Node", 'minimized', sel, "layout tree node")
+            if ok then
+               if sel ~= layout.selected[1] then
+                  layout.selected[1] = sel
+                  for i=1,4 do layout.sel_nodes[i] = sel end
+               end
+                  nk.layout_row_static(ctx, 18, 100, 1)
+                  sel = layout.sel_nodes
+                  for i=1,4 do
+                     sel[i] = nk.selectable(ctx, 'circle solid', sel[i] and "Selected" or "Unselected", RIGHT, sel[i])
+                  end
+               nk.tree_element_pop(ctx)
+            end
+            nk.layout_row_static(ctx, 18, 100, 1)
+            sel = layout.selected
+            for i=1,8 do
+               sel[i] = nk.selectable(ctx, 'circle solid', sel[i] and "Selected" or "Unselected", RIGHT, sel[i])
+            end
+            nk.tree_element_pop(ctx)
          end
          nk.tree_pop(ctx)
       end

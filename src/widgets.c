@@ -749,7 +749,7 @@ static int Selectable(lua_State *L)
     const char* s = luaL_checklstring(L, 3, &len);
     nk_flags alignment = checkflags(L, 4); /* textalign */
     int value = checkboolean(L, 5);
-	int arg_type = lua_type(L, 2);
+    int arg_type = lua_type(L, 2);
     if(arg_type == LUA_TNIL)
         changed = nk_selectable_text(context, s, len, alignment, &value);
     else if((image = testimage(L, 2, NULL)) != NULL)
@@ -828,6 +828,31 @@ static int Tree_push(lua_State *L)
 
 
 VOID_CONTEXT(Tree_pop, nk_tree_pop)
+
+static int Tree_element_push(lua_State *L)
+/* tree_element_push(context, type, title, state, selected, hash, [image] */
+    {
+    int rc;
+    size_t len;
+    nk_context_t *context = checkcontext(L, 1, NULL);
+    enum nk_tree_type tree_type = checktreetype(L, 2);
+    const char *title = luaL_checkstring(L, 3);
+    enum nk_collapse_states init_state = checkcollapsestates(L, 4);
+    int selected = checkboolean(L, 5);
+    const char *hash = luaL_checklstring(L, 6, &len);
+    int seed = __LINE__; //* always the same... is it important? @@
+    nk_image_t *image = testimage(L, 7, NULL);
+    if(image)
+        rc = nk_tree_element_image_push_hashed(context, tree_type, *image, title, init_state, &selected, hash, (int)len, seed);
+    else
+        rc = nk_tree_element_push_hashed(context, tree_type, title, init_state, &selected, hash, (int)len, seed);
+    lua_pushboolean(L, rc);
+    lua_pushboolean(L, selected);
+    return 2;
+    }
+
+VOID_CONTEXT(Tree_element_pop, nk_tree_element_pop)
+
 
 static int Tree_state_push(lua_State *L)
     {
@@ -1030,6 +1055,8 @@ static const struct luaL_Reg Functions[] =
         { "tooltip_end", Tooltip_end },
         { "tree_push", Tree_push },
         { "tree_pop", Tree_pop },
+        { "tree_element_push", Tree_element_push },
+        { "tree_element_pop", Tree_element_pop },
         { "tree_state_push", Tree_state_push },
         { "tree_state_image_push", Tree_state_image_push },
         { "tree_state_pop", Tree_state_pop },

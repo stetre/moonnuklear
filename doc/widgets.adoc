@@ -189,9 +189,11 @@ Rfr: nk_selectable_xxx(&nbsp;).#
 
 [[widget.tree]]
 ==== tree
-* _ok_ = *tree_push*(_context_, <<treetype, _treetype_>>, _title_, <<collapsestates, _collapsestates_>>, _hash_) +
+* _ok_ = *tree_push*(_context_, <<treetype, _treetype_>>, _title_, <<collapsestates, _collapsestates_>>, _hash_, [<<image, _image_>>]) +
 *tree_pop*(_context_) +
-_ok_, <<collapsestates, _collapsestates_>> = *tree_state_push*(_context_, <<treetype, _treetype_>>, _title_, <<collapsestates, _collapsestates_>>) +
+* _ok_, _selected_ = *tree_element_push*(_context_, <<treetype, _treetype_>>, _title_, <<collapsestates, _collapsestates_>>, _selected_, _hash_, [<<image, _image_>>]) +
+*tree_element_pop*(_context_) +
+* _ok_, <<collapsestates, _collapsestates_>> = *tree_state_push*(_context_, <<treetype, _treetype_>>, _title_, <<collapsestates, _collapsestates_>>) +
 _ok_, <<collapsestates, _collapsestates_>> = *tree_state_image_push*(_context_, <<treetype, _treetype_>>, <<image, _image_>>, <<collapsestates, _collapsestates_>>) +
 *tree_state_pop*(_context_) +
 [small]#Note: the _hash_ parameter (a string) passed to _context:tree_push_(&nbsp;) must be unique within the application. +
