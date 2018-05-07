@@ -171,7 +171,7 @@ Rfr: nk_option_xxx(&nbsp;), nk_radio_xxx(&nbsp;).#
 
 [[widget.selectable]]
 ==== selectable
-* _selected_, _changed_ = *selectable*(_context_, [<<image, _image_>>], _text_, <<textalignflags, _textalignflags_>>, _selected_) +
+* _selected_, _changed_ = *selectable*(_context_, [<<image, _image_>>|<<symboltype, _symboltype_>>], _text_, <<textalignflags, _textalignflags_>>, _selected_) +
 [small]#_selected_, _changed_: boolean. +
 Rfr: nk_selectable_xxx(&nbsp;).#
 

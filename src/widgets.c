@@ -743,15 +743,22 @@ static int Selectable(lua_State *L)
     {
     size_t len;
     int changed;
+    enum nk_symbol_type symbol;
+    nk_image_t *image;
     nk_context_t *context = checkcontext(L, 1, NULL);
-    nk_image_t *image = testimage(L, 2, NULL);
     const char* s = luaL_checklstring(L, 3, &len);
     nk_flags alignment = checkflags(L, 4); /* textalign */
     int value = checkboolean(L, 5);
-    if(image)
+	int arg_type = lua_type(L, 2);
+    if(arg_type == LUA_TNIL)
+        changed = nk_selectable_text(context, s, len, alignment, &value);
+    else if((image = testimage(L, 2, NULL)) != NULL)
         changed = nk_selectable_image_text(context, *image, s, len, alignment, &value);
     else
-        changed = nk_selectable_text(context, s, len, alignment, &value);
+        {
+        symbol = checksymboltype(L, 2);
+        changed = nk_selectable_symbol_text(context, symbol, s, len, alignment, &value);
+        }
     lua_pushboolean(L, value);
     lua_pushboolean(L, changed);
     return 2;
