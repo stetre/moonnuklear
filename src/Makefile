@@ -29,17 +29,9 @@ ifeq ($(D),1)
 DEBUG=1
 endif
 
-ifdef LINUX
-endif
-ifdef MINGW
-LIBS = -llua
-endif
-
 Tgt	:= moonnuklear
 Src := $(wildcard *.c)
 Objs := $(Src:.c=.o)
-
-INCDIR = -I./nuklear
  
 COPT	+= -O2
 #COPT	+= -O0 -g
@@ -50,9 +42,12 @@ COPT 	+= -DLUAVER=$(LUAVER)
 ifdef LINUX
 COPT    += -fpic
 COPT	+= -DLINUX
+INCDIR = -I./nuklear -I/usr/include/lua$(LUAVER)
 endif
 ifdef MINGW
 COPT	+= -DMINGW
+INCDIR = -I./nuklear
+LIBS = -llua
 endif
 ifdef DEBUG
 COPT	+= -DDEBUG
