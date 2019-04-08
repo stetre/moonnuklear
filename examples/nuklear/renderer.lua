@@ -327,7 +327,7 @@ local function new_frame()
    nk.input_motion(ctx, x, y)
 
    if MOUSE_GRABBING and ctx:mouse_grabbed() then
-      local prev_, prev_y = ctx:mouse_prev()
+      local prev_x, prev_y = ctx:mouse_prev()
       glfw.set_cursor_pos(window, prev_x, prev_y)
       input_mouse_pos(ctx, prev_x, prev_y)
    end
