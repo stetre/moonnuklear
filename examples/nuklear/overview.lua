@@ -920,7 +920,7 @@ local function Layout(ctx)
                if nk.chart_begin(ctx, 'column', 32, 0.0, 1.0, {1, 0, 0}, {150/255,0,0}) then
                   local id = 0
                   for i = 1, 32 do
-                     nk.chart_push(ctx, abs(sin(id)), 0)
+                     nk.chart_push(ctx, abs(sin(id)), 1)
                      id = id + STEP
                   end
                end
