@@ -24,5 +24,6 @@
  */
 
 #define NK_IMPLEMENTATION
+#define NK_KEYSTATE_BASED_INPUT
 #include "moonnuklear.h"
 

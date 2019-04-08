@@ -30,7 +30,7 @@
 #include "lualib.h"
 #include "lauxlib.h"
 
-#define MOONNUKLEAR_NK_VERSION  "4.00.1" /* @@ See Changelog in nuklear/nuklear.h */
+#define MOONNUKLEAR_NK_VERSION  "4.00.2" /* @@ See Changelog in nuklear/nuklear.h */
 #define MOONNUKLEAR_VERSION     "0.1"
 
 extern lua_State *moonnuklear_L;
