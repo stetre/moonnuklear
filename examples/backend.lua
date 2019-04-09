@@ -1,7 +1,7 @@
 #!/usr/bin/env lua
 -- Backend for the hello.lua example.
--- This is actually a wrapper to the GLFW/OpenGL backend shipped with Lua, that
--- can be found in moonnuklear/glbackend.lua.
+-- This is actually a wrapper to the GLFW/OpenGL backend shipped with MoonNuklear,
+-- that can be found in moonnuklear/glbackend.lua.
 -- The main purpose of this wrapper is to remove 'backend noise' from the examples.
 
 local glfw = require("moonglfw")
