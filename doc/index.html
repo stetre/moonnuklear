@@ -788,6 +788,7 @@ p.tableblock.header { color: #6d6e71; }
 <ul class="sectlevel2">
 <li><a href="#context">Context</a></li>
 <li><a href="#input_mirroring">Input mirroring</a></li>
+<li><a href="#input_queries">Input queries</a></li>
 <li><a href="#clipboard">Clipboard</a></li>
 <li><a href="#convert">Convert</a></li>
 <li><a href="#window">Windows and groups</a></li>
@@ -912,68 +913,92 @@ Lua libraries for graphics and audio programming.</p>
 <h2 id="_overview">Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To create a GUI application with MoonNuklear, you first need to create a Nuklear
-<a href="#context"><strong>context</strong></a> with <em><a href="#init">nk.init</a>(&nbsp;)</em>.
-You also need to provide Nuklear with a <a href="#font"><strong>font</strong></a> to use for text rendering
-(you can provide it now, or later in the initialization phase).</p>
-</div>
-<div class="paragraph">
-<p>The Nuklear context mantains minimal state for your appplication and links together the two main
-parts it is composed of:</p>
+<p>A (Moon)Nuklear application is a GUI application having two main components:
+<sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnote_2" title="View footnote.">2</a>]</sup></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>the <strong>front-end</strong>, whose task is to define and draw the GUI independently of the <strong>'system API'</strong>
-(by which we mean the set of APIs used for interfacing with the window system, handling input,
-and rendering pixels on the screen, e.g. GLFW an OpenGL), and</p>
+<p>a <strong>frontend</strong>, whose task is to define ('draw') the GUI independently of the system API, and</p>
 </li>
 <li>
-<p>the <strong>back-end</strong>, that interfaces with the system API, acting as translator and bridge between the system itself and Nuklear.</p>
+<p>a <strong>backend</strong>, whose task is to interface Nuklear to the system API.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>After having created the context - and performed any other initialization such as those required by
-the system API - the application enters the main <strong>event loop</strong> where (ideally) each iteration reacts
-to input events and ends up rendering a frame on the screen.</p>
+<p>By <strong>system API</strong> we mean here the set of APIs through which we access the window system,
+handle input, render pixels on the screen, and so on (e.g. GLFW+OpenGL, GLUT+OpenGL, GLFW+Vulkan, &#8230;&#8203;).</p>
 </div>
 <div class="paragraph">
-<p>Omitting the details, each iteration consists of the following steps:</p>
+<p>To create a GUI, the application must first create a <a href="#context"><strong>context</strong></a>, which is
+an object that mantains minimal state for the application and links together
+the frontend and the backend.
+The application creates a context by calling the <a href="#init">init</a>(&nbsp;) function, optionally
+passing it a <a href="#font"><strong>font</strong></a> to be used for text rendering
+<sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnote_3" title="View footnote.">3</a>]</sup>.</p>
+</div>
+<div class="paragraph">
+<p>Then, after having performed any other initialization such as those required by
+the system API, the application enters its main <strong>event loop</strong> where (ideally) at each iteration it
+reacts to input events and ends up rendering a frame on the screen.
+Omitting the details, each iteration of the event loop consists of the following steps:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>(<em>back-end</em>) Collect input information via the system API.</p>
+<p>The <em>backend</em> <a href="#input_mirroring">mirrors the input</a>, i.e. it collects input information
+via the system API and relays such information to Nuklear.</p>
 </li>
 <li>
-<p>(<em>back-end</em>) <a href="#input_mirroring">Mirror the input</a>, i.e. relay the collected input information to Nuklear.</p>
+<p>The <em>frontend</em> draws the GUI using Nuklear&#8217;s frontend API (<a href="#window">window</a>,
+<a href="#layout">layout</a>, <a href="#widgets">widgets</a>, etc),
+possibly <a href="#input_queries">accessing input information</a> via context methods and modifying
+the aspect of the GUI accordingly.
+Upon each call of its frontend API, Nuklear generates vertex data and abstract draw commands
+('abstract' in the sense that they do not depend on any particular system API).</p>
 </li>
 <li>
-<p>(<em>front-end</em>) Draw the GUI using Nuklear&#8217;s front-end API (<a href="#window">window</a>, <a href="#layout">layout</a>, <a href="#widgets">widgets</a>, etc).
-This generates vertex data and abstract draw commands ('abstract' in the sense that they do not depend
-on any particular system API).</p>
-</li>
-<li>
-<p>(<em>back-end</em>) <a href="#convert">Convert</a> the vertex data to the format expected by the system API and
-retrieve the list of abstract draw commands.</p>
-</li>
-<li>
-<p>(<em>back-end</em>) Eventually render the frame, by mapping the abstract draw commands to concrete system API calls.</p>
+<p>The <em>backend</em> <a href="#convert">converts</a> the vertex data to the format expected by the system API,
+possibly uploads it to the rendering device (e.g. the GPU), retrieves the list of abstract
+draw commands generated by Nuklear, and eventually <strong>renders</strong> the frame, by mapping the
+abstract draw commands to concrete system API calls (e.g. OpenGL draw commands).</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
+<p>Notice how the frontend is in charge only of drawing the GUI, which it does
+independently and without any knowledge of the system API being used to concretely draw it.
+This means that once a frontend is developed, it should be reusable without changes with
+different backends, i.e. with different system APIs or even on different systems.</p>
+</div>
+<div class="paragraph">
+<p>Also notice that the frontend must redraw the GUI at every frame: nothing about the GUI itself
+(its layout, which widgets it contains, their state, etc.) is retained across frames
+by Nuklear nor by the GPU.
+This is what <a href="https://en.wikipedia.org/wiki/Immediate_mode_(computer_graphics)">'immediate mode'</a> means.
+<sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnote_4" title="View footnote.">4</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p>This also means that a backend for a particular system API is a fairly general piece of
+code that can be reused for different frontends, thus one need not rewrite a new one
+every time he/she writes an application. Moreover, the backend is not required to do any
+fancy or particularly complex graphics task: it is only required to mirror input information
+from the system API to Nuklear, and to draw concretely the vertices that Nuklear asks it to
+draw via its abstract commands (Nuklear takes care to pass to the backend vertex data that
+will result in the GUI as intended by the frontend, and the backend blindly draws it).</p>
+</div>
+<div class="paragraph">
 <p>The rest of this manual lists the MoonNuklear Lua bindings to the functions provided by Nuklear for
-the above operations, while a few examples can be found in the <strong>examples/</strong> directory of the repository,
+the above operations. A few examples can be found in the <strong>examples/</strong> directory of the repository,
 mostly portings to Lua of the original examples that come with Nuklear (including the comprehensive demo).</p>
 </div>
 <div class="paragraph">
 <p>The examples implement OpenGL/GLFW backends via the <a href="https://github.com/stetre/moongl">MoonGL</a>
 and <a href="https://github.com/stetre/moonglfw">MoonGLFW</a> bindings.
-Note however that MoonNuklear - like Nuklear - is agnostic with respect to the system API
-(that is, you can use whatever system API you like for the backend, provided you have means
-to access them from Lua).</p>
+Note however that MoonNuklear - like Nuklear - is agnostic with respect to the system API:
+one can use whatever system API he/she likes for the backend, as long as it is accessible
+from Lua.</p>
 </div>
 </div>
 </div>
@@ -986,11 +1011,18 @@ to access them from Lua).</p>
 <ul>
 <li>
 <p><em>context</em> = <strong>init</strong>([<a href="#font"><em>font</em></a>])<br>
-<em>context</em>:<strong>free</strong>( )<br>
-<span class="small">Create/destroy a Nuklear context.<br>
-Note that if no font is passed to the <em>init(&nbsp;)</em> function, one must be however set
-before entering the event loop (using <em><a href="#style_xxx">style_set_font</a>(&nbsp;)</em>).<br>
-Rfr: nk_init_default(&nbsp;), nk_free(&nbsp;).</span></p>
+<span class="small">Create a context. If no font is passed, one must
+be set using <a href="#style_xxx">style_set_font</a>(&nbsp;) before entering the event loop.<br>
+Rfr: nk_init_default(&nbsp;).</span></p>
+</li>
+</ul>
+</div>
+<div id="free" class="ulist">
+<ul>
+<li>
+<p><em>context</em>:<strong>free</strong>( )<br>
+<span class="small">Destroy a context.<br>
+Rfr: nk_free(&nbsp;).</span></p>
 </li>
 </ul>
 </div>
@@ -1006,7 +1038,10 @@ Rfr: nk_init_default(&nbsp;), nk_free(&nbsp;).</span></p>
 <div class="sect2">
 <h3 id="input_mirroring">Input mirroring</h3>
 <div class="paragraph">
-<p>See the <a href="https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.2">Input</a>
+<p>Updated input information must be provided to Nuklear at each frame, using the
+<a href="#input_xxx">input_xxx</a>(&nbsp;) functions in a code section delimited by
+<a href="#input_begin">input_begin</a>(&nbsp;) and <a href="#input_end">input_end</a>(&nbsp;).
+See also the <a href="https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.2">Input</a>
 section in the Nuklear documentation.</p>
 </div>
 <div id="input_begin" class="ulist">
@@ -1014,9 +1049,7 @@ section in the Nuklear documentation.</p>
 <li>
 <p><strong>input_begin</strong>(<em>context</em>)<br>
 <strong>input_end</strong>(<em>context</em>)<br>
-<span class="small">Updated input information must be provided to Nuklear at each frame, using the
-<a href="#input_xxx">input_xxx</a>(&nbsp;) functions in a code section delimited by these two functions.<br>
-Rfr: nk_input_begin(&nbsp;), nk_input_end(&nbsp;).</span></p>
+<span class="small">Rfr: nk_input_begin(&nbsp;), nk_input_end(&nbsp;).</span></p>
 </li>
 </ul>
 </div>
@@ -1024,24 +1057,33 @@ Rfr: nk_input_begin(&nbsp;), nk_input_end(&nbsp;).</span></p>
 <ul>
 <li>
 <p><strong>input_key</strong>(<em>context</em>, <a href="#keys"><em>key</em></a>, <em>down</em>)<br>
-<strong>input_keys</strong>(<em>context</em>, <a href="#keytable"><em>keytable</em></a>)  <span class="small">- <em>Note1</em></span><br>
 <strong>input_button</strong>(<em>context</em>, <a href="#buttons"><em>button</em></a>, <em>x</em>, <em>y</em>, <em>down</em>)<br>
 <strong>input_scroll</strong>(<em>context</em>, <em>x</em>, <em>y</em>)<br>
 <strong>input_motion</strong>(<em>context</em>, <em>x</em>, <em>y</em>)<br>
-<strong>input_mouse_pos</strong>(<em>context</em>, <em>x</em>, <em>y</em>) <span class="small">- <em>Note2</em></span><br>
+<strong>input_mouse_pos</strong>(<em>context</em>, <em>x</em>, <em>y</em>) <span class="small">- <em>Note1</em></span><br>
 <strong>input_char</strong>(<em>context</em>, <em>char</em>)<br>
 <strong>input_glyph</strong>(<em>context</em>, <em>glyph</em>)<br>
 <strong>input_unicode</strong>(<em>context</em>, <em>codepoint</em>)<br>
-<span class="small">Note1: <em>input_keys(&nbsp;)</em> can be used to mirror all the keys with a single call.
-Any missing field in the <a href="#keytable"><em>keytable</em></a> defaults to <em>false</em> (i.e. key up).<br>
-Note2: unlike <em>input_motion(&nbsp;)</em>, <em>input_mouse_pos(&nbsp;)</em> only sets the mouse
-position without updating delta and prev (used e.g. in mouse grabbing, see the examples).<br>
+<span class="small">Note1: unlike <em>input_motion(&nbsp;)</em>, <em>input_mouse_pos(&nbsp;)</em> only sets the mouse
+position without updating delta and prev (used e.g. in mouse grabbing).<br>
 Rfr: nk_input_xxx(&nbsp;).</span></p>
 </li>
 </ul>
 </div>
+<div id="input_keys" class="ulist">
+<ul>
+<li>
+<p><strong>input_keys</strong>(<em>context</em>, <a href="#keytable"><em>keytable</em></a>)<br>
+<span class="small">This function can be used to mirror all the keys with a single call.
+Any missing field in the <a href="#keytable"><em>keytable</em></a> defaults to <em>false</em> (i.e. key up).</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="input_queries">Input queries</h3>
 <div class="paragraph">
-<p>The following <a href="#context"><em>context</em></a> methods can be used (usually by the front-end)
+<p>The following <a href="#context"><em>context</em></a> methods can be used (usually by the frontend)
 to query mirrored input information relevant to the GUI.</p>
 </div>
 <div class="ulist">
@@ -1077,15 +1119,17 @@ to query mirrored input information relevant to the GUI.</p>
 <div class="sect2">
 <h3 id="clipboard">Clipboard</h3>
 <div class="paragraph">
-<p>Use the following methods to connect the context with the system clipboard.</p>
+<p>The following methods can be used (in the backend) to connect the context with
+the system clipboard:</p>
 </div>
 <div id="context.set_clipboard_paste" class="ulist">
 <ul>
 <li>
 <p><em>context</em>:<strong>set_clipboard_paste</strong>(<em>func</em>)<br>
-<span class="small">Set the 'paste' callback for the context.<br>
-The callback (a Lua function) is executed as <strong><em>func(edit)</em></strong>, and is expected to paste the current contents of the clipboard to
-the given <a href="#edit"><em>edit</em></a>.<br>
+<span class="small">Sets <em>func</em> (a function) as the 'paste' callback for the context.
+The callback is
+executed as <strong><em>func(edit)</em></strong> and is expected to paste the current contents of the clipboard
+to the given <a href="#edit"><em>edit</em></a>.<br>
 Rfr: nk_plugin_paste.</span></p>
 </li>
 </ul>
@@ -1094,8 +1138,9 @@ Rfr: nk_plugin_paste.</span></p>
 <ul>
 <li>
 <p><em>context</em>:<strong>set_clipboard_copy</strong>(<em>func</em>)<br>
-<span class="small">Set the 'copy' callback for the context.<br>
-The callback (a Lua function) is executed as <strong><em>func(text)</em></strong>, and is expected to copy the given <em>text</em> (a string) to the clipboard.<br>
+<span class="small">Sets <em>func</em> (a function) as the 'copy' callback for the context.
+The callback is executed as <strong><em>func(text)</em></strong>, and is expected to copy the given <em>text</em>
+(a string) to the clipboard.<br>
 Rfr: nk_plugin_copy.</span></p>
 </li>
 </ul>
@@ -1104,13 +1149,48 @@ Rfr: nk_plugin_copy.</span></p>
 <div class="sect2">
 <h3 id="convert">Convert</h3>
 <div class="paragraph">
-<p>See the <a href="https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.3">Drawing</a>
-section in the Nuklear documentation.</p>
+<p>The <a href="#context"><em>context</em></a> methods that follow are used in the backend to
+control the conversion of vertex data and draw commands from the formats used
+internally by Nuklear to formats accessible by the particular system API in use.</p>
 </div>
 <div class="paragraph">
-<p>The <a href="#context"><em>context</em></a> methods that follow are to be used in the backend renderer to
-configure and perform the conversion of vertex data and draw commands from the Nuklear
-internal formats to formats accessible by the particular system API in use.</p>
+<p>See the <a href="https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.3">Drawing</a>
+section in the Nuklear documentation for more details.</p>
+</div>
+<div id="context.convert" class="ulist">
+<ul>
+<li>
+<p><a href="#convertresultflags"><em>convertresultflags</em></a> = <em>context</em>:<strong>convert</strong>(<a href="#buffer"><em>cbuffer</em></a>, <a href="#buffer"><em>vbuffer</em></a>, <a href="#buffer"><em>ebuffer</em></a>)<br>
+<span class="small">Converts the data generated by the frontend drawings and stores the abstract
+draw commands in the given <em>cbuffer</em>, the vertex data in <em>vbuffer</em>, and the element
+indices data in <em>ebuffer</em>.
+The conversion is done according to the current 'convert configuration' for the <em>context</em>, that
+can be set with the <em>context</em>:<a href="#convert_config">config_xxxx</a>(&nbsp;) methods.<br>
+Rfr: nk_convert(&nbsp;).</span></p>
+</li>
+</ul>
+</div>
+<div id="context.commands" class="ulist">
+<ul>
+<li>
+<p>{<a href="#command"><em>command</em></a>} = <em>context</em>:<strong>commands</strong>( )<br>
+{<a href="#drawcommand"><em>drawcommand</em></a>} = <em>context</em>:<strong>draw_commands</strong>(<a href="#buffer"><em>cbuffer</em></a>)<br>
+<span class="small">These methods return the list of commands generated by <em>context</em>:<a href="#context.convert">convert</a>(&nbsp;). The backend is expected to translate these commands to system API calls and render them.<br>
+Rfr: nk_foreach(&nbsp;), nk_draw_foreach(&nbsp;).</span></p>
+</li>
+</ul>
+</div>
+<div id="clear" class="ulist">
+<ul>
+<li>
+<p><em>context</em>:<strong>clear</strong>( )<br>
+<span class="small">Clears the <em>context</em>'s state. This method must be called at the end of each frame,
+after the converted commands have been rendered.<br>
+(Also remember to <a href="#buffer.clear">clear</a> the buffers passed to
+<em>context</em>:<a href="#context.convert">convert</a>(&nbsp;)).<br>
+Rfr: nk_clear(&nbsp;).</span></p>
+</li>
+</ul>
 </div>
 <div id="convert_config" class="ulist">
 <ul>
@@ -1126,42 +1206,8 @@ internal formats to formats accessible by the particular system API in use.</p>
 <em>context</em>:<strong>config_vertex_layout</strong>({<a href="#drawvertexlayoutelement"><em>drawvertexlayoutelement</em></a>})<br>
 <em>context</em>:<strong>config_vertex_size</strong>(<em>integer</em>)<br>
 <em>context</em>:<strong>config_vertex_alignment</strong>(<em>integer</em>)<br>
-<span class="small">Set the convert configuration associated with the <em>context</em>.<br>
-Rfr: nk_convert_config_t.</span></p>
-</li>
-</ul>
-</div>
-<div id="context.convert" class="ulist">
-<ul>
-<li>
-<p><a href="#convertresultflags"><em>convertresultflags</em></a> = <em>context</em>:<strong>convert</strong>(<a href="#buffer"><em>cbuffer</em></a>, <a href="#buffer"><em>vbuffer</em></a>, <a href="#buffer"><em>ebuffer</em></a>)<br>
-<span class="small">Convert the data generated by the front-end drawings.<br>
-Stores the abstract draw commands in the given <em>cbuffer</em>, the vertex data in <em>vbuffer</em>, and the element indices data in <em>ebuffer</em>.<br>
-The conversion is done according to the current 'convert configuration' for the <em>context</em>, that
-can be set with the <em>context:<a href="#convert_config">config_xxxx</a>(&nbsp;)</em> methods.<br>
-Rfr: nk_convert(&nbsp;).</span></p>
-</li>
-</ul>
-</div>
-<div id="context.commands" class="ulist">
-<ul>
-<li>
-<p>{<a href="#command"><em>command</em></a>} = <em>context</em>:<strong>commands</strong>( )<br>
-{<a href="#drawcommand"><em>drawcommand</em></a>} = <em>context</em>:<strong>draw_commands</strong>(<a href="#buffer"><em>cbuffer</em></a>)<br>
-<span class="small">These methods return the list of commands generated by <em>context:<a href="#context.convert">convert</a>(&nbsp;)</em>. The backend is expected to translate these commands to system API calls and render them.<br>
-Rfr: nk_foreach(&nbsp;), nk_draw_foreach(&nbsp;).</span></p>
-</li>
-</ul>
-</div>
-<div id="clear" class="ulist">
-<ul>
-<li>
-<p><em>context</em>:<strong>clear</strong>( )<br>
-<span class="small">Clears the <em>context</em>'s state. This method must be called at the end of each frame,
-after the converted commands have been rendered.<br>
-(Also remember to <a href="#buffer.clear">clear</a> the buffers passed to
-<em>context:<a href="#context.convert">convert</a>(&nbsp;)</em>).<br>
-Rfr: nk_clear(&nbsp;).</span></p>
+<span class="small">Set the conversion parameters associated with the <em>context</em>.<br>
+Rfr: nk_convert_config_t struct.</span></p>
 </li>
 </ul>
 </div>
@@ -2887,6 +2933,15 @@ Rfr: nk_context.style.</span></p>
 <hr>
 <div class="footnote" id="_footnote_1">
 <a href="#_footnoteref_1">1</a>. This manual is written in <a href="http://www.methods.co.nz/asciidoc/">AsciiDoc</a>, rendered with <a href="http://asciidoctor.org/">AsciiDoctor</a> and a CSS from the <a href="https://github.com/asciidoctor/asciidoctor-stylesheet-factory">AsciiDoctor Stylesheet Factory</a>.
+</div>
+<div class="footnote" id="_footnote_2">
+<a href="#_footnoteref_2">2</a>. Of course an application may have many other important components. We are considering here only those related to GUI drawing via Nuklear.
+</div>
+<div class="footnote" id="_footnote_3">
+<a href="#_footnoteref_3">3</a>. A font for text rendering must eventually be provided, but this can be done either by passing it to <a href="#init">init</a>(&nbsp;) as well as later during the initialization phase.
+</div>
+<div class="footnote" id="_footnote_4">
+<a href="#_footnoteref_4">4</a>. The biggest price to pay for this (at least in GPU rendering) is that vertex data must be uploaded to the GPU at every frame. While this may be prohibitive when rendering complex graphics scenes, it is usually acceptable for simple GUIs like those for which Nuklear is intended for.
 </div>
 </div>
 <div id="footer">

@@ -3,35 +3,39 @@
 [[input_mirroring]]
 === Input mirroring
 
-See the https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.2[Input]
+Updated input information must be provided to Nuklear at each frame, using the
+<<input_xxx, input_xxx>>(&nbsp;) functions in a code section delimited by 
+<<input_begin, input_begin>>(&nbsp;) and <<input_end, input_end>>(&nbsp;).
+See also the https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.2[Input]
 section in the Nuklear documentation.
-
 
 [[input_begin]]
 * *input_begin*(_context_) +
 *input_end*(_context_) +
-[small]#Updated input information must be provided to Nuklear at each frame, using the
-<<input_xxx, input_xxx>>(&nbsp;) functions in a code section delimited by these two functions. +
-Rfr: nk_input_begin(&nbsp;), nk_input_end(&nbsp;).#
+[small]#Rfr: nk_input_begin(&nbsp;), nk_input_end(&nbsp;).#
 
 [[input_xxx]]
 * *input_key*(_context_, <<keys, _key_>>, _down_) +
-*input_keys*(_context_, <<keytable, _keytable_>>)  [small]#- _Note1_# +
 *input_button*(_context_, <<buttons, _button_>>, _x_, _y_, _down_) +
 *input_scroll*(_context_, _x_, _y_) +
 *input_motion*(_context_, _x_, _y_) +
-*input_mouse_pos*(_context_, _x_, _y_) [small]#- _Note2_# +
+*input_mouse_pos*(_context_, _x_, _y_) [small]#- _Note1_# +
 *input_char*(_context_, _char_) +
 *input_glyph*(_context_, _glyph_) +
 *input_unicode*(_context_, _codepoint_) +
-[small]#Note1: _input_keys(&nbsp;)_ can be used to mirror all the keys with a single call.
-Any missing field in the <<keytable, _keytable_>> defaults to _false_ (i.e. key up). +
-Note2: unlike _input_motion(&nbsp;)_, _input_mouse_pos(&nbsp;)_ only sets the mouse 
-position without updating delta and prev (used e.g. in mouse grabbing, see the examples). +
+[small]#Note1: unlike _input_motion(&nbsp;)_, _input_mouse_pos(&nbsp;)_ only sets the mouse 
+position without updating delta and prev (used e.g. in mouse grabbing). +
 Rfr: nk_input_xxx(&nbsp;).#
 
+[[input_keys]]
+* *input_keys*(_context_, <<keytable, _keytable_>>) +
+[small]#This function can be used to mirror all the keys with a single call.
+Any missing field in the <<keytable, _keytable_>> defaults to _false_ (i.e. key up).#
 
-The following <<context, _context_>> methods can be used (usually by the front-end)
+[[input_queries]]
+=== Input queries
+
+The following <<context, _context_>> methods can be used (usually by the frontend)
 to query mirrored input information relevant to the GUI.
 
 * _boolean_ = _context_++:++*is_mouse_down*(<<buttons,_button_>>) +
