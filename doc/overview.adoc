@@ -60,13 +60,11 @@ from the system API to Nuklear, and to draw concretely the vertices that Nuklear
 draw via its abstract commands (Nuklear takes care to pass to the backend vertex data that
 will result in the GUI as intended by the frontend, and the backend blindly draws it).
 
+A GLFW+OpenGL backend is provided with MoonNuklear (*moonnuklear/glbackend.lua*).
+This backend is used in the examples and requires https://github.com/stetre/moongl[MoonGL] and
+https://github.com/stetre/moonglfw[MoonGLFW].
+
 The rest of this manual lists the MoonNuklear Lua bindings to the functions provided by Nuklear for 
 the above operations. A few examples can be found in the *examples/* directory of the repository,
 mostly portings to Lua of the original examples that come with Nuklear (including the comprehensive demo).
-
-The examples implement OpenGL/GLFW backends via the https://github.com/stetre/moongl[MoonGL] 
-and https://github.com/stetre/moonglfw[MoonGLFW] bindings.
-Note however that MoonNuklear - like Nuklear - is agnostic with respect to the system API:
-one can use whatever system API he/she likes for the backend, as long as it is accessible
-from Lua.
 
