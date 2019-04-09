@@ -11,7 +11,6 @@ local nk = require("moonnuklear")
 local TITLE = "Example"
 local W, H = 1200, 800 -- window width and height
 local BGCOLOR = {0.10, 0.18, 0.24, 1.0}
-local THEME = 'default'
 local window, ctx, atlas
 
 -------------------------------------------------------------------------------
@@ -25,7 +24,7 @@ local function init(width, height, title, anti_aliasing, font_path)
 
    -- GL/GLFW inits
    glfw.version_hint(3, 3, 'core')
-   window = glfw.create_window(W, H, TITLE)
+   window = glfw.create_window(W, H, title or TITLE)
    glfw.make_context_current(window)
    gl.init()
    W, H = glfw.get_window_size(window)
