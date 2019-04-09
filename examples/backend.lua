@@ -26,11 +26,10 @@ local function init(width, height, title, anti_aliasing, font_path)
 
    -- GL/GLFW inits
    glfw.version_hint(3, 3, 'core')
+   W, H = width, height
    window = glfw.create_window(W, H, title or TITLE)
    glfw.make_context_current(window)
    gl.init()
-   W, H = glfw.get_window_size(window)
-   gl.viewport(0, 0, W, H)
 
    ctx = backend.init(window, {
       vbo_size = 512*1024,
