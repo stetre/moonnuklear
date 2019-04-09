@@ -824,6 +824,7 @@ p.tableblock.header { color: #6d6e71; }
 <li><a href="#buffer">Buffer</a></li>
 <li><a href="#image">Image</a></li>
 <li><a href="#structs">Structs and types</a></li>
+<li><a href="#enums">Enums</a></li>
 <li><a href="#flags">Flags</a></li>
 <li><a href="#stylefields">List of style fields</a></li>
 </ul>
@@ -2202,8 +2203,28 @@ Commands:<br>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="enums">Enums</h3>
 <div class="paragraph">
-<p>'<em>buttons</em>', '<em>colorformat</em>', etc).#</p>
+<p>Nuklear enums are mapped in MoonNuklear to sets of string literals (as is customary in Lua).
+Admitted literals are available in the <strong>nk</strong> table (e.g. <strong>nk.BUTTON_XXX</strong> for NK_BUTTON_XXX),
+and can also be inferred from the corresponding C enum names. For example, given the
+nk.BUTTON_XXX hint for the <a href="#buttons">buttons</a> enum type, the literals it admits
+are obtained by lowercasing the XXX part of the name and replacing any underscore with a space.</p>
+</div>
+<div class="paragraph">
+<p>If needed, the following function can be used to obtain the list of literals admitted by
+a particular enum type.</p>
+</div>
+<div id="nk.enum" class="ulist">
+<ul>
+<li>
+<p>{<em>literal</em>} = <strong>nk.enum</strong>(<em>enumtype</em>)<br>
+<span class="small">Returns a table listing the literals admitted by <em>enumtype</em> (given as a string, e.g.
+'<em>buttons</em>', '<em>colorformat</em>', etc).</span></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Below is the list of the enum types, each with its hint, the list of string values it

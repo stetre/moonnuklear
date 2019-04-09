@@ -1,3 +1,19 @@
+
+[[enums]]
+=== Enums
+
+Nuklear enums are mapped in MoonNuklear to sets of string literals (as is customary in Lua).
+Admitted literals are available in the *nk* table (e.g. *nk.BUTTON_XXX* for NK_BUTTON_XXX),
+and can also be inferred from the corresponding C enum names. For example, given the 
+nk.BUTTON_XXX hint for the <<buttons, buttons>> enum type, the literals it admits
+are obtained by lowercasing the XXX part of the name and replacing any underscore with a space.
+
+If needed, the following function can be used to obtain the list of literals admitted by 
+a particular enum type.
+
+[[nk.enum]]
+* {_literal_} = *nk.enum*(_enumtype_) +
+[small]#Returns a table listing the literals admitted by _enumtype_ (given as a string, e.g.
 '_buttons_', '_colorformat_', etc).#
 
 Below is the list of the enum types, each with its hint, the list of string values it
