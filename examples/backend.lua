@@ -1,7 +1,8 @@
 #!/usr/bin/env lua
--- Backend wrapper for the hello.lua example.
--- Wraps the glbackend.lua shipped with MoonNuklear, just to remove
--- backend noise from the Hello World example.
+-- Backend for the hello.lua example.
+-- This is actually a wrapper to the GLFW/OpenGL backend shipped with Lua, that
+-- can be found in moonnuklear/glbackend.lua.
+-- The main purpose of this wrapper is to remove 'backend noise' from the examples.
 
 local glfw = require("moonglfw")
 local gl = require("moongl")
@@ -11,6 +12,7 @@ local nk = require("moonnuklear")
 local TITLE = "Example"
 local W, H = 1200, 800 -- window width and height
 local BGCOLOR = {0.10, 0.18, 0.24, 1.0}
+local R, G, B, A = table.unpack(BGCOLOR)
 local window, ctx, atlas
 
 -------------------------------------------------------------------------------
@@ -53,6 +55,11 @@ local function init(width, height, title, anti_aliasing, font_path)
    return ctx
 end
 
+local function set_bgcolor(color)
+   BGCOLOR = color or BGCOLOR
+   R, G, B, A = table.unpack(BGCOLOR)
+end
+
 -------------------------------------------------------------------------------
 local function loop(guifunc, bgcolor, fps)
 -------------------------------------------------------------------------------
@@ -65,8 +72,7 @@ local function loop(guifunc, bgcolor, fps)
 -- the Nuklear context.
 --
    local fps = fps or 30 -- frames per second
-   local bgcolor = bgcolor or BGCOLOR
-   local R, G, B, A = table.unpack(bgcolor)
+   if bgcolor then set_bgcolor(bgcolor) end
 
    collectgarbage()
    collectgarbage('stop')
@@ -94,5 +100,8 @@ end
 return {
    init = init,
    loop = loop,
+   get_window_size = function() return glfw.get_window_size(window) end,
+   get_window_pos = function() return glfw.get_window_pos(window) end,
+   set_bgcolor = set_bgcolor, 
 }
 

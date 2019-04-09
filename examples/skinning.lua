@@ -1,4 +1,6 @@
 #!/usr/bin/env lua
+-- This is a Lua porting of the skinning example that comes with Nuklear
+-- (nuklear/example/skinning.c).
 
 local glfw = require("moonglfw")
 local gl = require("moongl")

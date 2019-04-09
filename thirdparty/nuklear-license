@@ -2,7 +2,7 @@ The following material is taken from the Nuklear repository at
 https://github.com/vurtun/nuklear 
 or is derived from material from the same repository:
 - src/nuklear/nuklear.h, i.e. Nuklear itself, which MoonNuklear embeds,
-- the contents of the examples/nuklear directory (including fonts and images).
+- contents of the examples directory (including fonts and images).
 
 Below is a copy of the Nuklear license. Refer to the Nuklear repository
 for information about third party modules embedded by Nuklear itself.
