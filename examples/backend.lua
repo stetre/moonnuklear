@@ -16,13 +16,22 @@ local R, G, B, A = table.unpack(BGCOLOR)
 local window, ctx, atlas
 
 -------------------------------------------------------------------------------
-local function init(width, height, title, anti_aliasing, font_path)
+local function init(width, height, title, anti_aliasing, font_path, parameters)
 -------------------------------------------------------------------------------
 -- Initializes the backend.
 -- width, height: initial dimensions of the window
 -- title: window title
 -- anti_aliasing: if =true then AA is turned on
 -- font_path: optional full path filename of a ttf file
+-- parameters: optional parameters for backend.init
+
+   local parameters = parameters or {
+      vbo_size = 512*1024,
+      ebo_size = 128*1024,
+      anti_aliasing = anti_aliasing,
+      clipboard = true,
+      callbacks = true
+   }
 
    -- GL/GLFW inits
    glfw.version_hint(3, 3, 'core')
@@ -31,13 +40,7 @@ local function init(width, height, title, anti_aliasing, font_path)
    glfw.make_context_current(window)
    gl.init()
 
-   ctx = backend.init(window, {
-      vbo_size = 512*1024,
-      ebo_size = 128*1024,
-      anti_aliasing = anti_aliasing,
-      clipboard = true,
-      callbacks = true
-   })
+   ctx = backend.init(window, parameters)
 
    atlas = backend.font_stash_begin()
    -- Load Fonts: if none of these are loaded a default font will be used

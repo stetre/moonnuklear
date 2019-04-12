@@ -49,9 +49,8 @@ local scroll_x, scroll_y, char_text
 local last_button_click, double_click_pos, is_double_click_down
 local vbo_size, ebo_size, anti_aliasing
 local vbuf, ebuf
-
-local DOUBLE_CLICK_LO, DOUBLE_CLICK_HI = 0.02, 0.2 --@@ configurable
-local MOUSE_GRABBING = true --@@ configurable
+local mouse_grabbing, double_click_lo, double_click_hi
+local circle_segment_count, curve_segment_count, arc_segment_count, global_alpha
 local ushortsz = gl.sizeof('ushort')
 
 -------------------------------------------------------------------------------
@@ -98,10 +97,10 @@ local function configure(ctx)
    })
    ctx:config_vertex_size(stride)
    ctx:config_vertex_alignment(4) --@@?
-   ctx:config_circle_segment_count(22) --@@ configurable
-   ctx:config_curve_segment_count(22) --@@ configurable
-   ctx:config_arc_segment_count(22) --@@ configurable
-   ctx:config_global_alpha(1.0) --@@ configurable
+   ctx:config_circle_segment_count(circle_segment_count)
+   ctx:config_curve_segment_count(curve_segment_count)
+   ctx:config_arc_segment_count(arc_segment_count)
+   ctx:config_global_alpha(global_alpha)
    if anti_aliasing then
       ctx:config_line_aa(true)
       ctx:config_shape_aa(true)
@@ -202,7 +201,7 @@ local function mouse_button_callback(window, button, action, shift, control, alt
       local now = glfw.get_time()
       local dt = now - last_button_click
       last_button_click = now
-      if dt > DOUBLE_CLICK_LO and dt < DOUBLE_CLICK_HI then
+      if dt > double_click_lo and dt < double_click_hi then
          is_double_click_down = true
          double_click_pos = { glfw.get_cursor_pos(window) }
       end
@@ -258,17 +257,31 @@ end
 local function init(glfw_window, parameters)
 -- Inits the backend with the given GLFW window (created with MoonGLFW) and
 -- optional configuration parameters:
--- parameters.vbo_size        size of the vertex buffer object
--- parameters.ebo_size        size of the element buffer object
--- parameters.anti_aliasing   use anti-aliasing (default = false)
--- parameters.clipboard       use clipboard (default = false)
--- parameters.callbacks       install input callbacks (default = false)
+-- vbo_size          size of the vertex buffer object
+-- ebo_size          size of the element buffer object
+-- anti_aliasing     use anti-aliasing (default = false)
+-- clipboard         use clipboard (default = false)
+-- callbacks         install input callbacks (default = false)
+-- mouse_grabbing    enable mouse grabbing (default = true)
+-- double_click_lo   double click low threshold (default = .02 s)
+-- double_click_hi   double click high threshold (default = .2 s)
+-- circle_segment_count    no. of segments in circles (default = 22)
+-- curve_segment_count     no. of segments in curves (default = 22)
+-- arc_segment_count       no. of segments in arcs (default = 22)
+-- global_alpha            global alpha (default = 1.0)
    assert(ctx == nil, "double init")
    local parameters = parameters or {}
    window = glfw_window
    vbo_size = parameters.vbo_size or 512*1024
    ebo_size = parameters.ebo_size or 128*1024
    anti_aliasing = parameters.anti_aliasing and true or false
+   mouse_grabbing = parameters.mouse_grabbing==nil and true or parameters.mouse_grabbing
+   double_click_lo = parameters.double_click_lo or 0.02
+   double_click_hi = parameters.double_click_hi or 0.2
+   circle_segment_count = parameters.circle_segment_count or 22
+   curve_segment_count = parameters.curve_segment_count or 22
+   arc_segment_count = parameters.arc_segment_count or 22
+   global_alpha = parameters.global_alpha or 1.0
 
    last_button_click = 0
    is_double_click_down = false
@@ -325,7 +338,7 @@ local function new_frame()
    if #char_text > 0 then nk.input_unicode(ctx, table.unpack(char_text)) end
    char_text = {}
 
-   if MOUSE_GRABBING then -- optional grabbing behavior
+   if mouse_grabbing then -- optional grabbing behavior
       if ctx:mouse_grab() then
          glfw.set_input_mode(window, 'cursor', 'hidden')
       elseif ctx:mouse_ungrab() then
@@ -338,7 +351,7 @@ local function new_frame()
    local x, y = glfw.get_cursor_pos(window)
    nk.input_motion(ctx, x, y)
 
-   if MOUSE_GRABBING and ctx:mouse_grabbed() then
+   if mouse_grabbing and ctx:mouse_grabbed() then
       local prev_x, prev_y = ctx:mouse_prev()
       glfw.set_cursor_pos(window, prev_x, prev_y)
       nk.input_mouse_pos(ctx, prev_x, prev_y)
