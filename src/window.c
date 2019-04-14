@@ -287,14 +287,14 @@ static int Group_scrolled_begin(lua_State *L)
     nk_context_t *context = checkcontext(L, 1, NULL);
     const char *title = luaL_checkstring(L, 2);
     nk_flags flags = checkflags(L, 3); /* nk_panel_flags */
+    if(echeckscroll(L, 4, &offset)) return argerror(L, 4);
     if(!nk_group_scrolled_begin(context, &offset, title, flags))
         {
         lua_pushboolean(L, 0);
         return 1;
         }
     lua_pushboolean(L, 1);
-    pushscroll(L, &offset);
-    return 2;
+    return 1;
     }
 
 static int Group_scrolled_end(lua_State *L)
