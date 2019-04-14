@@ -2,23 +2,55 @@
 [[window]]
 === Windows and groups
 
-See the https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.4[Window] 
-and https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.6[Group] 
-sections in the Nuklear documentation.
+[small]#Rfr: https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.4[Window], https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.6[Group].#
 
 [[window_begin]]
 * _ok_ = *window_begin*(_context_, _title_, <<rect, _bounds_>>, <<panelflags, _panelflags_>>, [_name_]) +
 *window_end*(_context_) +
-[small]#_name_: string (optional unique name). +
+[small]#Begin/end drawing a window. Any other widget can be added only in the scope
+of a window, delimited by these two functions. +
+The _name_ optional argument (a string) is a unique name to identify the window. +
+Calls of _window_begin(&nbsp;)_ can not be nested: to create windows inside windows, use
+<<group, groups>>. +
 Rfr: nk_begin(&nbsp;), nk_begin_titled(&nbsp;), nk_end(&nbsp;).#
+footnote:[The Lua bindings to the nk_begin(&nbsp;) and nk_end(&nbsp;) functions are named
+respectively window_begin(&nbsp;) and window_end(&nbsp;) with the 'window$$_$$' prefix mainly
+because 'end' is a reserved word in Lua.]
 
 [[group]]
 * _ok_ = *group_begin*(_context_, _title_, <<panelflags, _panelflags_>>, [_name_]) +
-_ok_, <<vec2, _offset_>> = *group_scrolled_begin*(_context_, _title_, <<panelflags, _panelflags_>>) +
 *group_end*(_context_) +
-*group_scrolled_end*(_context_) +
-[small]#_title_: string, _name_: string (optional unique name). +
+[small]#Begin/end a new group of widgets. Requires previous <<layout, layouting>>. +
+The _name_ optional argument (a string) is a unique name to identify the group. +
 Rfr: nk_group_xxx(&nbsp;).#
+
+[[group_scrolled]]
+* _ok_ = *group_scrolled_begin*(_context_, _title_, <<panelflags, _panelflags_>>, <<vec2, _offset_>>) +
+*group_scrolled_end*(_context_) +
+[small]#Begin/end a new group with manual scrollbar handling and widgets displaced
+as specified by _offset_. Requires previous <<layout, layouting>>. +
+The _title_ argument is used both to display in the header and as identifier (_name_) for the group. +
+Rfr: nk_group_scrolled_xxx(&nbsp;).#
+
+
+.Basic usage of windows and groups
+[source,lua,indent=1]
+----
+if nk.window_begin(ctx, ...) then
+    -- ... layout ...
+    -- ... add widgets ...
+    if nk.group_begin(ctx, ...) then
+        -- ... add widgets (grouped) ...
+        nk.group_end(ctx)
+    end
+end
+nk.window_end(ctx)
+
+-- Note: window_end() must be called no matter what window_begin() returned,
+-- while group_end() must be called only if group_begin() succeeded.
+----
+
+The following functions can be used to get/set the properties of a window:
 
 [[window_xxx]]
 * <<rect, _bounds_>> = *window_get_bounds*(_context_) +
@@ -48,5 +80,4 @@ _boolean_ = *item_is_any_active*(_context_) +
 *window_show*(_context_, _name_, <<showstates, _showstates_>>) +
 *window_show_if*(_context_, _name_, <<showstates, _showstates_>>, _condition_) +
 [small]#Rfr: nk_window_xxx(&nbsp;).#
-
 

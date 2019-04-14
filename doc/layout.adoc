@@ -2,32 +2,108 @@
 [[layout]]
 === Layout
 
-See the https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.5[Layouting] section in the Nuklear documentation.
+[small]#Rfr: https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.5[Layouting].#
 
-[[layout_xxx]]
-* *layout_set_min_row_height*(_context_, _height_) +
-*layout_reset_min_row_height*(_context_) +
-<<rect, _bounds_>> = *layout_widget_bounds*(_context_) +
-_ratio_ = *layout_ratio_from_pixel*(_context_, _pixelwidth_) +
+Nuklear provides the following basic APIs to lay out widgets in windows (see also
+the *layout.lua* example):
+
+[[layout_row_dynamic]]
 * *layout_row_dynamic*(_context_, _height_, _columns_) +
-*layout_row_static*(_context_, _height_, _itemwidth_, _columns_) +
-*layout_row_begin*(_context_, <<layoutformat, _layoutformat_>>, _rowheight_, _columns_) +
-*layout_row_push*(_context_, _ratio_|_width_) +
+[small]#Widgets are drawn left to right in the slots of a row having the given _height_
+and _columns_ slots of the same width. The width of the slots is dynamically adapted so
+that the row spans the whole window width. New rows are added as needed, i.e. as the
+number of widgets that are added exceeds the number of slots. +
+Rfr: nk_layout_row_dynamic(&nbsp;).#
+
+[[layout_row_static]]
+* *layout_row_static*(_context_, _height_, _width_, _columns_) +
+[small]#Widgets are drawn left to right in the slots of a row having the given _height_
+and _columns_ slots of fixed _width_. New rows are added as needed. +
+(Note that being the slots of fixed size, there either can be unused space on the right
+of a row, or the rightmost portion may not be drawn because it does not fit in the window). +
+Rfr: nk_layout_row_static(&nbsp;).#
+
+[[layout_row_xxx]]
+* *layout_row_begin*(_context_, <<layoutformat, _layoutformat_>>, _height_, _columns_) +
+*layout_row_push*(_context_, _width_|_ratio_) +
 *layout_row_end*(_context_) +
-*layout_row*(_context_, <<layoutformat, _layoutformat_>>, _height_, _{ratio}_) +
-* *layout_row_template_begin*(_context_, _rowheight_) +
+[small]#Widgets are drawn left to right in the slots of a row having the given _height_
+and _columns_ slots. The width of the slots is specified with _layout_row_push(&nbsp;)_ and
+can be changed from slot to slot, thus allowing for slots of different width in the same row.
+The slot width is specified directly or indirectly as ratio to the total width, depending
+on _layoutformat_ being respectively _'static'_ or _'dynamic'_. +
+Rfr: nk_layout_row_xxx(&nbsp;).#
+
+[[layout_row]]
+* *layout_row*(_context_, <<layoutformat, _layoutformat_>>, _height_, _{width|ratio}_) +
+[small]#Widgets are drawn left to right in the slots of a row of the given _height_.
+The number and widths of the slots are specified by the last argument, which is
+an array of either widths or ratios to the total width,  depending on _layoutformat_ being
+respectively _'static'_ or _'dynamic'_. New similarly sized rows are added as needed. +
+Rfr: nk_layout_row(&nbsp;).#
+
+[[layout_row_template_xxx]]
+* *layout_row_template_begin*(_context_, _height_) +
+*layout_row_template_push_static*(_context_, _width_) +
 *layout_row_template_push_dynamic*(_context_) +
 *layout_row_template_push_variable*(_context_, _minwidth_) +
-*layout_row_template_push_static*(_context_, _width_) +
 *layout_row_template_end*(_context_) +
-* *layout_space_begin*(_context_, <<layoutformat, _layoutformat_>>, _height_, _widgetcount_) +
+[small]#Widgets are drawn left to right in the slots of a row having the given _height_
+and slots whose number and widths are specified by a template. The template is recorded
+by calling a series of 'push' functions between the 'begin' and 'end' calls (the widths
+can be defined either as static, or as dynamic with/without a minimum value).
+New rows with the same template as added as needed. +
+Rfr: nk_layout_row_template_xxx(&nbsp;).#
+
+[[layout_space_xxx]]
+* *layout_space_begin*(_context_, <<layoutformat, _layoutformat_>>, _height_, _count_) +
 *layout_space_push*(_context_, <<rect, _bounds_>>) +
 *layout_space_end*(_context_) +
+[small]#Widgets are drawn in the slots of a row having the given _height_ and _count_ slots.
+The _bounds_ (position in local coordinates, and size) of each slot are specified with the
+'push' function before adding the widget. The bounds are given either directly in pixels,
+or indirectly as ratios to the relevant totals, depending on _layoutformat_ being respectively
+_'static'_ or _'dynamic'_. +
+Rfr: nk_layout_space_xxx(&nbsp;).#
+
+'''
+
+A few utilities are provided to help in laying out widgets with the above APIs:
+
+[[layout_set_min_row_height]]
+* *layout_set_min_row_height*(_context_, _height_) +
+*layout_reset_min_row_height*(_context_) +
+[small]#Set the current minimum row height to a specified value, or reset it to font height. +
+The actual height of a row depends on the height of the font being used, which Nuklear
+uses to determine a minimum row height. These functions allow to overridde this minimum, if needed,
+and to restore it. +
+Rfr: nk_layout_set_min_row_height(&nbsp;),  nk_layout_reset_min_row_height(&nbsp;).#
+
+////
+[[layout_widget_bounds]]
+* <<rect, _bounds_>> = *layout_widget_bounds*(_context_) +
+[small]#@@??. +
+Rfr: nk_layout_widget_bounds(&nbsp;).#
+////
+
+[[layout_ratio_from_pixel]]
+* _ratio_ = *layout_ratio_from_pixel*(_context_, _pixelwidth_) +
+[small]#Calculates window ratio from pixel size. +
+Rfr: nk_layout_ratio_from_pixel(&nbsp;).#
+
+[[layout_space_bounds]]
 * <<rect, _bounds_>> = *layout_space_bounds*(_context_) +
-<<vec2, _vec2_>> = *layout_space_to_screen*(_context_, <<vec2, _vec2_>>) +
+[small]#To be called after <<layout_space_xxx, layout_space_begin>>(&nbsp;), returns the
+bounds of the allocated space (position in screen coordinates, and size). +
+Rfr: nk_layout_space_bounds(&nbsp;).#
+
+[[layout_space_to_xxx]]
+* <<vec2, _vec2_>> = *layout_space_to_screen*(_context_, <<vec2, _vec2_>>) +
 <<vec2, _vec2_>> = *layout_space_to_local*(_context_, <<vec2, _vec2_>>) +
 <<rect, _rect_>> = *layout_space_rect_to_screen*(_context_, <<rect, _rect_>>) +
 <<rect, _rect_>> = *layout_space_rect_to_local*(_context_, <<rect, _rect_>>) +
-[small]#Rfr: nk_layout_xxx(&nbsp;).#
-
+[small]#To be called after <<layout_space_xxx, layout_space_begin>>(&nbsp;), these
+function convert a position or a rectangle from local coordinates to screen coordinates,
+or viceversa. +
+Rfr: nk_layout_space_to_xxx(&nbsp;), nk_layout_space_rect_to_xxx(&nbsp;).#
 

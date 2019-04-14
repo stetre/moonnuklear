@@ -1214,17 +1214,20 @@ Rfr: nk_convert_config_t struct.</span></p>
 <div class="sect2">
 <h3 id="window">Windows and groups</h3>
 <div class="paragraph">
-<p>See the <a href="https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.4">Window</a>
-and <a href="https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.6">Group</a>
-sections in the Nuklear documentation.</p>
+<p><span class="small">Rfr: <a href="https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.4">Window</a>, <a href="https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.6">Group</a>.</span></p>
 </div>
 <div id="window_begin" class="ulist">
 <ul>
 <li>
 <p><em>ok</em> = <strong>window_begin</strong>(<em>context</em>, <em>title</em>, <a href="#rect"><em>bounds</em></a>, <a href="#panelflags"><em>panelflags</em></a>, [<em>name</em>])<br>
 <strong>window_end</strong>(<em>context</em>)<br>
-<span class="small"><em>name</em>: string (optional unique name).<br>
-Rfr: nk_begin(&nbsp;), nk_begin_titled(&nbsp;), nk_end(&nbsp;).</span></p>
+<span class="small">Begin/end drawing a window. Any other widget can be added only in the scope
+of a window, delimited by these two functions.<br>
+The <em>name</em> optional argument (a string) is a unique name to identify the window.<br>
+Calls of <em>window_begin(&nbsp;)</em> can not be nested: to create windows inside windows, use
+<a href="#group">groups</a>.<br>
+Rfr: nk_begin(&nbsp;), nk_begin_titled(&nbsp;), nk_end(&nbsp;).</span>
+<sup class="footnote">[<a id="_footnoteref_5" class="footnote" href="#_footnote_5" title="View footnote.">5</a>]</sup></p>
 </li>
 </ul>
 </div>
@@ -1232,13 +1235,44 @@ Rfr: nk_begin(&nbsp;), nk_begin_titled(&nbsp;), nk_end(&nbsp;).</span></p>
 <ul>
 <li>
 <p><em>ok</em> = <strong>group_begin</strong>(<em>context</em>, <em>title</em>, <a href="#panelflags"><em>panelflags</em></a>, [<em>name</em>])<br>
-<em>ok</em>, <a href="#vec2"><em>offset</em></a> = <strong>group_scrolled_begin</strong>(<em>context</em>, <em>title</em>, <a href="#panelflags"><em>panelflags</em></a>)<br>
 <strong>group_end</strong>(<em>context</em>)<br>
-<strong>group_scrolled_end</strong>(<em>context</em>)<br>
-<span class="small"><em>title</em>: string, <em>name</em>: string (optional unique name).<br>
+<span class="small">Begin/end a new group of widgets. Requires previous <a href="#layout">layouting</a>.<br>
+The <em>name</em> optional argument (a string) is a unique name to identify the group.<br>
 Rfr: nk_group_xxx(&nbsp;).</span></p>
 </li>
 </ul>
+</div>
+<div id="group_scrolled" class="ulist">
+<ul>
+<li>
+<p><em>ok</em> = <strong>group_scrolled_begin</strong>(<em>context</em>, <em>title</em>, <a href="#panelflags"><em>panelflags</em></a>, <a href="#vec2"><em>offset</em></a>)<br>
+<strong>group_scrolled_end</strong>(<em>context</em>)<br>
+<span class="small">Begin/end a new group with manual scrollbar handling and widgets displaced
+as specified by <em>offset</em>. Requires previous <a href="#layout">layouting</a>.<br>
+The <em>title</em> argument is used both to display in the header and as identifier (<em>name</em>) for the group.<br>
+Rfr: nk_group_scrolled_xxx(&nbsp;).</span></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Basic usage of windows and groups</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="lua"><span></span> <span class="tok-kr">if</span> <span class="tok-n">nk</span><span class="tok-p">.</span><span class="tok-n">window_begin</span><span class="tok-p">(</span><span class="tok-n">ctx</span><span class="tok-p">,</span> <span class="tok-p">...)</span> <span class="tok-kr">then</span>
+     <span class="tok-c1">-- ... layout ...</span>
+     <span class="tok-c1">-- ... add widgets ...</span>
+     <span class="tok-kr">if</span> <span class="tok-n">nk</span><span class="tok-p">.</span><span class="tok-n">group_begin</span><span class="tok-p">(</span><span class="tok-n">ctx</span><span class="tok-p">,</span> <span class="tok-p">...)</span> <span class="tok-kr">then</span>
+         <span class="tok-c1">-- ... add widgets (grouped) ...</span>
+         <span class="tok-n">nk</span><span class="tok-p">.</span><span class="tok-n">group_end</span><span class="tok-p">(</span><span class="tok-n">ctx</span><span class="tok-p">)</span>
+     <span class="tok-kr">end</span>
+ <span class="tok-kr">end</span>
+ <span class="tok-n">nk</span><span class="tok-p">.</span><span class="tok-n">window_end</span><span class="tok-p">(</span><span class="tok-n">ctx</span><span class="tok-p">)</span>
+
+ <span class="tok-c1">-- Note: window_end() must be called no matter what window_begin() returned,</span>
+ <span class="tok-c1">-- while group_end() must be called only if group_begin() succeeded.</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following functions can be used to get/set the properties of a window:</p>
 </div>
 <div id="window_xxx" class="ulist">
 <ul>
@@ -1277,43 +1311,142 @@ Rfr: nk_group_xxx(&nbsp;).</span></p>
 <div class="sect2">
 <h3 id="layout">Layout</h3>
 <div class="paragraph">
-<p>See the <a href="https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.5">Layouting</a> section in the Nuklear documentation.</p>
+<p><span class="small">Rfr: <a href="https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.5">Layouting</a>.</span></p>
 </div>
-<div id="layout_xxx" class="ulist">
+<div class="paragraph">
+<p>Nuklear provides the following basic APIs to lay out widgets in windows (see also
+the <strong>layout.lua</strong> example):</p>
+</div>
+<div id="layout_row_dynamic" class="ulist">
+<ul>
+<li>
+<p><strong>layout_row_dynamic</strong>(<em>context</em>, <em>height</em>, <em>columns</em>)<br>
+<span class="small">Widgets are drawn left to right in the slots of a row having the given <em>height</em>
+and <em>columns</em> slots of the same width. The width of the slots is dynamically adapted so
+that the row spans the whole window width. New rows are added as needed, i.e. as the
+number of widgets that are added exceeds the number of slots.<br>
+Rfr: nk_layout_row_dynamic(&nbsp;).</span></p>
+</li>
+</ul>
+</div>
+<div id="layout_row_static" class="ulist">
+<ul>
+<li>
+<p><strong>layout_row_static</strong>(<em>context</em>, <em>height</em>, <em>width</em>, <em>columns</em>)<br>
+<span class="small">Widgets are drawn left to right in the slots of a row having the given <em>height</em>
+and <em>columns</em> slots of fixed <em>width</em>. New rows are added as needed.<br>
+(Note that being the slots of fixed size, there either can be unused space on the right
+of a row, or the rightmost portion may not be drawn because it does not fit in the window).<br>
+Rfr: nk_layout_row_static(&nbsp;).</span></p>
+</li>
+</ul>
+</div>
+<div id="layout_row_xxx" class="ulist">
+<ul>
+<li>
+<p><strong>layout_row_begin</strong>(<em>context</em>, <a href="#layoutformat"><em>layoutformat</em></a>, <em>height</em>, <em>columns</em>)<br>
+<strong>layout_row_push</strong>(<em>context</em>, <em>width</em>|<em>ratio</em>)<br>
+<strong>layout_row_end</strong>(<em>context</em>)<br>
+<span class="small">Widgets are drawn left to right in the slots of a row having the given <em>height</em>
+and <em>columns</em> slots. The width of the slots is specified with <em>layout_row_push(&nbsp;)</em> and
+can be changed from slot to slot, thus allowing for slots of different width in the same row.
+The slot width is specified directly or indirectly as ratio to the total width, depending
+on <em>layoutformat</em> being respectively <em>'static'</em> or <em>'dynamic'</em>.<br>
+Rfr: nk_layout_row_xxx(&nbsp;).</span></p>
+</li>
+</ul>
+</div>
+<div id="layout_row" class="ulist">
+<ul>
+<li>
+<p><strong>layout_row</strong>(<em>context</em>, <a href="#layoutformat"><em>layoutformat</em></a>, <em>height</em>, <em>{width|ratio}</em>)<br>
+<span class="small">Widgets are drawn left to right in the slots of a row of the given <em>height</em>.
+The number and widths of the slots are specified by the last argument, which is
+an array of either widths or ratios to the total width,  depending on <em>layoutformat</em> being
+respectively <em>'static'</em> or <em>'dynamic'</em>. New similarly sized rows are added as needed.<br>
+Rfr: nk_layout_row(&nbsp;).</span></p>
+</li>
+</ul>
+</div>
+<div id="layout_row_template_xxx" class="ulist">
+<ul>
+<li>
+<p><strong>layout_row_template_begin</strong>(<em>context</em>, <em>height</em>)<br>
+<strong>layout_row_template_push_static</strong>(<em>context</em>, <em>width</em>)<br>
+<strong>layout_row_template_push_dynamic</strong>(<em>context</em>)<br>
+<strong>layout_row_template_push_variable</strong>(<em>context</em>, <em>minwidth</em>)<br>
+<strong>layout_row_template_end</strong>(<em>context</em>)<br>
+<span class="small">Widgets are drawn left to right in the slots of a row having the given <em>height</em>
+and slots whose number and widths are specified by a template. The template is recorded
+by calling a series of 'push' functions between the 'begin' and 'end' calls (the widths
+can be defined either as static, or as dynamic with/without a minimum value).
+New rows with the same template as added as needed.<br>
+Rfr: nk_layout_row_template_xxx(&nbsp;).</span></p>
+</li>
+</ul>
+</div>
+<div id="layout_space_xxx" class="ulist">
+<ul>
+<li>
+<p><strong>layout_space_begin</strong>(<em>context</em>, <a href="#layoutformat"><em>layoutformat</em></a>, <em>height</em>, <em>count</em>)<br>
+<strong>layout_space_push</strong>(<em>context</em>, <a href="#rect"><em>bounds</em></a>)<br>
+<strong>layout_space_end</strong>(<em>context</em>)<br>
+<span class="small">Widgets are drawn in the slots of a row having the given <em>height</em> and <em>count</em> slots.
+The <em>bounds</em> (position in local coordinates, and size) of each slot are specified with the
+'push' function before adding the widget. The bounds are given either directly in pixels,
+or indirectly as ratios to the relevant totals, depending on <em>layoutformat</em> being respectively
+<em>'static'</em> or <em>'dynamic'</em>.<br>
+Rfr: nk_layout_space_xxx(&nbsp;).</span></p>
+</li>
+</ul>
+</div>
+<hr>
+<div class="paragraph">
+<p>A few utilities are provided to help in laying out widgets with the above APIs:</p>
+</div>
+<div id="layout_set_min_row_height" class="ulist">
 <ul>
 <li>
 <p><strong>layout_set_min_row_height</strong>(<em>context</em>, <em>height</em>)<br>
 <strong>layout_reset_min_row_height</strong>(<em>context</em>)<br>
-<a href="#rect"><em>bounds</em></a> = <strong>layout_widget_bounds</strong>(<em>context</em>)<br>
-<em>ratio</em> = <strong>layout_ratio_from_pixel</strong>(<em>context</em>, <em>pixelwidth</em>)<br></p>
+<span class="small">Set the current minimum row height to a specified value, or reset it to font height.<br>
+The actual height of a row depends on the height of the font being used, which Nuklear
+uses to determine a minimum row height. These functions allow to overridde this minimum, if needed,
+and to restore it.<br>
+Rfr: nk_layout_set_min_row_height(&nbsp;),  nk_layout_reset_min_row_height(&nbsp;).</span></p>
 </li>
+</ul>
+</div>
+<div id="layout_ratio_from_pixel" class="ulist">
+<ul>
 <li>
-<p><strong>layout_row_dynamic</strong>(<em>context</em>, <em>height</em>, <em>columns</em>)<br>
-<strong>layout_row_static</strong>(<em>context</em>, <em>height</em>, <em>itemwidth</em>, <em>columns</em>)<br>
-<strong>layout_row_begin</strong>(<em>context</em>, <a href="#layoutformat"><em>layoutformat</em></a>, <em>rowheight</em>, <em>columns</em>)<br>
-<strong>layout_row_push</strong>(<em>context</em>, <em>ratio</em>|<em>width</em>)<br>
-<strong>layout_row_end</strong>(<em>context</em>)<br>
-<strong>layout_row</strong>(<em>context</em>, <a href="#layoutformat"><em>layoutformat</em></a>, <em>height</em>, <em>{ratio}</em>)<br></p>
+<p><em>ratio</em> = <strong>layout_ratio_from_pixel</strong>(<em>context</em>, <em>pixelwidth</em>)<br>
+<span class="small">Calculates window ratio from pixel size.<br>
+Rfr: nk_layout_ratio_from_pixel(&nbsp;).</span></p>
 </li>
-<li>
-<p><strong>layout_row_template_begin</strong>(<em>context</em>, <em>rowheight</em>)<br>
-<strong>layout_row_template_push_dynamic</strong>(<em>context</em>)<br>
-<strong>layout_row_template_push_variable</strong>(<em>context</em>, <em>minwidth</em>)<br>
-<strong>layout_row_template_push_static</strong>(<em>context</em>, <em>width</em>)<br>
-<strong>layout_row_template_end</strong>(<em>context</em>)<br></p>
-</li>
-<li>
-<p><strong>layout_space_begin</strong>(<em>context</em>, <a href="#layoutformat"><em>layoutformat</em></a>, <em>height</em>, <em>widgetcount</em>)<br>
-<strong>layout_space_push</strong>(<em>context</em>, <a href="#rect"><em>bounds</em></a>)<br>
-<strong>layout_space_end</strong>(<em>context</em>)<br></p>
-</li>
+</ul>
+</div>
+<div id="layout_space_bounds" class="ulist">
+<ul>
 <li>
 <p><a href="#rect"><em>bounds</em></a> = <strong>layout_space_bounds</strong>(<em>context</em>)<br>
-<a href="#vec2"><em>vec2</em></a> = <strong>layout_space_to_screen</strong>(<em>context</em>, <a href="#vec2"><em>vec2</em></a>)<br>
+<span class="small">To be called after <a href="#layout_space_xxx">layout_space_begin</a>(&nbsp;), returns the
+bounds of the allocated space (position in screen coordinates, and size).<br>
+Rfr: nk_layout_space_bounds(&nbsp;).</span></p>
+</li>
+</ul>
+</div>
+<div id="layout_space_to_xxx" class="ulist">
+<ul>
+<li>
+<p><a href="#vec2"><em>vec2</em></a> = <strong>layout_space_to_screen</strong>(<em>context</em>, <a href="#vec2"><em>vec2</em></a>)<br>
 <a href="#vec2"><em>vec2</em></a> = <strong>layout_space_to_local</strong>(<em>context</em>, <a href="#vec2"><em>vec2</em></a>)<br>
 <a href="#rect"><em>rect</em></a> = <strong>layout_space_rect_to_screen</strong>(<em>context</em>, <a href="#rect"><em>rect</em></a>)<br>
 <a href="#rect"><em>rect</em></a> = <strong>layout_space_rect_to_local</strong>(<em>context</em>, <a href="#rect"><em>rect</em></a>)<br>
-<span class="small">Rfr: nk_layout_xxx(&nbsp;).</span></p>
+<span class="small">To be called after <a href="#layout_space_xxx">layout_space_begin</a>(&nbsp;), these
+function convert a position or a rectangle from local coordinates to screen coordinates,
+or viceversa.<br>
+Rfr: nk_layout_space_to_xxx(&nbsp;), nk_layout_space_rect_to_xxx(&nbsp;).</span></p>
 </li>
 </ul>
 </div>
@@ -2031,15 +2164,15 @@ Rfr: nk_image.</span></p>
 </li>
 <li>
 <p><a id="rect"></a>
-<span class="small"><strong>rect</strong> = {float}[4] (xywh, aliases: <strong>bounds</strong>)</span></p>
+<span class="small"><strong>rect</strong>, <strong>bounds</strong> = {float}[4] (xywh)</span></p>
 </li>
 <li>
 <p><a id="vec2"></a>
-<span class="small"><strong>vec2</strong> = {float}[2] (xy or wh, aliases: <strong>position</strong>, <strong>size</strong>, <strong>padding</strong>)</span></p>
+<span class="small"><strong>vec2</strong>, <strong>position</strong>, <strong>size</strong>, <strong>padding</strong> = {float}[2] (xy or wh)</span></p>
 </li>
 <li>
 <p><a id="vec2i"></a>
-<span class="small"><strong>vec2i</strong> = {integer}[2] (xy, aliases: <strong>point</strong>)</span></p>
+<span class="small"><strong>vec2i</strong>, <strong>point</strong> = {integer}[2] (xy)</span></p>
 </li>
 <li>
 <p><a id="styleitem"></a>
@@ -2393,7 +2526,7 @@ Combination values: '<em>simple</em>', '<em>field</em>', '<em>box</em>', '<em>ed
 </div>
 <div id="panelflags" class="paragraph">
 <p><span class="small"><strong>panelflags</strong>: nk.WINDOW_XXX (<em>nk_panel_flags</em>)<br>
-Values: '<em>border</em>', '<em>movable</em>', '<em>scalable</em>', '<em>closable</em>', '<em>minimizable</em>', '<em>no scrollbar</em>', '<em>title</em>', '<em>scroll auto_hide</em>', '<em>background</em>', '<em>scale left</em>', '<em>no input</em>'.</span></p>
+Values: '<em>border</em>', '<em>movable</em>', '<em>scalable</em>', '<em>closable</em>', '<em>minimizable</em>', '<em>no scrollbar</em>', '<em>title</em>', '<em>scroll auto hide</em>', '<em>background</em>', '<em>scale left</em>', '<em>no input</em>'.</span></p>
 </div>
 <div id="paneltypeflags" class="paragraph">
 <p><span class="small"><strong>paneltypeflags</strong>: nk.PANEL_XXX (<em>nk_panel_type</em>, <em>nk_panel_set</em>)<br>
@@ -2419,7 +2552,7 @@ Values: '<em>modified</em>', '<em>inactive</em>', '<em>entered</em>', '<em>hover
 </div>
 <div id="windowflags" class="paragraph">
 <p><span class="small"><strong>windowflags</strong>: nk.WINDOW_XXX (<em>nk_window_flags</em>)<br>
-Values: '<em>private</em>', '<em>dynamic</em>', '<em>rom</em>', '<em>not_interactive</em>', '<em>hidden</em>', '<em>closed</em>', '<em>minimized</em>', '<em>remove_rom</em>'.</span></p>
+Values: '<em>private</em>', '<em>dynamic</em>', '<em>rom</em>', '<em>not interactive</em>', '<em>hidden</em>', '<em>closed</em>', '<em>minimized</em>', '<em>remove rom</em>'.</span></p>
 </div>
 </div>
 <div class="sect2">
@@ -2430,7 +2563,7 @@ Values: '<em>private</em>', '<em>dynamic</em>', '<em>rom</em>', '<em>not_interac
 <div class="paragraph">
 <p>The string literal for each field corresponds to its name in the <em>style</em> field of the <em>nk_context</em> struct in C (for example, '<em>button.border</em>' identifies the <em>context&#8594;style.button.border</em> field which is a <em>float</em>).</p>
 </div>
-<div class="paragraph">
+<div id="stylefield" class="paragraph">
 <p><span class="small">'<em>button.border</em>' : <em>float</em><br>
 '<em>button.rounding</em>' : <em>float</em><br>
 '<em>contextual_button.border</em>' : <em>float</em><br>
@@ -2961,6 +3094,9 @@ Rfr: nk_context.style.</span></p>
 </div>
 <div class="footnote" id="_footnote_4">
 <a href="#_footnoteref_4">4</a>. The biggest price to pay for this (at least in GPU rendering) is that vertex data must be uploaded to the GPU at every frame. While this may be prohibitive when rendering complex graphics scenes, it is usually acceptable for simple GUIs like those for which Nuklear is intended for.
+</div>
+<div class="footnote" id="_footnote_5">
+<a href="#_footnoteref_5">5</a>. The Lua bindings to the nk_begin(&nbsp;) and nk_end(&nbsp;) functions are named respectively window_begin(&nbsp;) and window_end(&nbsp;) with the 'window_' prefix mainly because 'end' is a reserved word in Lua.
 </div>
 </div>
 <div id="footer">

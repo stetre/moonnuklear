@@ -9,13 +9,13 @@
 [small]#*hsvacolor* = {float}[4] (normalized HSVA components)#
 
 * [[rect]]
-[small]#*rect* = {float}[4] (xywh, aliases: *bounds*)#
+[small]#*rect*, *bounds* = {float}[4] (xywh)#
 
 * [[vec2]]
-[small]#*vec2* = {float}[2] (xy or wh, aliases: *position*, *size*, *padding*)#
+[small]#*vec2*, *position*, *size*, *padding* = {float}[2] (xy or wh)#
 
 * [[vec2i]]
-[small]#*vec2i* = {integer}[2] (xy, aliases: *point*)#
+[small]#*vec2i*, *point* = {integer}[2] (xy)#
 
 * [[styleitem]]
 [small]#*styleitem* = <<image, image>>|<<color, color>>|'_hide_' (Rfr: nk_style_item)#

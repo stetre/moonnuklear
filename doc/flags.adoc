@@ -42,7 +42,7 @@ Combination values: '_simple_', '_field_', '_box_', '_editor_'.#
 
 [[panelflags]]
 [small]#*panelflags*: nk.WINDOW_XXX (_nk_panel_flags_) +
-Values: '_border_', '_movable_', '_scalable_', '_closable_', '_minimizable_', '_no scrollbar_', '_title_', '_scroll auto_hide_', '_background_', '_scale left_', '_no input_'.#
+Values: '_border_', '_movable_', '_scalable_', '_closable_', '_minimizable_', '_no scrollbar_', '_title_', '_scroll auto hide_', '_background_', '_scale left_', '_no input_'.#
 
 [[paneltypeflags]]
 [small]#*paneltypeflags*: nk.PANEL_XXX (_nk_panel_type_, _nk_panel_set_) +
@@ -68,5 +68,5 @@ Values: '_modified_', '_inactive_', '_entered_', '_hover_', '_actived_', '_left_
 
 [[windowflags]]
 [small]#*windowflags*: nk.WINDOW_XXX (_nk_window_flags_) +
-Values: '_private_', '_dynamic_', '_rom_', '_not_interactive_', '_hidden_', '_closed_', '_minimized_', '_remove_rom_'.#
+Values: '_private_', '_dynamic_', '_rom_', '_not interactive_', '_hidden_', '_closed_', '_minimized_', '_remove rom_'.#
 

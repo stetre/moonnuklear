@@ -8,6 +8,7 @@ Listed in this section are the accessible <<style, style>> fields of a _context_
 
 The string literal for each field corresponds to its name in the _style_ field of the _nk_context_ struct in C (for example, '_button.border_' identifies the _context->style.button.border_ field which is a _float_).
 
+[[stylefield]]
 [small]#'_button.border_' : _float_ +
 '_button.rounding_' : _float_ +
 '_contextual_button.border_' : _float_ +
