@@ -107,7 +107,7 @@ static nk_flags checkpanelflags(lua_State *L, int arg)
     CASE(NK_WINDOW_MINIMIZABLE, "minimizable");
     CASE(NK_WINDOW_NO_SCROLLBAR, "no scrollbar");
     CASE(NK_WINDOW_TITLE, "title");
-    CASE(NK_WINDOW_SCROLL_AUTO_HIDE, "scroll auto_hide");
+    CASE(NK_WINDOW_SCROLL_AUTO_HIDE, "scroll auto hide");
     CASE(NK_WINDOW_BACKGROUND, "background");
     CASE(NK_WINDOW_SCALE_LEFT, "scale left");
     CASE(NK_WINDOW_NO_INPUT, "no input");
@@ -131,7 +131,7 @@ static int pushpanelflags(lua_State *L, nk_flags flags)
     CASE(NK_WINDOW_MINIMIZABLE, "minimizable");
     CASE(NK_WINDOW_NO_SCROLLBAR, "no scrollbar");
     CASE(NK_WINDOW_TITLE, "title");
-    CASE(NK_WINDOW_SCROLL_AUTO_HIDE, "scroll auto_hide");
+    CASE(NK_WINDOW_SCROLL_AUTO_HIDE, "scroll auto hide");
     CASE(NK_WINDOW_BACKGROUND, "background");
     CASE(NK_WINDOW_SCALE_LEFT, "scale left");
     CASE(NK_WINDOW_NO_INPUT, "no input");
@@ -525,11 +525,11 @@ static nk_flags checkwindowflags(lua_State *L, int arg)
     CASE(NK_WINDOW_PRIVATE, "private");
     CASE(NK_WINDOW_DYNAMIC, "dynamic");
     CASE(NK_WINDOW_ROM, "rom");
-    CASE(NK_WINDOW_NOT_INTERACTIVE, "not_interactive");
+    CASE(NK_WINDOW_NOT_INTERACTIVE, "not interactive");
     CASE(NK_WINDOW_HIDDEN, "hidden");
     CASE(NK_WINDOW_CLOSED, "closed");
     CASE(NK_WINDOW_MINIMIZED, "minimized");
-    CASE(NK_WINDOW_REMOVE_ROM, "remove_rom");
+    CASE(NK_WINDOW_REMOVE_ROM, "remove rom");
 #undef CASE
         return (nk_flags)luaL_argerror(L, --arg, badvalue(L,s));
         done: ;
@@ -546,11 +546,11 @@ static int pushwindowflags(lua_State *L, nk_flags flags)
     CASE(NK_WINDOW_PRIVATE, "private");
     CASE(NK_WINDOW_DYNAMIC, "dynamic");
     CASE(NK_WINDOW_ROM, "rom");
-    CASE(NK_WINDOW_NOT_INTERACTIVE, "not_interactive");
+    CASE(NK_WINDOW_NOT_INTERACTIVE, "not interactive");
     CASE(NK_WINDOW_HIDDEN, "hidden");
     CASE(NK_WINDOW_CLOSED, "closed");
     CASE(NK_WINDOW_MINIMIZED, "minimized");
-    CASE(NK_WINDOW_REMOVE_ROM, "remove_rom");
+    CASE(NK_WINDOW_REMOVE_ROM, "remove rom");
 #undef CASE
 
     return n;
