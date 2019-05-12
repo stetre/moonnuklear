@@ -349,6 +349,8 @@ local function new_frame()
    nk.input_keys(ctx, keys)
 
    local x, y = glfw.get_cursor_pos(window)
+   x = math.floor(x)
+   y = math.floor(y)
    nk.input_motion(ctx, x, y)
 
    if mouse_grabbing and ctx:mouse_grabbed() then
