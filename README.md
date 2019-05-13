@@ -17,8 +17,7 @@ MIT/X11 license (same as Lua). See [LICENSE](./LICENSE).
 
 See the [Reference Manual](https://stetre.github.io/moonnuklear/doc/index.html).
 
------------
-#### Getting and installing on Linux and Windows/MinGW
+#### Getting and installing
 
 Setup the build environment as described [here](https://github.com/stetre/moonlibs), then:
 
@@ -26,37 +25,8 @@ Setup the build environment as described [here](https://github.com/stetre/moonli
 $ git clone https://github.com/stetre/moonglfw
 $ cd moonnuklear
 moonnuklear$ make
-moonnuklear$ make install # or 'sudo make install' (Ubuntu)
+moonnuklear$ make install # or 'sudo make install' (Ubuntu and MacOS)
 ```
-
-#### Getting and installing on MacOS
-Clone moonnuklear from the Git repository
-```sh
-$ git clone https://github.com/stetre/moonnuklear
-```
-If MacOS says that _The Git command requires the command line developer tools_, click _Install_ and Agree to the License Agrement.
-
-Install Homebrew
-```sh
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-```
-
-Install lua & glew libraries
-```sh
-brew install lua@5.3
-brew install luarocks
-brew install glfw
-brew install glew
-```
-
-Make the moonnuklear library
-```sh
-$ cd moonnuklear
-moonnuklear$ make
-moonnuklear$ sudo make install
-```
------------
-
 
 #### Example
 
