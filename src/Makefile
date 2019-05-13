@@ -77,7 +77,7 @@ INCDIR = -I./nuklear -I/usr/include/lua$(LUAVER)
 endif
 
 ifdef MINGW
-COPT	+= -DMINGW
+/usr/local/lib/libmoonnuklear.dylibCOPT	+= -DMINGW
 INCDIR = -I./nuklear
 LIBS = -llua
 endif
@@ -114,8 +114,9 @@ install:
 	@-cp -fpv $(Tgt).h $(H_DIR)
 	@-cp -fpvr ../$(Tgt) $(L_DIR)
 ifdef MACOS 
-	@-cp -fpv $(Tgt).$(DLL_EXT) $(C_DIR)/$(Tgt).so
-	@-ln -fsv $(C_DIR)/$(Tgt).so $(S_DIR)/lib$(Tgt).$(DLL_EXT)
+	@-cp -fpv $(Tgt).$(DLL_EXT) $(C_DIR)
+	@-ln -fsv $(C_DIR)/$(Tgt).$(DLL_EXT) $(C_DIR)/$(Tgt).so 
+	@-ln -fsv $(C_DIR)/$(Tgt).$(DLL_EXT) $(S_DIR)/lib$(Tgt).$(DLL_EXT)
 endif
 ifdef LINUX
 	@-cp -fpv $(Tgt).$(DLL_EXT) $(C_DIR)
@@ -129,8 +130,9 @@ uninstall:
 	@-rm -f $(H_DIR)/$(Tgt).h
 	@-rm -f $(C_DIR)/$(Tgt).$(DLL_EXT)
 	@-rm -f $(S_DIR)/lib$(Tgt).$(DLL_EXT)
-	@-rm -fr $(L_DIR)/$(Tgt)
+	@-rm -rf $(L_DIR)/$(Tgt)
 	@-rm -f $(C_DIR)/$(Tgt).dll
+	@-rm -f $(C_DIR)/$(Tgt).so
 
 build:	clean $(Tgt) 
 
