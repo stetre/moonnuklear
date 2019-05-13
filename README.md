@@ -2,7 +2,7 @@
 
 MoonNuklear is a Lua binding library for Mitcha Mettke's [Nuklear](https://github.com/vurtun/nuklear) immediate mode GUI toolkit.
 
-It runs on GNU/Linux and on Windows (MSYS2/MinGW) and requires [Lua](http://www.lua.org/) (>=5.3).
+It runs on GNU/Linux, on MacOS, and on Windows (MSYS2/MinGW) and requires [Lua](http://www.lua.org/) (>=5.3).
 
 
 _Author:_ _[Stefano Trettel](https://www.linkedin.com/in/stetre)_
@@ -18,7 +18,7 @@ MIT/X11 license (same as Lua). See [LICENSE](./LICENSE).
 See the [Reference Manual](https://stetre.github.io/moonnuklear/doc/index.html).
 
 -----------
-## Getting and installing on Linux and Windows/MinGW
+#### Getting and installing on Linux and Windows/MinGW
 
 Setup the build environment as described [here](https://github.com/stetre/moonlibs), then:
 
@@ -28,9 +28,8 @@ $ cd moonnuklear
 moonnuklear$ make
 moonnuklear$ make install # or 'sudo make install' (Ubuntu)
 ```
------------
 
-## Getting and installing on MacOS
+#### Getting and installing on MacOS
 Clone moonnuklear from the Git repository
 ```sh
 $ git clone https://github.com/stetre/moonnuklear
@@ -53,8 +52,8 @@ brew install glew
 Make the moonnuklear library
 ```sh
 $ cd moonnuklear
-moonnuklear$ make MACOS=1
-moonnuklear$ sudo make MACOS=1 install
+moonnuklear$ make
+moonnuklear$ sudo make install
 ```
 -----------
 

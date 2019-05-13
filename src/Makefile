@@ -3,11 +3,12 @@
 ifdef MINGW_PREFIX
 MINGW=1
 else
-ifdef MACOS
-MACOS=1
-else
-LINUX=1
-endif
+ OS=$(shell uname)
+ ifeq ($(OS),Darwin)
+ MACOS=1
+ else
+ LINUX=1
+ endif
 endif
 
 # Lua version
@@ -77,7 +78,7 @@ INCDIR = -I./nuklear -I/usr/include/lua$(LUAVER)
 endif
 
 ifdef MINGW
-/usr/local/lib/libmoonnuklear.dylibCOPT	+= -DMINGW
+COPT	+= -DMINGW
 INCDIR = -I./nuklear
 LIBS = -llua
 endif
