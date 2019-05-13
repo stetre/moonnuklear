@@ -50,11 +50,11 @@ brew install glfw
 brew install glew
 ```
 
-Make the moonglfw library
+Make the moonnuklear library
 ```sh
-$ cd moonglfw
-moonglfw$ make MACOS=1
-moonglfw$ make MACOS=1 install
+$ cd moonnuklear
+moonnuklear$ make MACOS=1
+moonnuklear$ sudo make MACOS=1 install
 ```
 -----------
 
