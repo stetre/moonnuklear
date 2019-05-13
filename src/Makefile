@@ -1,4 +1,3 @@
-# On MacOS use the command shell : "make MACOS=1;sudo make MACOS=1 install"
 
 ifdef MINGW_PREFIX
 MINGW=1
