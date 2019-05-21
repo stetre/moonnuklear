@@ -3,8 +3,8 @@
 === Colors
 
 Unless otherwise specified, colors are represented in MoonNuklear with the
-<<color, _color_>> type, which is an arrays of 4 numbers representing the
-normalized RGBA components. The utilies listed below can be used to convert to/from other formats.
+<<color, _color_>> type, which is an array of 4 numbers representing the
+normalized RGBA components. The utilities listed below can be used to convert to/from other formats.
 
 Note also that whenever a <<color, _color_>> is expected by MoonNuklear, an array with 
 less than 4 elements may be provided, with the four components defaulting to _{0, 0, 0, 1}_
