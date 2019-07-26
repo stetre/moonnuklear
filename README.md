@@ -22,7 +22,7 @@ See the [Reference Manual](https://stetre.github.io/moonnuklear/doc/index.html).
 Setup the build environment as described [here](https://github.com/stetre/moonlibs), then:
 
 ```sh
-$ git clone https://github.com/stetre/moonglfw
+$ git clone https://github.com/stetre/moonnuklear
 $ cd moonnuklear
 moonnuklear$ make
 moonnuklear$ make install # or 'sudo make install' (Ubuntu and MacOS)
