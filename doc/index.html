@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.1">
+<meta name="generator" content="Asciidoctor 1.5.5">
 <meta name="author" content="Stefano Trettel">
 <title>MoonNuklear Reference Manual</title>
 <style>
@@ -878,7 +878,7 @@ table is named <strong>nk</strong>, i.e. that it is loaded with:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span></span> <span class="tok-n">nk</span> <span class="tok-o">=</span> <span class="tok-nb">require</span><span class="tok-p">(</span><span class="tok-s2">&quot;moonnuklear&quot;</span><span class="tok-p">)</span></code></pre>
+<pre class="pygments highlight"><code data-lang="lua"> <span class="tok-n">nk</span> <span class="tok-o">=</span> <span class="tok-nb">require</span><span class="tok-p">(</span><span class="tok-s2">&quot;moonnuklear&quot;</span><span class="tok-p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1257,7 +1257,7 @@ Rfr: nk_group_scrolled_xxx(&nbsp;).</span></p>
 <div class="listingblock">
 <div class="title">Basic usage of windows and groups</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span></span> <span class="tok-kr">if</span> <span class="tok-n">nk</span><span class="tok-p">.</span><span class="tok-n">window_begin</span><span class="tok-p">(</span><span class="tok-n">ctx</span><span class="tok-p">,</span> <span class="tok-p">...)</span> <span class="tok-kr">then</span>
+<pre class="pygments highlight"><code data-lang="lua"> <span class="tok-kr">if</span> <span class="tok-n">nk</span><span class="tok-p">.</span><span class="tok-n">window_begin</span><span class="tok-p">(</span><span class="tok-n">ctx</span><span class="tok-p">,</span> <span class="tok-p">...)</span> <span class="tok-kr">then</span>
      <span class="tok-c1">-- ... layout ...</span>
      <span class="tok-c1">-- ... add widgets ...</span>
      <span class="tok-kr">if</span> <span class="tok-n">nk</span><span class="tok-p">.</span><span class="tok-n">group_begin</span><span class="tok-p">(</span><span class="tok-n">ctx</span><span class="tok-p">,</span> <span class="tok-p">...)</span> <span class="tok-kr">then</span>
