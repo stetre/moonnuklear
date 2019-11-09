@@ -703,6 +703,26 @@ static int Popup_begin(lua_State *L)
 VOID_CONTEXT(Popup_close, nk_popup_close)
 VOID_CONTEXT(Popup_end, nk_popup_end)
 
+static int Popup_get_scroll(lua_State *L)
+    {
+    nk_uint offset_x, offset_y;
+    nk_context_t *context = checkcontext(L, 1, NULL);
+    nk_popup_get_scroll(context, &offset_x, &offset_y);
+    lua_pushinteger(L, offset_x);
+    lua_pushinteger(L, offset_y);
+    return 2;
+    }
+
+static int Popup_set_scroll(lua_State *L)
+    {
+    nk_context_t *context = checkcontext(L, 1, NULL);
+    nk_uint offset_x = luaL_checkinteger(L, 2);
+    nk_uint offset_y = luaL_checkinteger(L, 3);
+    nk_popup_set_scroll(context, offset_x, offset_y);
+    return 0;
+    }
+
+
 /*-----------------------------------------------------------------------------
  | PROPERTY  
  *----------------------------------------------------------------------------*/
@@ -1045,6 +1065,8 @@ static const struct luaL_Reg Functions[] =
         { "popup_begin", Popup_begin },
         { "popup_close", Popup_close },
         { "popup_end", Popup_end },
+        { "popup_get_scroll", Popup_get_scroll },
+        { "popup_set_scroll", Popup_set_scroll },
         { "property", Property },
         { "progress", Progress },
         { "option", Option },

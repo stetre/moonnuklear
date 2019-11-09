@@ -247,6 +247,25 @@ static int Window_show_if(lua_State *L)
     return 0;
     }
 
+static int Window_get_scroll(lua_State *L)
+    {
+    nk_uint offset_x, offset_y;
+    nk_context_t *context = checkcontext(L, 1, NULL);
+    nk_window_get_scroll(context, &offset_x, &offset_y);
+    lua_pushinteger(L, offset_x);
+    lua_pushinteger(L, offset_y);
+    return 2;
+    }
+
+static int Window_set_scroll(lua_State *L)
+    {
+    nk_context_t *context = checkcontext(L, 1, NULL);
+    nk_uint offset_x = luaL_checkinteger(L, 2);
+    nk_uint offset_y = luaL_checkinteger(L, 3);
+    nk_window_set_scroll(context, offset_x, offset_y);
+    return 0;
+    }
+
 #if 0
 //@@ nk_window_t *nk_window_find(nk_context_t *ctx, const char *name);
 #endif
@@ -304,6 +323,28 @@ static int Group_scrolled_end(lua_State *L)
     return 0;
     }
 
+static int Group_get_scroll(lua_State *L)
+    {
+    nk_uint offset_x, offset_y;
+    nk_context_t *context = checkcontext(L, 1, NULL);
+    const char *title = luaL_checkstring(L, 2);
+    nk_group_get_scroll(context, title, &offset_x, &offset_y);
+    lua_pushinteger(L, offset_x);
+    lua_pushinteger(L, offset_y);
+    return 2;
+    }
+
+static int Group_set_scroll(lua_State *L)
+    {
+    nk_context_t *context = checkcontext(L, 1, NULL);
+    const char *title = luaL_checkstring(L, 2);
+    nk_uint offset_x = luaL_checkinteger(L, 3);
+    nk_uint offset_y = luaL_checkinteger(L, 4);
+    nk_group_set_scroll(context, title, offset_x, offset_y);
+    return 0;
+    }
+
+
 static const struct luaL_Reg Functions[] = 
     {
         { "window_begin", Window_begin },
@@ -318,6 +359,7 @@ static const struct luaL_Reg Functions[] =
         { "window_get_content_region_max", Window_get_content_region_max },
         { "window_get_content_region_size", Window_get_content_region_size },
         { "window_get_canvas", Window_get_canvas },
+        { "window_get_scroll", Window_get_scroll },
         { "window_has_focus", Window_has_focus },
         { "window_is_hovered", Window_is_hovered },
         { "window_is_collapsed", Window_is_collapsed },
@@ -330,6 +372,7 @@ static const struct luaL_Reg Functions[] =
         { "window_set_position", Window_set_position },
         { "window_set_size", Window_set_size },
         { "window_set_focus", Window_set_focus },
+        { "window_set_scroll", Window_set_scroll },
         { "window_close", Window_close },
         { "window_collapse", Window_collapse },
         { "window_collapse_if", Window_collapse_if },
@@ -339,6 +382,8 @@ static const struct luaL_Reg Functions[] =
         { "group_end", Group_end },
         { "group_scrolled_begin", Group_scrolled_begin },
         { "group_scrolled_end", Group_scrolled_end },
+        { "group_get_scroll", Group_get_scroll },
+        { "group_set_scroll", Group_set_scroll },
         { NULL, NULL } /* sentinel */
     };
 

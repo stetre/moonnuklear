@@ -157,6 +157,8 @@ Rfr: nk_option_xxx(&nbsp;), nk_radio_xxx(&nbsp;).#
 * _ok_ = *popup_begin*(_context_, <<popuptype, _popuptype_>>, _text_, <<windowflags, _windowflags_>>, <<rect, _bounds_>>) +
 *popup_close*(_context_) +
 *popup_end*(_context_) +
+_offset_x_, _offset_y_ = *popup_get_scroll*(_context_) +
+*popup_set_scroll*(_context_, _offset_x_, _offset_y_) +
 [small]#Rfr: nk_popup_xxx(&nbsp;).#
 
 [[widget.progress]]

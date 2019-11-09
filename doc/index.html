@@ -1272,7 +1272,7 @@ Rfr: nk_group_scrolled_xxx(&nbsp;).</span></p>
 </div>
 </div>
 <div class="paragraph">
-<p>The following functions can be used to get/set the properties of a window:</p>
+<p>The following functions can be used to get/set the properties of a window or group:</p>
 </div>
 <div id="window_xxx" class="ulist">
 <ul>
@@ -1286,6 +1286,7 @@ Rfr: nk_group_scrolled_xxx(&nbsp;).</span></p>
 <a href="#vec2"><em>position</em></a> = <strong>window_get_content_region_min</strong>(<em>context</em>)<br>
 <a href="#vec2"><em>position</em></a> = <strong>window_get_content_region_max</strong>(<em>context</em>)<br>
 <a href="#vec2"><em>size</em></a> = <strong>window_get_content_region_size</strong>(<em>context</em>)<br>
+<em>offset_x</em>, <em>offset_y</em> = <strong>window_get_scroll</strong>(<em>context</em>)<br>
 <em>boolean</em> = <strong>window_has_focus</strong>(<em>context</em>)<br>
 <em>boolean</em> = <strong>window_is_hovered</strong>(<em>context</em>)<br>
 <em>boolean</em> = <strong>window_is_any_hovered</strong>(<em>context</em>)<br>
@@ -1303,7 +1304,17 @@ Rfr: nk_group_scrolled_xxx(&nbsp;).</span></p>
 <strong>window_collapse_if</strong>(<em>context</em>, <em>name</em>, <a href="#collapsestates"><em>collapsestates</em></a>, <em>condition</em>)<br>
 <strong>window_show</strong>(<em>context</em>, <em>name</em>, <a href="#showstates"><em>showstates</em></a>)<br>
 <strong>window_show_if</strong>(<em>context</em>, <em>name</em>, <a href="#showstates"><em>showstates</em></a>, <em>condition</em>)<br>
+<strong>window_set_scroll</strong>(<em>context</em>, <em>offset_x</em>, <em>offset_y</em>)<br>
 <span class="small">Rfr: nk_window_xxx(&nbsp;).</span></p>
+</li>
+</ul>
+</div>
+<div id="group_xxx" class="ulist">
+<ul>
+<li>
+<p><em>offset_x</em>, <em>offset_y</em> = <strong>group_get_scroll</strong>(<em>context</em>, <em>title</em>)<br>
+<strong>group_set_scroll</strong>(<em>context</em>, <em>title</em>, <em>offset_x</em>, <em>offset_y</em>)<br>
+<span class="small">Rfr: nk_group_xxx(&nbsp;).</span></p>
 </li>
 </ul>
 </div>
@@ -1664,6 +1675,8 @@ Rfr: nk_option_xxx(&nbsp;), nk_radio_xxx(&nbsp;).</span></p>
 <p><em>ok</em> = <strong>popup_begin</strong>(<em>context</em>, <a href="#popuptype"><em>popuptype</em></a>, <em>text</em>, <a href="#windowflags"><em>windowflags</em></a>, <a href="#rect"><em>bounds</em></a>)<br>
 <strong>popup_close</strong>(<em>context</em>)<br>
 <strong>popup_end</strong>(<em>context</em>)<br>
+<em>offset_x</em>, <em>offset_y</em> = <strong>popup_get_scroll</strong>(<em>context</em>)<br>
+<strong>popup_set_scroll</strong>(<em>context</em>, <em>offset_x</em>, <em>offset_y</em>)<br>
 <span class="small">Rfr: nk_popup_xxx(&nbsp;).</span></p>
 </li>
 </ul>

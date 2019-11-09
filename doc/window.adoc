@@ -50,7 +50,7 @@ nk.window_end(ctx)
 -- while group_end() must be called only if group_begin() succeeded.
 ----
 
-The following functions can be used to get/set the properties of a window:
+The following functions can be used to get/set the properties of a window or group:
 
 [[window_xxx]]
 * <<rect, _bounds_>> = *window_get_bounds*(_context_) +
@@ -62,6 +62,7 @@ _float_ = *window_get_height*(_context_) +
 <<vec2, _position_>> = *window_get_content_region_min*(_context_) +
 <<vec2, _position_>> = *window_get_content_region_max*(_context_) +
 <<vec2, _size_>> = *window_get_content_region_size*(_context_) +
+_offset_x_, _offset_y_ = *window_get_scroll*(_context_) +
 _boolean_ = *window_has_focus*(_context_) +
 _boolean_ = *window_is_hovered*(_context_) +
 _boolean_ = *window_is_any_hovered*(_context_) +
@@ -79,5 +80,11 @@ _boolean_ = *item_is_any_active*(_context_) +
 *window_collapse_if*(_context_, _name_, <<collapsestates, _collapsestates_>>, _condition_) +
 *window_show*(_context_, _name_, <<showstates, _showstates_>>) +
 *window_show_if*(_context_, _name_, <<showstates, _showstates_>>, _condition_) +
+*window_set_scroll*(_context_, _offset_x_, _offset_y_) +
 [small]#Rfr: nk_window_xxx(&nbsp;).#
+
+[[group_xxx]]
+* _offset_x_, _offset_y_ = *group_get_scroll*(_context_, _title_) +
+*group_set_scroll*(_context_, _title_, _offset_x_, _offset_y_) +
+[small]#Rfr: nk_group_xxx(&nbsp;).#
 
