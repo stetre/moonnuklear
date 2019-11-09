@@ -1,6 +1,6 @@
 = MoonNuklear Reference Manual
 Stefano Trettel
-v0.1, 2018-04-10
+v0.2, 2019-11-09
 :toc: left
 :toclevels: 3
 :stylesdir: ./
