@@ -1,5 +1,5 @@
 The following material is taken from the Nuklear repository at
-https://github.com/vurtun/nuklear 
+https://github.com/Immediate-Mode-UI/nuklear
 or is derived from material from the same repository:
 - src/nuklear/nuklear.h, i.e. Nuklear itself, which MoonNuklear embeds,
 - contents of the examples directory (including fonts and images).

@@ -6,8 +6,7 @@ The <<context, _context_>> methods that follow are used in the backend to
 control the conversion of vertex data and draw commands from the formats used
 internally by Nuklear to formats accessible by the particular system API in use.
 
-See the https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html#toc1.7.3[Drawing]
-section in the Nuklear documentation for more details.
+See the https://cdn.statically.io/gh/Immediate-Mode-UI/nuklear/master/doc/nuklear.html#nuklear/api/drawing[Drawing] section in the Nuklear documentation for more details.
 
 [[context.convert]]
 * <<convertresultflags, _convertresultflags_>> = _context_$$:$$*convert*(<<buffer, _cbuffer_>>, <<buffer, _vbuffer_>>, <<buffer, _ebuffer_>>) +

@@ -3,7 +3,7 @@
 
 This is the reference manual of *MoonNuklear*, which is a 
 http://www.lua.org[*Lua*] binding library for the 
-https://github.com/vurtun/nuklear[*Nuklear*] immediate mode GUI toolkit.
+https://github.com/Immediate-Mode-UI/nuklear[*Nuklear*] immediate mode GUI toolkit.
 footnote:[
 This manual is written in
 http://www.methods.co.nz/asciidoc/[AsciiDoc], rendered with
@@ -14,7 +14,7 @@ It is assumed that the reader is familiar with both Nuklear and the Lua programm
 
 For convenience of reference, this document contains external (deep) links to the 
 http://www.lua.org/manual/5.3/manual.html[Lua Reference Manual] and the 
-https://rawgit.com/vurtun/nuklear/master/doc/nuklear.html[Nuklear documentation].
+https://cdn.statically.io/gh/Immediate-Mode-UI/nuklear/master/doc/nuklear.html[Nuklear documentation].
 
 === Getting and installing
 

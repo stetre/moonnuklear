@@ -1,6 +1,6 @@
 ## MoonNuklear: Lua bindings for Nuklear
 
-MoonNuklear is a Lua binding library for Mitcha Mettke's [Nuklear](https://github.com/vurtun/nuklear) immediate mode GUI toolkit.
+MoonNuklear is a Lua binding library for Mitcha Mettke's [Nuklear](https://github.com/Immediate-Mode-UI/nuklear) immediate mode GUI toolkit.
 
 It runs on GNU/Linux, on MacOS, and on Windows (MSYS2/MinGW) and requires [Lua](http://www.lua.org/) (>=5.3).
 
