@@ -163,7 +163,7 @@ _offset_x_, _offset_y_ = *popup_get_scroll*(_context_) +
 
 [[widget.progress]]
 ==== progress
-* _value_ = *progress*(_context_, _value_, _max_, <<modify, __modify_>>) +
+* _value_ = *progress*(_context_, _value_, _max_, <<modify, _modify_>>) +
 [small]#Rfr: nk_progress(&nbsp;).#
 
 [[widget.property]]
