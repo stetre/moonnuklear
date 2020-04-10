@@ -29,6 +29,7 @@
 #include <lua.h>
 #include "lualib.h"
 #include "lauxlib.h"
+#include "compat-5.3.h"
 
 #define MOONNUKLEAR_NK_VERSION  "4.01.5" /* @@ See Changelog in nuklear/nuklear.h */
 #define MOONNUKLEAR_VERSION     "0.2"

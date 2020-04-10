@@ -65,6 +65,7 @@ COPT 	+= -DLUAVER=$(LUAVER)
 ifdef MACOS
 COPT    += -fpic
 COPT    += -DMACOS
+COPT	+= -DCOMPAT53_PREFIX=moonnuklear_compat_
 INCDIR = -I/usr/include -I/usr/include/lua$(LUAVER) -I$(PREFIX)/include/lua$(LUAVER) -I./nuklear
 LIBDIR = -L/usr/lib -L$(PREFIX)/lib
 LIBS = -llua$(LUAVER)
