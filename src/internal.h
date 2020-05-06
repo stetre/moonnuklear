@@ -182,6 +182,7 @@ void freefontconfig(lua_State *L, nk_font_config_t *p);
 #define ERR_UNKNOWN         -11
 #define ERR_FAILED          -12
 #define ERR_COUNT           -13
+#define ERR_RANGE           -14
 #define errstring moonnuklear_errstring
 const char* errstring(int err);
 

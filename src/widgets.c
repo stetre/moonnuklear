@@ -400,7 +400,7 @@ static int Combo(lua_State *L)
     items = checkstringlist(L, 2, &count, &err);
     if(err) return argerrorc(L, 2, err);
     if(selected < 1 || selected > count)
-        { freestringlist(L, items, count); return argerrorc(L, 3, ERR_VALUE); }
+        { freestringlist(L, items, count); return argerrorc(L, 3, ERR_RANGE); }
     selected = nk_combo(context, (const char**)items, count, selected - 1, item_height, size) + 1;
     //int nk_combo_separator(struct nk_context *ctx, const char *items_separated_by_separator,
     //    int separator, int selected, int count, int item_height, struct nk_vec2 size)

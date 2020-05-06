@@ -470,6 +470,7 @@ const char* errstring(int err)
         case ERR_UNKNOWN: return "unknown field name";
         case ERR_FAILED: return "operation failed";
         case ERR_COUNT: return "invalid no. of items";
+        case ERR_RANGE: return "out of range";
         default:
             return "???";
         }
