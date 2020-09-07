@@ -8,6 +8,13 @@
 be set using <<style_xxx, style_set_font>>(&nbsp;) before entering the event loop. +
 Rfr: nk_init_default(&nbsp;).#
 
+[[init_from_ptr]]
+* _context_ = *init_from_ptr*(_ptr_)  _EXPERIMENTAL_ +
+[small]#Create a context object associated to an already initialized Nuklear context. +
+_ptr_: a Lua http://www.lua.org/manual/5.3/manual.html#lua_pushlightuserdata[lightuserdata] containing a pointer to an already initialized _nk_context_ struct. +
+How _ptr_ is obtained is outside of the scope of MoonNuklear. +
+Note that when such a context object is destroyed  - either automatically or via the _context:free(&nbsp;)_ method - the underlying Nuklear context is not touched. That is, the user is in charge of calling _nk_free(ptr)_ and freeing the memory pointed by _ptr_, if dynamically allocated.#
+
 [[free]]
 * _context_$$:$$*free*( ) +
 [small]#Destroy a context. +

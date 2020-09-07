@@ -68,6 +68,18 @@ int pushatlasfont(lua_State *L, ud_t *atlas_ud, nk_font_t *atlas_font, nk_font_c
     return 1;
     }
 
+static int FontFromPtr(lua_State *L)
+    {
+    nk_font_t *ptr = (nk_font_t*)checklightuserdata(L, 1);
+    nk_user_font_t *font = &ptr->handle;
+    ud_t *ud = newuserdata(L, font, FONT_MT, "font (ptr)");
+    ud->parent_ud = NULL;
+    ud->font = ptr;
+    ud->font_config = NULL;
+    ud->destructor = freefont;
+    return 1;
+    }
+
 /*------------------------------------------------------------------------------*
  | User font                                                                    |
  *------------------------------------------------------------------------------*/
@@ -207,6 +219,7 @@ static const struct luaL_Reg MetaMethods[] =
 static const struct luaL_Reg Functions[] = 
     {
         { "new_user_font", New },
+        { "font_from_ptr", FontFromPtr },
         { NULL, NULL } /* sentinel */
     };
 

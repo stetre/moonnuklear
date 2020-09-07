@@ -31,12 +31,16 @@ static int freecontext(lua_State *L, ud_t *ud)
     {
     nk_context_t *context = (nk_context_t*)ud->handle;
     float *ratio = ud->ratio;   
+    int borrowed = IsBorrowed(ud);
     freechildren(L, PANEL_MT, ud);
     freechildren(L, EDIT_MT, ud);
     if(!freeuserdata(L, ud, "context")) return 0;
-    nk_free(context);
     if(ratio) Free(L, ratio);
-    Free(L, context);
+    if(!borrowed)
+        {
+        nk_free(context);
+        Free(L, context);
+        }
     return 0;
     }
 
@@ -63,6 +67,23 @@ static int Init(lua_State *L)
     lua_pop(L, 1);
     return 1;
     }
+
+
+static int InitFromPtr(lua_State *L)
+    {
+    ud_t *ud;
+    nk_context_t *context = (nk_context_t*)checklightuserdata(L, 1);
+    ud = newuserdata(L, context, CONTEXT_MT, "context (ptr)");
+    ud->parent_ud = NULL;
+    ud->destructor = freecontext;
+    context->clip.userdata.ptr = ud;
+    MarkBorrowed(ud);
+    /* create also the associated edit, but pop its userdata */
+    newedit(L, ud);
+    lua_pop(L, 1);
+    return 1;
+    }
+
 
 static int Clear(lua_State *L)
     {
@@ -313,6 +334,7 @@ static const struct luaL_Reg MetaMethods[] =
 static const struct luaL_Reg Functions[] = 
     {
         { "init", Init },
+        { "init_from_ptr", InitFromPtr },
         { NULL, NULL } /* sentinel */
     };
 

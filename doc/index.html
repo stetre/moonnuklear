@@ -1016,6 +1016,17 @@ Rfr: nk_init_default(&nbsp;).</span></p>
 </li>
 </ul>
 </div>
+<div id="init_from_ptr" class="ulist">
+<ul>
+<li>
+<p><em>context</em> = <strong>init_from_ptr</strong>(<em>ptr</em>)  <em>EXPERIMENTAL</em><br>
+<span class="small">Create a context object associated to an already initialized Nuklear context.<br>
+<em>ptr</em>: a Lua <a href="http://www.lua.org/manual/5.3/manual.html#lua_pushlightuserdata">lightuserdata</a> containing a pointer to an already initialized <em>nk_context</em> struct.<br>
+How <em>ptr</em> is obtained is outside of the scope of MoonNuklear.<br>
+Note that when such a context object is destroyed  - either automatically or via the <em>context:free(&nbsp;)</em> method - the underlying Nuklear context is not touched. That is, the user is in charge of calling <em>nk_free(ptr)</em> and freeing the memory pointed by <em>ptr</em>, if dynamically allocated.</span></p>
+</li>
+</ul>
+</div>
 <div id="free" class="ulist">
 <ul>
 <li>
@@ -1928,8 +1939,21 @@ less than 4 elements may be provided, with the four components defaulting to <em
 <h3 id="font">Font</h3>
 <div class="paragraph">
 <p>Fonts in MoonNuklear are represented by <a href="#font"><em>font</em></a> objects, that are created
-with the <em>atlas:<a href="#atlas.add">add</a>(&nbsp;)</em> method during the <a href="#font_baking">font baking</a> process,
-and have the following methods:</p>
+with the <em>atlas:<a href="#atlas.add">add</a>(&nbsp;)</em> method during the <a href="#font_baking">font baking</a> process, or injected using the following function:</p>
+</div>
+<div id="font_from_ptr" class="ulist">
+<ul>
+<li>
+<p><em>font</em> = <strong>font_from_ptr</strong>(<em>ptr</em>) <em>EXPERIMENTAL</em><br>
+<span class="small">Create a font object associated to an already baked Nuklear font.<br>
+<em>ptr</em>: a Lua <a href="http://www.lua.org/manual/5.3/manual.html#lua_pushlightuserdata">lightuserdata</a> containing a pointer to an already baked <em>nk_font</em> struct.<br>
+How <em>ptr</em> is obtained is outside of the scope of MoonNuklear.<br>
+Note that when such a font object is - either automatically or via the <em>font:free(&nbsp;)</em> method - the underlying Nuklear font is not touched (that is, the user is in charge of and freeing the memory pointed by <em>ptr</em>, if dynamically allocated).</span></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Fonts have the the following methods:</p>
 </div>
 <div id="font.height" class="ulist">
 <ul>

@@ -193,6 +193,10 @@ struct moonnuklear_ud_s {
 #define MarkAllocated(ud)               MarkSet((ud)->marks, 7) 
 #define CancelAllocated(ud)             MarkReset((ud)->marks, 7)
 
+#define IsBorrowed(ud)                  MarkGet((ud)->marks, 8)
+#define MarkBorrowed(ud)                MarkSet((ud)->marks, 8)
+#define CancelBorrowed(ud)              MarkReset((ud)->marks, 8)
+
 #if 0
 /* .c */
 #define  moonnuklear_

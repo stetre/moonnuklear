@@ -11,8 +11,16 @@ or with the _atlas:<<atlas.add, add>>(&nbsp;)_ method during the
 ////
 
 Fonts in MoonNuklear are represented by <<font, _font_>> objects, that are created 
-with the _atlas:<<atlas.add, add>>(&nbsp;)_ method during the <<font_baking, font baking>> process,
-and have the following methods:
+with the _atlas:<<atlas.add, add>>(&nbsp;)_ method during the <<font_baking, font baking>> process, or injected using the following function:
+
+[[font_from_ptr]]
+* _font_ = *font_from_ptr*(_ptr_) _EXPERIMENTAL_ +
+[small]#Create a font object associated to an already baked Nuklear font. +
+_ptr_: a Lua http://www.lua.org/manual/5.3/manual.html#lua_pushlightuserdata[lightuserdata] containing a pointer to an already baked _nk_font_ struct. +
+How _ptr_ is obtained is outside of the scope of MoonNuklear. +
+Note that when such a font object is - either automatically or via the _font:free(&nbsp;)_ method - the underlying Nuklear font is not touched (that is, the user is in charge of and freeing the memory pointed by _ptr_, if dynamically allocated).#
+
+Fonts have the the following methods:
 
 [[font.height]]
 * _height_ = _font_++:++*height*( ) +
