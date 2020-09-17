@@ -1022,7 +1022,7 @@ Rfr: nk_init_default(&nbsp;).</span></p>
 <p><em>context</em> = <strong>init_from_ptr</strong>(<em>ptr</em>)  <em>EXPERIMENTAL</em><br>
 <span class="small">Create a context object associated to an already initialized Nuklear context.<br>
 <em>ptr</em>: a Lua <a href="http://www.lua.org/manual/5.3/manual.html#lua_pushlightuserdata">lightuserdata</a> containing a pointer to an already initialized <em>nk_context</em> struct.<br>
-How <em>ptr</em> is obtained is outside of the scope of MoonNuklear.<br>
+How <em>ptr</em> is obtained is outside of the scope of MoonNuklear. An application using this function, however, should be compiled against the same Nuklear version as MoonNuklear (file <em>src/nuklear/nuklear.h</em>) and using the same switches (the <em>NK_XXX</em> defines in <em>src/moonnuklear.h</em>). See issue #12.<br>
 Note that when such a context object is destroyed  - either automatically or via the <em>context:free(&nbsp;)</em> method - the underlying Nuklear context is not touched. That is, the user is in charge of calling <em>nk_free(ptr)</em> and freeing the memory pointed by <em>ptr</em>, if dynamically allocated.</span></p>
 </li>
 </ul>
@@ -1947,8 +1947,8 @@ with the <em>atlas:<a href="#atlas.add">add</a>(&nbsp;)</em> method during the <
 <p><em>font</em> = <strong>font_from_ptr</strong>(<em>ptr</em>) <em>EXPERIMENTAL</em><br>
 <span class="small">Create a font object associated to an already baked Nuklear font.<br>
 <em>ptr</em>: a Lua <a href="http://www.lua.org/manual/5.3/manual.html#lua_pushlightuserdata">lightuserdata</a> containing a pointer to an already baked <em>nk_font</em> struct.<br>
-How <em>ptr</em> is obtained is outside of the scope of MoonNuklear.<br>
-Note that when such a font object is - either automatically or via the <em>font:free(&nbsp;)</em> method - the underlying Nuklear font is not touched (that is, the user is in charge of and freeing the memory pointed by <em>ptr</em>, if dynamically allocated).</span></p>
+How <em>ptr</em> is obtained is outside of the scope of MoonNuklear. An application using this function, however, should be compiled against the same Nuklear version as MoonNuklear (file <em>src/nuklear/nuklear.h</em>) and using the same switches (the <em>NK_XXX</em> defines in <em>src/moonnuklear.h</em>). See issue #12.<br>
+Note that when such a font object is destroyed - either automatically or via the <em>font:free(&nbsp;)</em> method - the underlying Nuklear font is not touched (that is, the user is in charge of and freeing the memory pointed by <em>ptr</em>, if dynamically allocated).</span></p>
 </li>
 </ul>
 </div>

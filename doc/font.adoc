@@ -17,8 +17,8 @@ with the _atlas:<<atlas.add, add>>(&nbsp;)_ method during the <<font_baking, fon
 * _font_ = *font_from_ptr*(_ptr_) _EXPERIMENTAL_ +
 [small]#Create a font object associated to an already baked Nuklear font. +
 _ptr_: a Lua http://www.lua.org/manual/5.3/manual.html#lua_pushlightuserdata[lightuserdata] containing a pointer to an already baked _nk_font_ struct. +
-How _ptr_ is obtained is outside of the scope of MoonNuklear. +
-Note that when such a font object is - either automatically or via the _font:free(&nbsp;)_ method - the underlying Nuklear font is not touched (that is, the user is in charge of and freeing the memory pointed by _ptr_, if dynamically allocated).#
+How _ptr_ is obtained is outside of the scope of MoonNuklear. An application using this function, however, should be compiled against the same Nuklear version as MoonNuklear (file _src/nuklear/nuklear.h_) and using the same switches (the _NK_XXX_ defines in _src/moonnuklear.h_). See issue #12. +
+Note that when such a font object is destroyed - either automatically or via the _font:free(&nbsp;)_ method - the underlying Nuklear font is not touched (that is, the user is in charge of and freeing the memory pointed by _ptr_, if dynamically allocated).#
 
 Fonts have the the following methods:
 
