@@ -32,7 +32,7 @@
 #include "compat-5.3.h"
 
 #define MOONNUKLEAR_NK_VERSION  "4.06.0" /* @@ See Changelog in nuklear/nuklear.h */
-#define MOONNUKLEAR_VERSION     "0.2"
+#define MOONNUKLEAR_VERSION     "0.3"
 
 extern lua_State *moonnuklear_L;
 #define NK_ASSERT(x) do {                                                                       \
