@@ -31,12 +31,12 @@
 #include "lauxlib.h"
 #include "compat-5.3.h"
 
-#define MOONNUKLEAR_NK_VERSION  "4.01.5" /* @@ See Changelog in nuklear/nuklear.h */
+#define MOONNUKLEAR_NK_VERSION  "4.06.0" /* @@ See Changelog in nuklear/nuklear.h */
 #define MOONNUKLEAR_VERSION     "0.2"
 
 extern lua_State *moonnuklear_L;
 #define NK_ASSERT(x) do {                                                                       \
-    (void)nk_sin; (void)nk_cos; (void)nk_sqrt; /* to avoid -Wunused-function void warnings */   \
+    /* (void)nk_sin; (void)nk_cos; (void)nk_sqrt; to avoid -Wunused-function void warnings */   \
     if(!(x)) {                                                                                  \
         lua_pushfstring(moonnuklear_L, "NK_ASSERT failed: %s line %d\n", __FILE__, __LINE__);   \
         lua_error(moonnuklear_L);                                                               \
