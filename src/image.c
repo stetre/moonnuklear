@@ -107,9 +107,9 @@ static int Image_info(lua_State *L)
     lua_pushinteger(L, image->w);
     lua_pushinteger(L, image->h);
     r.x = image->region[0];
-    r.y = image->region[2];
-    r.w = image->region[3];
-    r.h = image->region[4];
+    r.y = image->region[1];
+    r.w = image->region[2];
+    r.h = image->region[3];
     pushrect(L, &r);
     return 1;
     }
