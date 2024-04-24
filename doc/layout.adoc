@@ -2,7 +2,7 @@
 [[layout]]
 === Layout
 
-[small]#Rfr: https://cdn.statically.io/gh/Immediate-Mode-UI/nuklear/master/doc/nuklear.html#nuklear/api/layouting[Layouting].#
+[small]#Rfr: https://immediate-mode-ui.github.io/Nuklear/doc/index.html#nuklear/api/layouting[Layouting].#
 
 Nuklear provides the following basic APIs to lay out widgets in windows (see also
 the *layout.lua* example):

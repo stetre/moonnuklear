@@ -6,7 +6,7 @@
 Updated input information must be provided to Nuklear at each frame, using the
 <<input_xxx, input_xxx>>(&nbsp;) functions in a code section delimited by 
 <<input_begin, input_begin>>(&nbsp;) and <<input_end, input_end>>(&nbsp;).
-See also the https://cdn.statically.io/gh/Immediate-Mode-UI/nuklear/master/doc/nuklear.html#nuklear/api/input[Input] section in the Nuklear documentation.
+See also the https://immediate-mode-ui.github.io/Nuklear/doc/index.html#nuklear/api/input[Input] section in the Nuklear documentation.
 
 [[input_begin]]
 * *input_begin*(_context_) +

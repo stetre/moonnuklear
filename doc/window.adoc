@@ -2,8 +2,8 @@
 [[window]]
 === Windows and groups
 
-[small]#Rfr: https://cdn.statically.io/gh/Immediate-Mode-UI/nuklear/master/doc/nuklear.html#nuklear/api/window[Window],
-https://cdn.statically.io/gh/Immediate-Mode-UI/nuklear/master/doc/nuklear.html#nuklear/api/groups[Groups].#
+[small]#Rfr: https://immediate-mode-ui.github.io/Nuklear/doc/index.html#nuklear/api/window[Window],
+https://immediate-mode-ui.github.io/Nuklear/doc/index.html#nuklear/api/groups[Groups].#
 
 [[window_begin]]
 * _ok_ = *window_begin*(_context_, _title_, <<rect, _bounds_>>, <<panelflags, _panelflags_>>, [_name_]) +

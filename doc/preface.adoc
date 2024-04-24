@@ -14,7 +14,7 @@ It is assumed that the reader is familiar with both Nuklear and the Lua programm
 
 For convenience of reference, this document contains external (deep) links to the 
 http://www.lua.org/manual/5.3/manual.html[Lua Reference Manual] and the 
-https://cdn.statically.io/gh/Immediate-Mode-UI/nuklear/master/doc/nuklear.html[Nuklear documentation].
+https://immediate-mode-ui.github.io/Nuklear/doc/index.html[Nuklear documentation].
 
 === Getting and installing
 
