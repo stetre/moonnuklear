@@ -43,6 +43,7 @@ _boolean_ = _context_++:++*is_mouse_released*(<<buttons,_button_>>) +
 _boolean_ = _context_++:++*mouse_clicked*(<<buttons,_button_>>, <<rect, _rect_>>) +
 _boolean_ = _context_++:++*has_mouse_click*(<<buttons,_button_>>) +
 _boolean_ = _context_++:++*has_mouse_click_in_rect*(<<buttons,_button_>>, <<rect, _rect_>>) +
+_boolean_ = _context_++:++*has_mouse_click_in_button_rect*(<<buttons,_button_>>, <<rect, _rect_>>) +
 _boolean_ = _context_++:++*has_mouse_click_down_in_rect*(<<buttons,_button_>>, <<rect, _rect_>>, _down_) +
 _boolean_ = _context_++:++*is_mouse_click_in_rect*(<<buttons,_button_>>, <<rect, _rect_>>) +
 _boolean_ = _context_++:++*is_mouse_click_down_in_rect*(<<buttons,_button_>>, <<rect, _rect_>>, _down_) +

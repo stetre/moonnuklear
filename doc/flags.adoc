@@ -58,9 +58,14 @@ Values: '_left_', '_right_'.#
 Values: '_align left_', '_align centered_', '_align right_', '_align top_', '_align middle_', '_align bottom_'. +
 Combination values: '_left_', '_centered_', '_right_'.#
 
+[[widgetalignflags]]
+[small]#*widgetalignflags*: nk.WIDGET_XXX (_nk_widget_align_, _nk_widget_alignment_) +
+Values: '_align left_', '_align centered_', '_align right_', '_align top_', '_align middle_', '_align bottom_'. +
+Combination values: '_left_', '_centered_', '_right_'.#
+
 [[widgetlayoutstatesflags]]
 [small]#*widgetlayoutstatesflags*: nk.WIDGET_XXX (_nk_widget_layout_states_) +
-Values: '_invalid_', '_valid_', '_rom_'.#
+Values: '_invalid_', '_valid_', '_rom_', '_disabled_'.#
 
 [[widgetstatesflags]]
 [small]#*widgetstatesflags*: nk.WIDGET_STATE_XXX (_nk_widget_states_) +

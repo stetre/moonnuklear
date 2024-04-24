@@ -1,0 +1,22 @@
+
+[[nine_slice]]
+=== Nine Slice
+
+A <<nine_slice, _nine_slice_>> object is similar to an <<image, _image_>>, and is provided for
+https://en.wikipedia.org/wiki/9-slice_scaling[9-slice scaling] support.
+
+[[new_nine_slice]]
+* _nine_slice_ = *new_nine_slice*(_id|ptr_, _l_, _t_, _r_, _b_) +
+_nine_slice_ = *new_subnine_slice*(_id|ptr_, _w_, _h_, <<rect, _subregion_>>, _l_, _t_, _r_, _b_) +
+_nine_slice_++:++*free*( ) +
+[small]#_id_, _w_, _h_: integer, +
+_ptr_: lightuserdata containing image information opaque to Nuklear. +
+_l_, _t_, _r_, _b_: integer, +
+Rfr: nk_nine_slice.#
+
+[[nine_slice_info]]
+* _id|ptr_, _l_, _t_, _r_, _b_ = _nine_slice_++:++*info*( ) +
+_id|ptr_, _l_, _t_, _r_, _b_, _w_, _h_, <<rect, _subregion_>> = _nine_slice_++:++*info*( ) +
+[small]#_w_, _h_ and _subregion_ are returned only if _nine_slice_ is a subnine_slice.#
+
+

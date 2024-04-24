@@ -1,6 +1,6 @@
 = MoonNuklear Reference Manual
 Stefano Trettel
-v0.2, 2019-11-09
+v0.4, 2024-04-24
 :toc: left
 :toclevels: 3
 :stylesdir: ./
@@ -40,6 +40,7 @@ include::style.adoc[]
 include::font.adoc[]
 include::buffer.adoc[]
 include::image.adoc[]
+include::nine_slice.adoc[]
 include::structs.adoc[]
 include::enums.adoc[]
 include::flags.adoc[]

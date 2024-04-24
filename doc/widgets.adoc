@@ -38,6 +38,8 @@ _float_ = *widget_height*(_context_) +
 _boolean_ = *widget_is_hovered*(_context_) +
 _boolean_ = *widget_is_mouse_clicked*(_context_, <<buttons, _buttons_>>) +
 _boolean_ = *widget_has_mouse_click_down*(_context_, <<buttons, _buttons_>>, _boolean_) +
+*widget_disable_begin*(_context_) +
+*widget_disable_end*(_context_) +
 *spacing*(_context_, _columns_) +
 [small]#Rfr: nk_widget_xxx(&nbsp;), nk_spacing(&nbsp;).#
 
@@ -70,11 +72,13 @@ Rfr: nk_plot_xxx(&nbsp;).#
 [[widget.check]]
 ==== check, checkbox
 * _active_ = *check*(_context_, _text_, _active_) +
+_active_ = *check_align*(_context_, _text_, _active_, <<widgetalignflags, _widgetalignflags_>>, <<textalignflags, _textalignflags_>>) +
 _flags_ = *check_flags*(_context_, _text_, _flags_, _value_) +
 [small]#Rfr: nk_check_xxx(&nbsp;).#
 
 [[widget.checkbox]]
 * _active_ = *checkbox*(_context_, _text_, _active_) +
+_active_ = *checkbox_align*(_context_, _text_, _active_, <<widgetalignflags, _widgetalignflags_>>, <<textalignflags, _textalignflags_>>) +
 _flags_ = *checkbox_flags*(_context_, _text_, _flags_, _value_) +
 [small]#Rfr: nk_checkbox_xxx(&nbsp;).#
 
@@ -149,6 +153,7 @@ _selected_ =  *menu_item*(_context_, [<<image, _image_>>|<<symboltype, _symbolty
 [[widget.option]]
 ==== option (radio)
 * _active_, _changed_ = *option*(_context_, _text_, _active_) +
+_active_, _changed_ = *option_align*(_context_, _text_, _active_, <<widgetalignflags, _widgetalignflags_>>, <<textalignflags, _textalignflags_>>) +
 [small]#_active_, _changed_: boolean. +
 Rfr: nk_option_xxx(&nbsp;), nk_radio_xxx(&nbsp;).#
 
@@ -171,6 +176,12 @@ _offset_x_, _offset_y_ = *popup_get_scroll*(_context_) +
 * _value_ = *property*(_context_, _text_, _min_, _value_, _max_, _step_, _incrperpixel_) +
 [small]#Rfr: nk_property_xxx(&nbsp;).#
 
+[[widget.rule_horizontal]]
+==== rule_horizontal
+* _value_ = *rule_horizontal*(_context_, <<color, _color_>>, _rounding_) +
+[small]#_rounding_: boolean. +
+Rfr: nk_rule_horizontal(&nbsp;).#
+
 [[widget.selectable]]
 ==== selectable
 * _selected_, _changed_ = *selectable*(_context_, [<<image, _image_>>|<<symboltype, _symboltype_>>], _text_, <<textalignflags, _textalignflags_>>, _selected_) +
@@ -181,6 +192,11 @@ Rfr: nk_selectable_xxx(&nbsp;).#
 ==== slider
 * _value_ = *slider*(_context_, _min_, _value_, _max_, _step_) +
 [small]#Rfr: nk_slider_xxx(&nbsp;).#
+
+[[widget.spacer]]
+==== spacer
+* *spacer*(_context_) +
+[small]#Rfr: nk_spacer(&nbsp;).#
 
 [[widget.tooltip]]
 ==== tooltip

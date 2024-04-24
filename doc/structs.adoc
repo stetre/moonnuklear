@@ -18,7 +18,7 @@
 [small]#*vec2i*, *point* = {integer}[2] (xy)#
 
 * [[styleitem]]
-[small]#*styleitem* = <<image, image>>|<<color, color>>|'_hide_' (Rfr: nk_style_item)#
+[small]#*styleitem* = <<image, image>>|<<nine_slice, nine_slice>>|<<color, color>>|'_hide_' (Rfr: nk_style_item)#
 
 * [[colortable]]
 [small]#*colortable* = { +

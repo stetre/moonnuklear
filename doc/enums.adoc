@@ -116,7 +116,7 @@ Values: '_arrow_', '_text_', '_move_', '_resize vertical_', '_resize horizontal_
 
 [[styleitemtype]]
 [small]#*styleitemtype*: nk.STYLE_ITEM_XXX (_nk_style_item_type_) +
-Values: '_color_', '_image_'.#
+Values: '_color_', '_image_', '_nine slice_'.#
 
 [[symboltype]]
 [small]#*symboltype*: nk.SYMBOL_XXX (_nk_symbol_type_) +

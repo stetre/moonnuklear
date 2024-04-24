@@ -11,12 +11,13 @@ information opaque to Nuklear. It may also represent a portion of an image (i.e.
 * _image_ = *new_image*(_id|ptr_) +
 _image_ = *new_subimage*(_id|ptr_, _w_, _h_, <<rect, _subregion_>>) +
 _image_++:++*free*( ) +
-[small]#_id_, _w_, _h_: integer,
+[small]#_id_, _w_, _h_: integer, +
 _ptr_: lightuserdata containing image information opaque to Nuklear. +
 Rfr: nk_image.#
 
 [[image_info]]
-* _id|ptr_, _w_, _h_, <<rect, _subregion_>> = _image_++:++*info*( ) +
-[small]#If _image_ is not a subimage, then only the _id_ or _ptr_ is returned.#
+* _id|ptr_ = _image_++:++*info*( ) +
+_id|ptr_, _w_, _h_, <<rect, _subregion_>> = _image_++:++*info*( ) +
+[small]#_w_, _h_ and _subregion_ are returned only if _image_ is a subimage.#
 
 

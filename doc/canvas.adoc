@@ -25,6 +25,7 @@ _canvas_++:++*fill_arc*(_cx_, _cy_, _radius_, _amin_, _amax_, <<color, _color_>>
 _canvas_++:++*fill_triangle*(_x0_, _y0_, _x1_, _y1_, _x2_, _y2_, <<color, _color_>>) +
 _canvas_++:++*fill_polygon*(_{<<vec2, vec2>>}_, <<color, _color_>>) +
 * _canvas_++:++*draw_image*(<<rect, _rect_>>, <<image, _image_>>, <<color, _color_>>) +
+_canvas_++:++*draw_nine_slice*(<<rect, _rect_>>, <<nine_slice, _nine_slice_>>, <<color, _color_>>) +
 _canvas_++:++*draw_text*(<<rect, _rect_>>, _text_, <<color, _bgcolor_>>, <<color, _fgcolor_>>) +
 * _canvas_++:++*push_scissor*(<<rect, _rect_>>) +
 [small]#Rfr: nk_stroke_xxx(&nbsp;), nk_fill_xxx(&nbsp;), etc.#
