@@ -248,6 +248,20 @@ static int Draw_image(lua_State *L)
     return 0;
     }
 
+static int Draw_nine_slice(lua_State *L)
+    {
+    nk_rect_t r;
+    nk_color_t color;
+    nk_nine_slice_t *nine_slice;
+    nk_canvas_t *canvas = checkcanvas(L, 1, NULL);
+    if(echeckrect(L, 2, &r)) return argerror(L, 2);
+    nine_slice = checknine_slice(L, 3, NULL);
+    if(echeckcolor(L, 4, &color)) return argerror(L, 4);
+    nk_draw_nine_slice(canvas, r, nine_slice, color);
+    return 0;
+    }
+
+
 static int Draw_text(lua_State *L)
     {
     size_t len;
@@ -306,6 +320,7 @@ static const struct luaL_Reg Methods[] =
         { "fill_triangle", Fill_triangle },
         { "fill_polygon", Fill_polygon },
         { "draw_image", Draw_image },
+        { "draw_nine_slice", Draw_nine_slice },
         { "draw_text", Draw_text },
         { "push_scissor", Push_scissor },
 //      { "push_custom", Push_custom },

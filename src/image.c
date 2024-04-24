@@ -111,7 +111,7 @@ static int Image_info(lua_State *L)
     r.w = image->region[2];
     r.h = image->region[3];
     pushrect(L, &r);
-    return 1;
+    return 4;
     }
 
 TYPE_FUNC(image)

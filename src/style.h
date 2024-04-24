@@ -36,6 +36,8 @@
 enum nonnk_style {
     nonnk_style_textXcolor,
     nonnk_style_textXpadding,
+    nonnk_style_textXcolor_factor,
+    nonnk_style_textXdisabled_factor,
     nonnk_style_buttonXnormal,
     nonnk_style_buttonXhover,
     nonnk_style_buttonXactive,
@@ -53,6 +55,9 @@ enum nonnk_style {
     nonnk_style_buttonXrounding,
     nonnk_style_buttonXdraw_begin,
     nonnk_style_buttonXdraw_end,
+    nonnk_style_buttonXcolor_factor_background,
+    nonnk_style_buttonXdisabled_factor,
+    nonnk_style_buttonXcolor_factor_text,
     nonnk_style_contextual_buttonXnormal,
     nonnk_style_contextual_buttonXhover,
     nonnk_style_contextual_buttonXactive,
@@ -69,6 +74,9 @@ enum nonnk_style {
     nonnk_style_contextual_buttonXrounding,
     nonnk_style_contextual_buttonXdraw_begin,
     nonnk_style_contextual_buttonXdraw_end,
+    nonnk_style_contextual_buttonXcolor_factor_background,
+    nonnk_style_contextual_buttonXdisabled_factor,
+    nonnk_style_contextual_buttonXcolor_factor_text,
     nonnk_style_menu_buttonXnormal,
     nonnk_style_menu_buttonXhover,
     nonnk_style_menu_buttonXactive,
@@ -85,6 +93,9 @@ enum nonnk_style {
     nonnk_style_menu_buttonXrounding,
     nonnk_style_menu_buttonXdraw_begin,
     nonnk_style_menu_buttonXdraw_end,
+    nonnk_style_menu_buttonXcolor_factor_background,
+    nonnk_style_menu_buttonXdisabled_factor,
+    nonnk_style_menu_buttonXcolor_factor_text,
     nonnk_style_checkboxXnormal,
     nonnk_style_checkboxXhover,
     nonnk_style_checkboxXactive,
@@ -100,6 +111,8 @@ enum nonnk_style {
     nonnk_style_checkboxXborder_color,
     nonnk_style_checkboxXborder,
     nonnk_style_checkboxXspacing,
+    nonnk_style_checkboxXcolor_factor,
+    nonnk_style_checkboxXdisabled_factor,
     nonnk_style_optionXnormal,
     nonnk_style_optionXhover,
     nonnk_style_optionXactive,
@@ -115,6 +128,8 @@ enum nonnk_style {
     nonnk_style_optionXborder_color,
     nonnk_style_optionXborder,
     nonnk_style_optionXspacing,
+    nonnk_style_optionXcolor_factor,
+    nonnk_style_optionXdisabled_factor,
     nonnk_style_selectableXnormal,
     nonnk_style_selectableXhover,
     nonnk_style_selectableXpressed,
@@ -133,6 +148,8 @@ enum nonnk_style {
     nonnk_style_selectableXrounding,
     nonnk_style_selectableXdraw_begin,
     nonnk_style_selectableXdraw_end,
+    nonnk_style_selectableXcolor_factor,
+    nonnk_style_selectableXdisabled_factor,
     nonnk_style_sliderXnormal,
     nonnk_style_sliderXhover,
     nonnk_style_sliderXactive,
@@ -154,6 +171,8 @@ enum nonnk_style {
     nonnk_style_sliderXrounding,
     nonnk_style_sliderXdraw_begin,
     nonnk_style_sliderXdraw_end,
+    nonnk_style_sliderXcolor_factor,
+    nonnk_style_sliderXdisabled_factor,
     nonnk_style_sliderXinc_buttonXnormal,
     nonnk_style_sliderXinc_buttonXhover,
     nonnk_style_sliderXinc_buttonXactive,
@@ -170,6 +189,9 @@ enum nonnk_style {
     nonnk_style_sliderXinc_buttonXrounding,
     nonnk_style_sliderXinc_buttonXdraw_begin,
     nonnk_style_sliderXinc_buttonXdraw_end,
+    nonnk_style_sliderXinc_buttonXcolor_factor_background,
+    nonnk_style_sliderXinc_buttonXdisabled_factor,
+    nonnk_style_sliderXinc_buttonXcolor_factor_text,
     nonnk_style_sliderXdec_buttonXnormal,
     nonnk_style_sliderXdec_buttonXhover,
     nonnk_style_sliderXdec_buttonXactive,
@@ -186,6 +208,9 @@ enum nonnk_style {
     nonnk_style_sliderXdec_buttonXrounding,
     nonnk_style_sliderXdec_buttonXdraw_begin,
     nonnk_style_sliderXdec_buttonXdraw_end,
+    nonnk_style_sliderXdec_buttonXcolor_factor_background,
+    nonnk_style_sliderXdec_buttonXdisabled_factor,
+    nonnk_style_sliderXdec_buttonXcolor_factor_text,
     nonnk_style_progressXnormal,
     nonnk_style_progressXhover,
     nonnk_style_progressXactive,
@@ -202,6 +227,8 @@ enum nonnk_style {
     nonnk_style_progressXcursor_border,
     nonnk_style_progressXdraw_begin,
     nonnk_style_progressXdraw_end,
+    nonnk_style_progressXcolor_factor,
+    nonnk_style_progressXdisabled_factor,
     nonnk_style_scrollhXnormal,
     nonnk_style_scrollhXhover,
     nonnk_style_scrollhXactive,
@@ -221,6 +248,8 @@ enum nonnk_style {
     nonnk_style_scrollhXrounding_cursor,
     nonnk_style_scrollhXdraw_begin,
     nonnk_style_scrollhXdraw_end,
+    nonnk_style_scrollhXcolor_factor,
+    nonnk_style_scrollhXdisabled_factor,
     nonnk_style_scrollvXnormal,
     nonnk_style_scrollvXhover,
     nonnk_style_scrollvXactive,
@@ -240,6 +269,8 @@ enum nonnk_style {
     nonnk_style_scrollvXrounding_cursor,
     nonnk_style_scrollvXdraw_begin,
     nonnk_style_scrollvXdraw_end,
+    nonnk_style_scrollvXcolor_factor,
+    nonnk_style_scrollvXdisabled_factor,
     nonnk_style_scrollhXinc_buttonXnormal,
     nonnk_style_scrollhXinc_buttonXhover,
     nonnk_style_scrollhXinc_buttonXactive,
@@ -256,6 +287,9 @@ enum nonnk_style {
     nonnk_style_scrollhXinc_buttonXrounding,
     nonnk_style_scrollhXinc_buttonXdraw_begin,
     nonnk_style_scrollhXinc_buttonXdraw_end,
+    nonnk_style_scrollhXinc_buttonXcolor_factor_background,
+    nonnk_style_scrollhXinc_buttonXdisabled_factor,
+    nonnk_style_scrollhXinc_buttonXcolor_factor_text,
     nonnk_style_scrollhXdec_buttonXnormal,
     nonnk_style_scrollhXdec_buttonXhover,
     nonnk_style_scrollhXdec_buttonXactive,
@@ -272,6 +306,9 @@ enum nonnk_style {
     nonnk_style_scrollhXdec_buttonXrounding,
     nonnk_style_scrollhXdec_buttonXdraw_begin,
     nonnk_style_scrollhXdec_buttonXdraw_end,
+    nonnk_style_scrollhXdec_buttonXcolor_factor_background,
+    nonnk_style_scrollhXdec_buttonXdisabled_factor,
+    nonnk_style_scrollhXdec_buttonXcolor_factor_text,
     nonnk_style_scrollvXinc_buttonXnormal,
     nonnk_style_scrollvXinc_buttonXhover,
     nonnk_style_scrollvXinc_buttonXactive,
@@ -288,6 +325,9 @@ enum nonnk_style {
     nonnk_style_scrollvXinc_buttonXrounding,
     nonnk_style_scrollvXinc_buttonXdraw_begin,
     nonnk_style_scrollvXinc_buttonXdraw_end,
+    nonnk_style_scrollvXinc_buttonXcolor_factor_background,
+    nonnk_style_scrollvXinc_buttonXdisabled_factor,
+    nonnk_style_scrollvXinc_buttonXcolor_factor_text,
     nonnk_style_scrollvXdec_buttonXnormal,
     nonnk_style_scrollvXdec_buttonXhover,
     nonnk_style_scrollvXdec_buttonXactive,
@@ -304,6 +344,9 @@ enum nonnk_style {
     nonnk_style_scrollvXdec_buttonXrounding,
     nonnk_style_scrollvXdec_buttonXdraw_begin,
     nonnk_style_scrollvXdec_buttonXdraw_end,
+    nonnk_style_scrollvXdec_buttonXcolor_factor_background,
+    nonnk_style_scrollvXdec_buttonXdisabled_factor,
+    nonnk_style_scrollvXdec_buttonXcolor_factor_text,
     nonnk_style_editXnormal,
     nonnk_style_editXhover,
     nonnk_style_editXactive,
@@ -325,6 +368,8 @@ enum nonnk_style {
     nonnk_style_editXcursor_size,
     nonnk_style_editXborder,
     nonnk_style_editXrounding,
+    nonnk_style_editXcolor_factor,
+    nonnk_style_editXdisabled_factor,
     nonnk_style_editXscrollbarXnormal,
     nonnk_style_editXscrollbarXhover,
     nonnk_style_editXscrollbarXactive,
@@ -344,6 +389,8 @@ enum nonnk_style {
     nonnk_style_editXscrollbarXrounding_cursor,
     nonnk_style_editXscrollbarXdraw_begin,
     nonnk_style_editXscrollbarXdraw_end,
+    nonnk_style_editXscrollbarXcolor_factor,
+    nonnk_style_editXscrollbarXdisabled_factor,
     nonnk_style_editXscrollbarXinc_buttonXnormal,
     nonnk_style_editXscrollbarXinc_buttonXhover,
     nonnk_style_editXscrollbarXinc_buttonXactive,
@@ -360,6 +407,9 @@ enum nonnk_style {
     nonnk_style_editXscrollbarXinc_buttonXrounding,
     nonnk_style_editXscrollbarXinc_buttonXdraw_begin,
     nonnk_style_editXscrollbarXinc_buttonXdraw_end,
+    nonnk_style_editXscrollbarXinc_buttonXcolor_factor_background,
+    nonnk_style_editXscrollbarXinc_buttonXdisabled_factor,
+    nonnk_style_editXscrollbarXinc_buttonXcolor_factor_text,
     nonnk_style_editXscrollbarXdec_buttonXnormal,
     nonnk_style_editXscrollbarXdec_buttonXhover,
     nonnk_style_editXscrollbarXdec_buttonXactive,
@@ -376,6 +426,9 @@ enum nonnk_style {
     nonnk_style_editXscrollbarXdec_buttonXrounding,
     nonnk_style_editXscrollbarXdec_buttonXdraw_begin,
     nonnk_style_editXscrollbarXdec_buttonXdraw_end,
+    nonnk_style_editXscrollbarXdec_buttonXcolor_factor_background,
+    nonnk_style_editXscrollbarXdec_buttonXdisabled_factor,
+    nonnk_style_editXscrollbarXdec_buttonXcolor_factor_text,
     nonnk_style_propertyXnormal,
     nonnk_style_propertyXhover,
     nonnk_style_propertyXactive,
@@ -391,6 +444,8 @@ enum nonnk_style {
     nonnk_style_propertyXrounding,
     nonnk_style_propertyXdraw_begin,
     nonnk_style_propertyXdraw_end,
+    nonnk_style_propertyXcolor_factor,
+    nonnk_style_propertyXdisabled_factor,
     nonnk_style_propertyXdec_buttonXnormal,
     nonnk_style_propertyXdec_buttonXhover,
     nonnk_style_propertyXdec_buttonXactive,
@@ -407,6 +462,9 @@ enum nonnk_style {
     nonnk_style_propertyXdec_buttonXrounding,
     nonnk_style_propertyXdec_buttonXdraw_begin,
     nonnk_style_propertyXdec_buttonXdraw_end,
+    nonnk_style_propertyXdec_buttonXcolor_factor_background,
+    nonnk_style_propertyXdec_buttonXdisabled_factor,
+    nonnk_style_propertyXdec_buttonXcolor_factor_text,
     nonnk_style_propertyXinc_buttonXnormal,
     nonnk_style_propertyXinc_buttonXhover,
     nonnk_style_propertyXinc_buttonXactive,
@@ -423,6 +481,9 @@ enum nonnk_style {
     nonnk_style_propertyXinc_buttonXrounding,
     nonnk_style_propertyXinc_buttonXdraw_begin,
     nonnk_style_propertyXinc_buttonXdraw_end,
+    nonnk_style_propertyXinc_buttonXcolor_factor_background,
+    nonnk_style_propertyXinc_buttonXdisabled_factor,
+    nonnk_style_propertyXinc_buttonXcolor_factor_text,
     nonnk_style_propertyXeditXnormal,
     nonnk_style_propertyXeditXhover,
     nonnk_style_propertyXeditXactive,
@@ -442,6 +503,8 @@ enum nonnk_style {
     nonnk_style_propertyXeditXcursor_size,
     nonnk_style_propertyXeditXborder,
     nonnk_style_propertyXeditXrounding,
+    nonnk_style_propertyXeditXcolor_factor,
+    nonnk_style_propertyXeditXdisabled_factor,
     nonnk_style_chartXbackground,
     nonnk_style_chartXborder_color,
     nonnk_style_chartXselected_color,
@@ -449,6 +512,8 @@ enum nonnk_style {
     nonnk_style_chartXpadding,
     nonnk_style_chartXborder,
     nonnk_style_chartXrounding,
+    nonnk_style_chartXcolor_factor,
+    nonnk_style_chartXdisabled_factor,
     nonnk_style_comboXnormal,
     nonnk_style_comboXhover,
     nonnk_style_comboXactive,
@@ -464,6 +529,8 @@ enum nonnk_style {
     nonnk_style_comboXspacing,
     nonnk_style_comboXborder,
     nonnk_style_comboXrounding,
+    nonnk_style_comboXcolor_factor,
+    nonnk_style_comboXdisabled_factor,
     nonnk_style_comboXbuttonXnormal,
     nonnk_style_comboXbuttonXhover,
     nonnk_style_comboXbuttonXactive,
@@ -480,6 +547,9 @@ enum nonnk_style {
     nonnk_style_comboXbuttonXrounding,
     nonnk_style_comboXbuttonXdraw_begin,
     nonnk_style_comboXbuttonXdraw_end,
+    nonnk_style_comboXbuttonXcolor_factor_background,
+    nonnk_style_comboXbuttonXdisabled_factor,
+    nonnk_style_comboXbuttonXcolor_factor_text,
     nonnk_style_tabXbackground,
     nonnk_style_tabXborder_color,
     nonnk_style_tabXtext,
@@ -490,6 +560,8 @@ enum nonnk_style {
     nonnk_style_tabXindent,
     nonnk_style_tabXborder,
     nonnk_style_tabXrounding,
+    nonnk_style_tabXcolor_factor,
+    nonnk_style_tabXdisabled_factor,
     nonnk_style_tabXtab_minimize_buttonXnormal,
     nonnk_style_tabXtab_minimize_buttonXhover,
     nonnk_style_tabXtab_minimize_buttonXactive,
@@ -506,6 +578,9 @@ enum nonnk_style {
     nonnk_style_tabXtab_minimize_buttonXrounding,
     nonnk_style_tabXtab_minimize_buttonXdraw_begin,
     nonnk_style_tabXtab_minimize_buttonXdraw_end,
+    nonnk_style_tabXtab_minimize_buttonXcolor_factor_background,
+    nonnk_style_tabXtab_minimize_buttonXdisabled_factor,
+    nonnk_style_tabXtab_minimize_buttonXcolor_factor_text,
     nonnk_style_tabXtab_maximize_buttonXnormal,
     nonnk_style_tabXtab_maximize_buttonXhover,
     nonnk_style_tabXtab_maximize_buttonXactive,
@@ -522,6 +597,9 @@ enum nonnk_style {
     nonnk_style_tabXtab_maximize_buttonXrounding,
     nonnk_style_tabXtab_maximize_buttonXdraw_begin,
     nonnk_style_tabXtab_maximize_buttonXdraw_end,
+    nonnk_style_tabXtab_maximize_buttonXcolor_factor_background,
+    nonnk_style_tabXtab_maximize_buttonXdisabled_factor,
+    nonnk_style_tabXtab_maximize_buttonXcolor_factor_text,
     nonnk_style_tabXnode_minimize_buttonXnormal,
     nonnk_style_tabXnode_minimize_buttonXhover,
     nonnk_style_tabXnode_minimize_buttonXactive,
@@ -538,6 +616,9 @@ enum nonnk_style {
     nonnk_style_tabXnode_minimize_buttonXrounding,
     nonnk_style_tabXnode_minimize_buttonXdraw_begin,
     nonnk_style_tabXnode_minimize_buttonXdraw_end,
+    nonnk_style_tabXnode_minimize_buttonXcolor_factor_background,
+    nonnk_style_tabXnode_minimize_buttonXdisabled_factor,
+    nonnk_style_tabXnode_minimize_buttonXcolor_factor_text,
     nonnk_style_tabXnode_maximize_buttonXnormal,
     nonnk_style_tabXnode_maximize_buttonXhover,
     nonnk_style_tabXnode_maximize_buttonXactive,
@@ -554,6 +635,9 @@ enum nonnk_style {
     nonnk_style_tabXnode_maximize_buttonXrounding,
     nonnk_style_tabXnode_maximize_buttonXdraw_begin,
     nonnk_style_tabXnode_maximize_buttonXdraw_end,
+    nonnk_style_tabXnode_maximize_buttonXcolor_factor_background,
+    nonnk_style_tabXnode_maximize_buttonXdisabled_factor,
+    nonnk_style_tabXnode_maximize_buttonXcolor_factor_text,
     nonnk_style_windowXheaderXalign,
     nonnk_style_windowXheaderXclose_symbol,
     nonnk_style_windowXheaderXminimize_symbol,
@@ -583,6 +667,9 @@ enum nonnk_style {
     nonnk_style_windowXheaderXclose_buttonXrounding,
     nonnk_style_windowXheaderXclose_buttonXdraw_begin,
     nonnk_style_windowXheaderXclose_buttonXdraw_end,
+    nonnk_style_windowXheaderXclose_buttonXcolor_factor_background,
+    nonnk_style_windowXheaderXclose_buttonXdisabled_factor,
+    nonnk_style_windowXheaderXclose_buttonXcolor_factor_text,
     nonnk_style_windowXheaderXminimize_buttonXnormal,
     nonnk_style_windowXheaderXminimize_buttonXhover,
     nonnk_style_windowXheaderXminimize_buttonXactive,
@@ -599,6 +686,9 @@ enum nonnk_style {
     nonnk_style_windowXheaderXminimize_buttonXrounding,
     nonnk_style_windowXheaderXminimize_buttonXdraw_begin,
     nonnk_style_windowXheaderXminimize_buttonXdraw_end,
+    nonnk_style_windowXheaderXminimize_buttonXcolor_factor_background,
+    nonnk_style_windowXheaderXminimize_buttonXdisabled_factor,
+    nonnk_style_windowXheaderXminimize_buttonXcolor_factor_text,
     nonnk_style_windowXbackground,
     nonnk_style_windowXfixed_background,
     nonnk_style_windowXborder_color,
@@ -631,7 +721,7 @@ enum nonnk_style {
 };
 
 
-#define CASE_NONVK_STYLE_FLOAT \
+#define CASE_NONNK_STYLE_FLOAT \
     case nonnk_style_buttonXborder:\
             return &context->style.button.border; \
     case nonnk_style_buttonXrounding:\
@@ -807,9 +897,189 @@ enum nonnk_style {
     case nonnk_style_windowXborder:\
             return &context->style.window.border; \
     case nonnk_style_windowXmin_row_height_padding:\
-            return &context->style.window.min_row_height_padding; 
+            return &context->style.window.min_row_height_padding;\
+    case nonnk_style_textXcolor_factor:\
+        return &context->style.text.color_factor;\
+    case nonnk_style_textXdisabled_factor:\
+        return &context->style.text.disabled_factor;\
+    case nonnk_style_buttonXcolor_factor_background:\
+        return &context->style.button.color_factor_background;\
+    case nonnk_style_buttonXdisabled_factor:\
+        return &context->style.button.disabled_factor;\
+    case nonnk_style_buttonXcolor_factor_text:\
+        return &context->style.button.color_factor_text;\
+    case nonnk_style_contextual_buttonXcolor_factor_background:\
+        return &context->style.contextual_button.color_factor_background;\
+    case nonnk_style_contextual_buttonXdisabled_factor:\
+        return &context->style.contextual_button.disabled_factor;\
+    case nonnk_style_contextual_buttonXcolor_factor_text:\
+        return &context->style.contextual_button.color_factor_text;\
+    case nonnk_style_menu_buttonXcolor_factor_background:\
+        return &context->style.menu_button.color_factor_background;\
+    case nonnk_style_menu_buttonXdisabled_factor:\
+        return &context->style.menu_button.disabled_factor;\
+    case nonnk_style_menu_buttonXcolor_factor_text:\
+        return &context->style.menu_button.color_factor_text;\
+    case nonnk_style_checkboxXcolor_factor:\
+        return &context->style.checkbox.color_factor;\
+    case nonnk_style_checkboxXdisabled_factor:\
+        return &context->style.checkbox.disabled_factor;\
+    case nonnk_style_optionXcolor_factor:\
+        return &context->style.option.color_factor;\
+    case nonnk_style_optionXdisabled_factor:\
+        return &context->style.option.disabled_factor;\
+    case nonnk_style_selectableXcolor_factor:\
+        return &context->style.selectable.color_factor;\
+    case nonnk_style_selectableXdisabled_factor:\
+        return &context->style.selectable.disabled_factor;\
+    case nonnk_style_sliderXcolor_factor:\
+        return &context->style.slider.color_factor;\
+    case nonnk_style_sliderXdisabled_factor:\
+        return &context->style.slider.disabled_factor;\
+    case nonnk_style_sliderXinc_buttonXcolor_factor_background:\
+        return &context->style.slider.inc_button.color_factor_background;\
+    case nonnk_style_sliderXinc_buttonXdisabled_factor:\
+        return &context->style.slider.inc_button.disabled_factor;\
+    case nonnk_style_sliderXinc_buttonXcolor_factor_text:\
+        return &context->style.slider.inc_button.color_factor_text;\
+    case nonnk_style_sliderXdec_buttonXcolor_factor_background:\
+        return &context->style.slider.dec_button.color_factor_background;\
+    case nonnk_style_sliderXdec_buttonXdisabled_factor:\
+        return &context->style.slider.dec_button.disabled_factor;\
+    case nonnk_style_sliderXdec_buttonXcolor_factor_text:\
+        return &context->style.slider.dec_button.color_factor_text;\
+    case nonnk_style_progressXcolor_factor:\
+        return &context->style.progress.color_factor;\
+    case nonnk_style_progressXdisabled_factor:\
+        return &context->style.progress.disabled_factor;\
+    case nonnk_style_scrollhXcolor_factor:\
+        return &context->style.scrollh.color_factor;\
+    case nonnk_style_scrollhXdisabled_factor:\
+        return &context->style.scrollh.disabled_factor;\
+    case nonnk_style_scrollvXcolor_factor:\
+        return &context->style.scrollv.color_factor;\
+    case nonnk_style_scrollvXdisabled_factor:\
+        return &context->style.scrollv.disabled_factor;\
+    case nonnk_style_scrollhXinc_buttonXcolor_factor_background:\
+        return &context->style.scrollh.inc_button.color_factor_background;\
+    case nonnk_style_scrollhXinc_buttonXdisabled_factor:\
+        return &context->style.scrollh.inc_button.disabled_factor;\
+    case nonnk_style_scrollhXinc_buttonXcolor_factor_text:\
+        return &context->style.scrollh.inc_button.color_factor_text;\
+    case nonnk_style_scrollhXdec_buttonXcolor_factor_background:\
+        return &context->style.scrollh.dec_button.color_factor_background;\
+    case nonnk_style_scrollhXdec_buttonXdisabled_factor:\
+        return &context->style.scrollh.dec_button.disabled_factor;\
+    case nonnk_style_scrollhXdec_buttonXcolor_factor_text:\
+        return &context->style.scrollh.dec_button.color_factor_text;\
+    case nonnk_style_scrollvXinc_buttonXcolor_factor_background:\
+        return &context->style.scrollv.inc_button.color_factor_background;\
+    case nonnk_style_scrollvXinc_buttonXdisabled_factor:\
+        return &context->style.scrollv.inc_button.disabled_factor;\
+    case nonnk_style_scrollvXinc_buttonXcolor_factor_text:\
+        return &context->style.scrollv.inc_button.color_factor_text;\
+    case nonnk_style_scrollvXdec_buttonXcolor_factor_background:\
+        return &context->style.scrollv.dec_button.color_factor_background;\
+    case nonnk_style_scrollvXdec_buttonXdisabled_factor:\
+        return &context->style.scrollv.dec_button.disabled_factor;\
+    case nonnk_style_scrollvXdec_buttonXcolor_factor_text:\
+        return &context->style.scrollv.dec_button.color_factor_text;\
+    case nonnk_style_editXcolor_factor:\
+        return &context->style.edit.color_factor;\
+    case nonnk_style_editXdisabled_factor:\
+        return &context->style.edit.disabled_factor;\
+    case nonnk_style_editXscrollbarXcolor_factor:\
+        return &context->style.edit.scrollbar.color_factor;\
+    case nonnk_style_editXscrollbarXdisabled_factor:\
+        return &context->style.edit.scrollbar.disabled_factor;\
+    case nonnk_style_editXscrollbarXinc_buttonXcolor_factor_background:\
+        return &context->style.edit.scrollbar.inc_button.color_factor_background;\
+    case nonnk_style_editXscrollbarXinc_buttonXdisabled_factor:\
+        return &context->style.edit.scrollbar.inc_button.disabled_factor;\
+    case nonnk_style_editXscrollbarXinc_buttonXcolor_factor_text:\
+        return &context->style.edit.scrollbar.inc_button.color_factor_text;\
+    case nonnk_style_editXscrollbarXdec_buttonXcolor_factor_background:\
+        return &context->style.edit.scrollbar.dec_button.color_factor_background;\
+    case nonnk_style_editXscrollbarXdec_buttonXdisabled_factor:\
+        return &context->style.edit.scrollbar.dec_button.disabled_factor;\
+    case nonnk_style_editXscrollbarXdec_buttonXcolor_factor_text:\
+        return &context->style.edit.scrollbar.dec_button.color_factor_text;\
+    case nonnk_style_propertyXcolor_factor:\
+        return &context->style.property.color_factor;\
+    case nonnk_style_propertyXdisabled_factor:\
+        return &context->style.property.disabled_factor;\
+    case nonnk_style_propertyXdec_buttonXcolor_factor_background:\
+        return &context->style.property.dec_button.color_factor_background;\
+    case nonnk_style_propertyXdec_buttonXdisabled_factor:\
+        return &context->style.property.dec_button.disabled_factor;\
+    case nonnk_style_propertyXdec_buttonXcolor_factor_text:\
+        return &context->style.property.dec_button.color_factor_text;\
+    case nonnk_style_propertyXinc_buttonXcolor_factor_background:\
+        return &context->style.property.inc_button.color_factor_background;\
+    case nonnk_style_propertyXinc_buttonXdisabled_factor:\
+        return &context->style.property.inc_button.disabled_factor;\
+    case nonnk_style_propertyXinc_buttonXcolor_factor_text:\
+        return &context->style.property.inc_button.color_factor_text;\
+    case nonnk_style_propertyXeditXcolor_factor:\
+        return &context->style.property.edit.color_factor;\
+    case nonnk_style_propertyXeditXdisabled_factor:\
+        return &context->style.property.edit.disabled_factor;\
+    case nonnk_style_chartXcolor_factor:\
+        return &context->style.chart.color_factor;\
+    case nonnk_style_chartXdisabled_factor:\
+        return &context->style.chart.disabled_factor;\
+    case nonnk_style_comboXcolor_factor:\
+        return &context->style.combo.color_factor;\
+    case nonnk_style_comboXdisabled_factor:\
+        return &context->style.combo.disabled_factor;\
+    case nonnk_style_comboXbuttonXcolor_factor_background:\
+        return &context->style.combo.button.color_factor_background;\
+    case nonnk_style_comboXbuttonXdisabled_factor:\
+        return &context->style.combo.button.disabled_factor;\
+    case nonnk_style_comboXbuttonXcolor_factor_text:\
+        return &context->style.combo.button.color_factor_text;\
+    case nonnk_style_tabXcolor_factor:\
+        return &context->style.tab.color_factor;\
+    case nonnk_style_tabXdisabled_factor:\
+        return &context->style.tab.disabled_factor;\
+    case nonnk_style_tabXtab_minimize_buttonXcolor_factor_background:\
+        return &context->style.tab.tab_minimize_button.color_factor_background;\
+    case nonnk_style_tabXtab_minimize_buttonXdisabled_factor:\
+        return &context->style.tab.tab_minimize_button.disabled_factor;\
+    case nonnk_style_tabXtab_minimize_buttonXcolor_factor_text:\
+        return &context->style.tab.tab_minimize_button.color_factor_text;\
+    case nonnk_style_tabXtab_maximize_buttonXcolor_factor_background:\
+        return &context->style.tab.tab_maximize_button.color_factor_background;\
+    case nonnk_style_tabXtab_maximize_buttonXdisabled_factor:\
+        return &context->style.tab.tab_maximize_button.disabled_factor;\
+    case nonnk_style_tabXtab_maximize_buttonXcolor_factor_text:\
+        return &context->style.tab.tab_maximize_button.color_factor_text;\
+    case nonnk_style_tabXnode_minimize_buttonXcolor_factor_background:\
+        return &context->style.tab.node_minimize_button.color_factor_background;\
+    case nonnk_style_tabXnode_minimize_buttonXdisabled_factor:\
+        return &context->style.tab.node_minimize_button.disabled_factor;\
+    case nonnk_style_tabXnode_minimize_buttonXcolor_factor_text:\
+        return &context->style.tab.node_minimize_button.color_factor_text;\
+    case nonnk_style_tabXnode_maximize_buttonXcolor_factor_background:\
+        return &context->style.tab.node_maximize_button.color_factor_background;\
+    case nonnk_style_tabXnode_maximize_buttonXdisabled_factor:\
+        return &context->style.tab.node_maximize_button.disabled_factor;\
+    case nonnk_style_tabXnode_maximize_buttonXcolor_factor_text:\
+        return &context->style.tab.node_maximize_button.color_factor_text;\
+    case nonnk_style_windowXheaderXclose_buttonXcolor_factor_background:\
+        return &context->style.window.header.close_button.color_factor_background;\
+    case nonnk_style_windowXheaderXclose_buttonXdisabled_factor:\
+        return &context->style.window.header.close_button.disabled_factor;\
+    case nonnk_style_windowXheaderXclose_buttonXcolor_factor_text:\
+        return &context->style.window.header.close_button.color_factor_text;\
+    case nonnk_style_windowXheaderXminimize_buttonXcolor_factor_background:\
+        return &context->style.window.header.minimize_button.color_factor_background;\
+    case nonnk_style_windowXheaderXminimize_buttonXdisabled_factor:\
+        return &context->style.window.header.minimize_button.disabled_factor;\
+    case nonnk_style_windowXheaderXminimize_buttonXcolor_factor_text:\
+        return &context->style.window.header.minimize_button.color_factor_text;\
 
-#define CASE_NONVK_STYLE_VEC2 \
+#define CASE_NONNK_STYLE_VEC2 \
     case nonnk_style_textXpadding:\
             return &context->style.text.padding; \
     case nonnk_style_buttonXpadding:\
@@ -967,7 +1237,7 @@ enum nonnk_style {
     case nonnk_style_windowXtooltip_padding:\
             return &context->style.window.tooltip_padding; \
 
-#define CASE_NONVK_STYLE_FLAGS \
+#define CASE_NONNK_STYLE_FLAGS \
     case nonnk_style_buttonXtext_alignment:\
             return &context->style.button.text_alignment; \
     case nonnk_style_contextual_buttonXtext_alignment:\
@@ -1011,7 +1281,7 @@ enum nonnk_style {
     case nonnk_style_windowXheaderXalign:\
             return (nk_flags*)&context->style.window.header.align;\
 
-#define CASE_NONVK_STYLE_COLOR \
+#define CASE_NONNK_STYLE_COLOR \
     case nonnk_style_textXcolor:\
             return &context->style.text.color; \
     case nonnk_style_buttonXborder_color:\
@@ -1368,7 +1638,7 @@ enum nonnk_style {
             return &context->style.window.tooltip_border_color; \
 
 
-#define CASE_NONVK_STYLE_ITEM   \
+#define CASE_NONNK_STYLE_ITEM   \
     case nonnk_style_buttonXnormal:\
             return &context->style.button.normal; \
     case nonnk_style_buttonXhover:\
@@ -1620,7 +1890,7 @@ enum nonnk_style {
     case nonnk_style_windowXscaler:\
             return &context->style.window.scaler;
 
-#define CASE_NONVK_STYLE_BOOL /* bool */ \
+#define CASE_NONNK_STYLE_BOOL /* bool */ \
     case nonnk_style_sliderXshow_buttons:\
             return &context->style.slider.show_buttons;\
     case nonnk_style_scrollhXshow_buttons:\
@@ -1631,7 +1901,7 @@ enum nonnk_style {
             return &context->style.edit.scrollbar.show_buttons;\
 
 
-#define CASE_NONVK_STYLE_HANDLE_PTR /* nk_handle_ptr */ \
+#define CASE_NONNK_STYLE_HANDLE_PTR /* nk_handle_ptr */ \
     case nonnk_style_buttonXuserdata:\
             return &context->style.button.userdata;\
     case nonnk_style_contextual_buttonXuserdata:\
@@ -1692,7 +1962,7 @@ enum nonnk_style {
             return &context->style.window.header.minimize_button.userdata;\
 
 
-#define CASE_NONVK_STYLE_SYMBOL_TYPE /* nk_symbol_type */ \
+#define CASE_NONNK_STYLE_SYMBOL_TYPE /* nk_symbol_type */ \
     case nonnk_style_sliderXinc_symbol:\
             return &context->style.slider.inc_symbol;\
     case nonnk_style_sliderXdec_symbol:\
@@ -1733,7 +2003,7 @@ enum nonnk_style {
 
 
 
-#define CASE_NONVK_STYLE_CALLBACK /* void(*CALLBACK)(nk_canvas_t*, nk_handle userdata)*/ \
+#define CASE_NONNK_STYLE_CALLBACK /* void(*CALLBACK)(nk_canvas_t*, nk_handle userdata)*/ \
     case nonnk_style_buttonXdraw_begin:\
             return &context->style.button.draw_begin;\
     case nonnk_style_buttonXdraw_end:\

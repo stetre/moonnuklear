@@ -257,13 +257,13 @@ static int Null_texture(lua_State *L)
     ud_t *ud; (void)checkcontext(L, 1, &ud);
     if(echeckvec2(L, 3, &uv)) return argerror(L, 3);
     if(lua_isnoneornil(L, 2))
-        ud->config.null.texture.id = 0;
+        ud->config.tex_null.texture.id = 0;
     else
         {
         handle.id = luaL_checkinteger(L, 2);
-        ud->config.null.texture = handle;
+        ud->config.tex_null.texture = handle;
         }
-    ud->config.null.uv = uv;
+    ud->config.tex_null.uv = uv;
     return 0;
     }
 

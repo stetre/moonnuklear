@@ -208,6 +208,7 @@ void moonnuklear_open_atlas(lua_State *L);
 void moonnuklear_open_font(lua_State *L);
 void moonnuklear_open_buffer(lua_State *L);
 void moonnuklear_open_image(lua_State *L);
+void moonnuklear_open_nine_slice(lua_State *L);
 void moonnuklear_open_cursor(lua_State *L);
 void moonnuklear_open_edit(lua_State *L);
 void moonnuklear_open_canvas(lua_State *L);

@@ -65,6 +65,7 @@
 #define nk_recti_t struct nk_recti
 #define nk_handle_t nk_handle  /* union */
 #define nk_image_t struct nk_image
+#define nk_nine_slice_t struct nk_nine_slice
 #define nk_cursor_t struct nk_cursor
 #define nk_scroll_t struct nk_scroll
 #define nk_window_t struct nk_window
@@ -127,6 +128,7 @@
 #define ATLAS_MT "moonnuklear_atlas"
 #define FONT_MT "moonnuklear_font"
 #define IMAGE_MT "moonnuklear_image"
+#define NINE_SLICE_MT "moonnuklear_nine_slice"
 #define CURSOR_MT "moonnuklear_cursor"
 #define BUFFER_MT "moonnuklear_buffer"
 #define EDIT_MT "moonnuklear_edit"
@@ -162,40 +164,51 @@ struct moonnuklear_ud_s {
 #define MarkValid(ud)                   MarkSet((ud)->marks, 0) 
 #define CancelValid(ud)                 MarkReset((ud)->marks, 0)
 
-#define IsImageId(ud)                   MarkGet((ud)->marks, 1)
-#define MarkImageId(ud)                 MarkSet((ud)->marks, 1) 
-#define CancelImageId(ud)               MarkReset((ud)->marks, 1)
+#define IsAssociatedWithContext(ud)     MarkGet((ud)->marks, 1)
+#define MarkAssociatedWithContext(ud)   MarkSet((ud)->marks, 1) 
+#define CancelAssociatedWithContext(ud) MarkReset((ud)->marks, 1)
+
+#define IsFixed(ud)                     MarkGet((ud)->marks, 2)
+#define MarkFixed(ud)                   MarkSet((ud)->marks, 2) 
+#define CancelFixed(ud)                 MarkReset((ud)->marks, 2)
+
+#define IsInitialized(ud)               MarkGet((ud)->marks, 3)
+#define MarkInitialized(ud)             MarkSet((ud)->marks, 3) 
+#define CancelInitialized(ud)           MarkReset((ud)->marks, 3)
+
+#define IsAtlasCursor(ud)               MarkGet((ud)->marks, 4)
+#define MarkAtlasCursor(ud)             MarkSet((ud)->marks, 4) 
+#define CancelAtlasCursor(ud)           MarkReset((ud)->marks, 4)
+
+#define IsAllocated(ud)                 MarkGet((ud)->marks, 5)
+#define MarkAllocated(ud)               MarkSet((ud)->marks, 5) 
+#define CancelAllocated(ud)             MarkReset((ud)->marks, 5)
+
+#define IsBorrowed(ud)                  MarkGet((ud)->marks, 6)
+#define MarkBorrowed(ud)                MarkSet((ud)->marks, 6)
+#define CancelBorrowed(ud)              MarkReset((ud)->marks, 6)
+
+#define IsImageId(ud)                   MarkGet((ud)->marks, 7)
+#define MarkImageId(ud)                 MarkSet((ud)->marks, 7) 
+#define CancelImageId(ud)               MarkReset((ud)->marks, 7)
 #define IsImagePtr(ud)                  (!IsImageId(ud))
 #define MarkImagePtr(ud)                CancelImageId(ud)
 #define CancelImagePtr(ud)              MarkImageId(ud)
 
-#define IsSubImage(ud)                  MarkGet((ud)->marks, 2)
-#define MarkSubImage(ud)                MarkSet((ud)->marks, 2) 
-#define CancelSubImage(ud)              MarkReset((ud)->marks, 2)
+#define IsSubImage(ud)                  MarkGet((ud)->marks, 8)
+#define MarkSubImage(ud)                MarkSet((ud)->marks, 8) 
+#define CancelSubImage(ud)              MarkReset((ud)->marks, 8)
 
-#define IsAssociatedWithContext(ud)     MarkGet((ud)->marks, 3)
-#define MarkAssociatedWithContext(ud)   MarkSet((ud)->marks, 3) 
-#define CancelAssociatedWithContext(ud) MarkReset((ud)->marks, 3)
+#define IsNineSliceId(ud)               MarkGet((ud)->marks, 9)
+#define MarkNineSliceId(ud)             MarkSet((ud)->marks, 9) 
+#define CancelNineSliceId(ud)           MarkReset((ud)->marks, 9)
+#define IsNineSlicePtr(ud)              (!IsNineSliceId(ud))
+#define MarkNineSlicePtr(ud)            CancelNineSliceId(ud)
+#define CancelNineSlicePtr(ud)          MarkNineSliceId(ud)
 
-#define IsFixed(ud)                     MarkGet((ud)->marks, 4)
-#define MarkFixed(ud)                   MarkSet((ud)->marks, 4) 
-#define CancelFixed(ud)                 MarkReset((ud)->marks, 4)
-
-#define IsInitialized(ud)               MarkGet((ud)->marks, 5)
-#define MarkInitialized(ud)             MarkSet((ud)->marks, 5) 
-#define CancelInitialized(ud)           MarkReset((ud)->marks, 5)
-
-#define IsAtlasCursor(ud)               MarkGet((ud)->marks, 6)
-#define MarkAtlasCursor(ud)             MarkSet((ud)->marks, 6) 
-#define CancelAtlasCursor(ud)           MarkReset((ud)->marks, 6)
-
-#define IsAllocated(ud)                 MarkGet((ud)->marks, 7)
-#define MarkAllocated(ud)               MarkSet((ud)->marks, 7) 
-#define CancelAllocated(ud)             MarkReset((ud)->marks, 7)
-
-#define IsBorrowed(ud)                  MarkGet((ud)->marks, 8)
-#define MarkBorrowed(ud)                MarkSet((ud)->marks, 8)
-#define CancelBorrowed(ud)              MarkReset((ud)->marks, 8)
+#define IsSubNineSlice(ud)              MarkGet((ud)->marks, 10)
+#define MarkSubNineSlice(ud)            MarkSet((ud)->marks, 10) 
+#define CancelSubNineSlice(ud)          MarkReset((ud)->marks, 10)
 
 #if 0
 /* .c */
@@ -252,6 +265,11 @@ int pushatlasfont(lua_State *L, ud_t *atlas_ud, nk_font_t *atlas_font, nk_font_c
 #define checkimage(L, arg, udp) (nk_image_t*)checkxxx((L), (arg), (udp), IMAGE_MT)
 #define testimage(L, arg, udp) (nk_image_t*)testxxx((L), (arg), (udp), IMAGE_MT)
 #define pushimage(L, handle) pushxxx((L), (handle))
+
+/* nine_slice.c */
+#define checknine_slice(L, arg, udp) (nk_nine_slice_t*)checkxxx((L), (arg), (udp), NINE_SLICE_MT)
+#define testnine_slice(L, arg, udp) (nk_nine_slice_t*)testxxx((L), (arg), (udp), NINE_SLICE_MT)
+#define pushnine_slice(L, handle) pushxxx((L), (handle))
 
 /* cursor.c */
 #define checkcursor(L, arg, udp) (nk_cursor_t*)checkxxx((L), (arg), (udp), CURSOR_MT)

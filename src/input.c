@@ -162,6 +162,7 @@ static int Func(lua_State *L)                                   \
 F(Has_mouse_click_in_rect, nk_input_has_mouse_click_in_rect)
 F(Is_mouse_click_in_rect, nk_input_is_mouse_click_in_rect)
 F(Mouse_clicked, nk_input_mouse_clicked)
+F(Has_mouse_click_in_button_rect, nk_input_has_mouse_click_in_button_rect)
 #undef F
 
 #define F(Func, func) /* boolean = func(input, button, rect, down) */   \
@@ -179,7 +180,6 @@ static int Func(lua_State *L)                                   \
 F(Has_mouse_click_down_in_rect, nk_input_has_mouse_click_down_in_rect)
 F(Is_mouse_click_down_in_rect, nk_input_is_mouse_click_down_in_rect)
 #undef F
-
 
 #define F(Func, func) /* boolean = func(input, rect) */         \
 static int Func(lua_State *L)                                   \
@@ -271,6 +271,7 @@ static const struct luaL_Reg Methods[] =
         { "has_mouse_click", Has_mouse_click },
         { "has_mouse_click_in_rect", Has_mouse_click_in_rect },
         { "has_mouse_click_down_in_rect", Has_mouse_click_down_in_rect },
+        { "has_mouse_click_in_button_rect", Has_mouse_click_in_button_rect },
         { "is_mouse_click_in_rect", Is_mouse_click_in_rect },
         { "is_mouse_click_down_in_rect", Is_mouse_click_down_in_rect },
         { "any_mouse_click_in_rect", Any_mouse_click_in_rect },

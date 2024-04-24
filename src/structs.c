@@ -412,6 +412,8 @@ int pushstyleitem(lua_State *L, nk_style_item_t *p)
     {
     if(p->type == NK_STYLE_ITEM_IMAGE)
         pushimage(L, &p->data.image);
+    else if(p->type == NK_STYLE_ITEM_NINE_SLICE)
+        pushnine_slice(L, &p->data.image);
     else if(p->type == NK_STYLE_ITEM_COLOR)
         {
         if(p->data.color.r == 0 && p->data.color.b == 0 
@@ -429,6 +431,7 @@ nk_style_item_t checkstyleitem(lua_State *L, int arg)
     {
     nk_color_t color;
     nk_image_t *image;
+    nk_nine_slice_t *nine_slice;
     if(lua_isstring(L, arg))
         {
         if(strcmp(lua_tostring(L, arg), "hide") == 0)
@@ -436,6 +439,8 @@ nk_style_item_t checkstyleitem(lua_State *L, int arg)
         }
     else if((image = testimage(L, arg, NULL)) != NULL)
         return nk_style_item_image(*image);
+    else if((nine_slice = testnine_slice(L, arg, NULL)) != NULL)
+        return nk_style_item_nine_slice(*nine_slice);
     else
         {
         if(echeckcolor(L, arg, &color)==ERR_SUCCESS)

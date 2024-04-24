@@ -130,6 +130,21 @@ static int Spacing(lua_State *L)
     return 0;
     }
 
+
+static int WidgetDisableBegin(lua_State *L)
+    {
+    nk_context_t *context = checkcontext(L, 1, NULL);
+    nk_widget_disable_begin(context);
+    return 0;
+    }
+
+static int WidgetDisableEnd(lua_State *L)
+    {
+    nk_context_t *context = checkcontext(L, 1, NULL);
+    nk_widget_disable_end(context);
+    return 0;
+    }
+
 /*-----------------------------------------------------------------------------
  | BUTTON
  *----------------------------------------------------------------------------*/
@@ -335,6 +350,18 @@ static int Check(lua_State *L)
     return 1;
     }
 
+static int Check_align(lua_State *L)
+    {
+    size_t len;
+    nk_context_t *context = checkcontext(L, 1, NULL);
+    const char* s = luaL_checklstring(L, 2, &len);
+    int active = checkboolean(L, 3);
+    unsigned int widgetalignflags = luaL_checkinteger(L, 4);
+    unsigned int textalignflags = luaL_checkinteger(L, 5);
+    lua_pushboolean(L, nk_check_text_align(context, s, (int)len, active, widgetalignflags, textalignflags));
+    return 1;
+    }
+
 static int Check_flags(lua_State *L)
     {
     size_t len;
@@ -353,6 +380,19 @@ static int Checkbox(lua_State *L)
     const char* s = luaL_checklstring(L, 2, &len);
     int active = checkboolean(L, 3);
     nk_checkbox_text(context, s, len, &active);
+    lua_pushboolean(L, active);
+    return 1;
+    }
+
+static int Checkbox_align(lua_State *L)
+    {
+    size_t len;
+    nk_context_t *context = checkcontext(L, 1, NULL);
+    const char* s = luaL_checklstring(L, 2, &len);
+    int active = checkboolean(L, 3);
+    unsigned int widgetalignflags = luaL_checkinteger(L, 4);
+    unsigned int textalignflags = luaL_checkinteger(L, 5);
+    nk_checkbox_text_align(context, s, len, &active, widgetalignflags, textalignflags);
     lua_pushboolean(L, active);
     return 1;
     }
@@ -684,6 +724,20 @@ static int Option(lua_State *L)
     return 2;
     }
 
+static int Option_align(lua_State *L)
+    {
+    size_t len;
+    nk_context_t *context = checkcontext(L, 1, NULL);
+    const char* s = luaL_checklstring(L, 2, &len);
+    int active = checkboolean(L, 3);
+    unsigned int widgetalignflags = luaL_checkinteger(L, 4);
+    unsigned int textalignflags = luaL_checkinteger(L, 5);
+    int changed = nk_radio_text_align(context, s, len, &active, widgetalignflags, textalignflags);
+    lua_pushboolean(L, active);
+    lua_pushboolean(L, changed);
+    return 2;
+    }
+
 /*-----------------------------------------------------------------------------
  | POPUP
  *----------------------------------------------------------------------------*/
@@ -756,6 +810,20 @@ static int Progress(lua_State *L)
     }
 
 /*-----------------------------------------------------------------------------
+ | RULE_HORIZONTAL
+ *----------------------------------------------------------------------------*/
+
+static int Rule_horizontal(lua_State *L)
+    {
+    nk_color_t color;
+    nk_context_t *context = checkcontext(L, 1, NULL);
+    int rounding = checkboolean(L, 3);
+    if(echeckcolor(L, 2, &color)) return argerror(L, 2);
+    nk_rule_horizontal(context, color, rounding);
+    return 0;
+    }
+
+/*-----------------------------------------------------------------------------
  | SELECTABLE
  *----------------------------------------------------------------------------*/
 
@@ -799,6 +867,18 @@ static int Slider(lua_State *L)
     lua_pushnumber(L, val);
     return 1;
     }
+
+/*-----------------------------------------------------------------------------
+ | SPACER
+ *----------------------------------------------------------------------------*/
+
+static int Spacer(lua_State *L)
+    {
+    nk_context_t *context = checkcontext(L, 1, NULL);
+    nk_spacer(context);
+    return 0;
+    }
+
 
 /*-----------------------------------------------------------------------------
  | TOOLTIP
@@ -1024,6 +1104,8 @@ static const struct luaL_Reg Functions[] =
         { "widget_is_mouse_clicked", Widget_is_mouse_clicked },
         { "widget_has_mouse_click_down", Widget_has_mouse_click_down },
         { "spacing", Spacing },
+        { "widget_disable_begin", WidgetDisableBegin },
+        { "widget_disable_end", WidgetDisableEnd },
         { "button", Button },
         { "button_set_behavior", Button_set_behavior },
         { "button_push_behavior", Button_push_behavior },
@@ -1036,8 +1118,10 @@ static const struct luaL_Reg Functions[] =
         { "plot_function", Plot_function },
         { "check", Check },
         { "check_flags", Check_flags },
+        { "check_align", Check_align },
         { "checkbox", Checkbox },
         { "checkbox_flags", Checkbox_flags },
+        { "checkbox_align", Checkbox_align },
         { "color_picker", Color_picker },
         { "combo", Combo },
         { "combo_callback", Combo_callback },
@@ -1070,8 +1154,11 @@ static const struct luaL_Reg Functions[] =
         { "property", Property },
         { "progress", Progress },
         { "option", Option },
+        { "option_align", Option_align },
+        { "rule_horizontal", Rule_horizontal },
         { "selectable", Selectable },
         { "slider", Slider},
+        { "spacer", Spacer },
         { "tooltip", Tooltip },
         { "tooltip_begin", Tooltip_begin },
         { "tooltip_end", Tooltip_end },
@@ -1102,4 +1189,3 @@ void moonnuklear_open_widgets(lua_State *L)
     {
     luaL_setfuncs(L, Functions, 0);
     }
-

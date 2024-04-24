@@ -61,6 +61,7 @@ int luaopen_moonnuklear(lua_State *L)
     moonnuklear_open_font(L);
     moonnuklear_open_buffer(L);
     moonnuklear_open_image(L);
+    moonnuklear_open_nine_slice(L);
     moonnuklear_open_cursor(L);
     moonnuklear_open_edit(L);
     moonnuklear_open_canvas(L);

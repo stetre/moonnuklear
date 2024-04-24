@@ -108,7 +108,7 @@ static float* address_float(nk_context_t *context, enum nonnk_style what)
     {
     switch(what)
         { 
-        CASE_NONVK_STYLE_FLOAT 
+        CASE_NONNK_STYLE_FLOAT
         default: return NULL;
         }
     return NULL;
@@ -152,7 +152,7 @@ static nk_vec2_t* address_vec2(nk_context_t *context, enum nonnk_style what)
     {
     switch(what)
         { 
-        CASE_NONVK_STYLE_VEC2
+        CASE_NONNK_STYLE_VEC2
         default: return NULL;
         }
     return NULL;
@@ -201,7 +201,7 @@ static nk_flags* address_flags(nk_context_t *context, enum nonnk_style what)
     {
     switch(what)
         { 
-        CASE_NONVK_STYLE_FLAGS
+        CASE_NONNK_STYLE_FLAGS
         default: return NULL;
         }
     return NULL;
@@ -245,7 +245,7 @@ static nk_color_t* address_color(nk_context_t *context, enum nonnk_style what)
     {
     switch(what)
         { 
-        CASE_NONVK_STYLE_COLOR
+        CASE_NONNK_STYLE_COLOR
         default: return NULL;
         }
     return NULL;
@@ -296,7 +296,7 @@ static nk_style_item_t *address_styleitem(nk_context_t *context, enum nonnk_styl
     {
     switch(what)
         { 
-        CASE_NONVK_STYLE_ITEM
+        CASE_NONNK_STYLE_ITEM
         default: return NULL;
         }
     return NULL;
@@ -343,7 +343,7 @@ static int* address_boolean(nk_context_t *context, enum nonnk_style what)
     {
     switch(what)
         { 
-        CASE_NONVK_STYLE_BOOL
+        CASE_NONNK_STYLE_BOOL
         default: return NULL;
         }
     return NULL;
@@ -374,7 +374,7 @@ static enum nk_symbol_type *address_symboltype(nk_context_t *context, enum nonnk
     {
     switch(what)
         { 
-        CASE_NONVK_STYLE_SYMBOL_TYPE
+        CASE_NONNK_STYLE_SYMBOL_TYPE
         default: return NULL;
         }
     return NULL;
@@ -402,7 +402,7 @@ static int Style_get_symboltype(lua_State *L)
     }
 
 #if 0
-//@@ TODO?: CALLBACK and nk_handle_ptr fields ?
+//@@TODO?: CALLBACK and nk_handle_ptr fields ?
 //const char* nk_style_get_color_by_name(enum nk_style_colors); useless
 #endif
 

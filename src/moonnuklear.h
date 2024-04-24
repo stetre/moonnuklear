@@ -31,8 +31,8 @@
 #include "lauxlib.h"
 #include "compat-5.3.h"
 
-#define MOONNUKLEAR_NK_VERSION  "4.06.0" /* @@ See Changelog in nuklear/nuklear.h */
-#define MOONNUKLEAR_VERSION     "0.3"
+#define MOONNUKLEAR_NK_VERSION  "4.12.0" /* @@ See Changelog in nuklear/nuklear.h */
+#define MOONNUKLEAR_VERSION     "0.4"
 
 extern lua_State *moonnuklear_L;
 #define NK_ASSERT(x) do {                                                                       \
@@ -57,6 +57,7 @@ extern lua_State *moonnuklear_L;
 #define NK_SIN sinf
 #define NK_COS cosf
 #define NK_SQRT sqrtf
+//#define NK_INV_SQRT @@need to redefine this?
 #include <math.h>
 #include "nuklear/nuklear.h"
 

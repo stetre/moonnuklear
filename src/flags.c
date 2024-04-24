@@ -226,6 +226,72 @@ static int WidgetStates(lua_State *L)
     ADD(WIDGET_STATE_HOVERED);\
     ADD(WIDGET_STATE_ACTIVE);\
 
+/*----------------------------------------------------------------------*
+ | nk_widget_align
+ *----------------------------------------------------------------------*/
+
+static nk_flags checkwidgetalign(lua_State *L, int arg)
+    {
+    const char *s;
+    nk_flags flags = 0;
+
+    while(lua_isstring(L, arg))
+        {
+        s = lua_tostring(L, arg++);
+#define CASE(CODE,str) if((strcmp(s, str)==0)) do { flags |= CODE; goto done; } while(0)
+    CASE(NK_WIDGET_ALIGN_LEFT, "align left");
+    CASE(NK_WIDGET_ALIGN_CENTERED, "align centered");
+    CASE(NK_WIDGET_ALIGN_RIGHT, "align right");
+    CASE(NK_WIDGET_ALIGN_TOP, "align top");
+    CASE(NK_WIDGET_ALIGN_MIDDLE, "align middle");
+    CASE(NK_WIDGET_ALIGN_BOTTOM, "align bottom");
+    // flags combinations (nk_widget_alignment):
+    CASE(NK_WIDGET_LEFT, "left");
+    CASE(NK_WIDGET_CENTERED, "centered");
+    CASE(NK_WIDGET_RIGHT, "right");
+#undef CASE
+        return (nk_flags)luaL_argerror(L, --arg, badvalue(L,s));
+        done: ;
+        }
+
+    return flags;
+    }
+
+static int pushwidgetalign(lua_State *L, nk_flags flags)
+    {
+    int n = 0;
+
+#define CASE(CODE,str) do { if((flags & CODE)==CODE) { lua_pushstring(L, str); n++; } } while(0)
+    CASE(NK_WIDGET_ALIGN_LEFT, "align left");
+    CASE(NK_WIDGET_ALIGN_CENTERED, "align centered");
+    CASE(NK_WIDGET_ALIGN_RIGHT, "align right");
+    CASE(NK_WIDGET_ALIGN_TOP, "align top");
+    CASE(NK_WIDGET_ALIGN_MIDDLE, "align middle");
+    CASE(NK_WIDGET_ALIGN_BOTTOM, "align bottom");
+#undef CASE
+
+    return n;
+    }
+
+static int WidgetAlign(lua_State *L)
+    {
+    if(lua_type(L, 1) == LUA_TNUMBER)
+        return pushwidgetalign(L, luaL_checkinteger(L, 1));
+    lua_pushinteger(L, checkwidgetalign(L, 1));
+    return 1;
+    }
+
+#define Add_WidgetAlign(L) \
+    ADD(WIDGET_ALIGN_LEFT);\
+    ADD(WIDGET_ALIGN_CENTERED);\
+    ADD(WIDGET_ALIGN_RIGHT);\
+    ADD(WIDGET_ALIGN_TOP);\
+    ADD(WIDGET_ALIGN_MIDDLE);\
+    ADD(WIDGET_ALIGN_BOTTOM);\
+    ADD(WIDGET_LEFT);\
+    ADD(WIDGET_CENTERED);\
+    ADD(WIDGET_RIGHT);\
+
 
 /*----------------------------------------------------------------------*
  | nk_text_align
@@ -637,6 +703,7 @@ static nk_flags checkwidgetlayoutstates(lua_State *L, int arg)
     CASE(NK_WIDGET_INVALID, "invalid");
     CASE(NK_WIDGET_VALID, "valid");
     CASE(NK_WIDGET_ROM, "rom");
+    CASE(NK_WIDGET_DISABLED, "disabled");
 #undef CASE
         return (nk_flags)luaL_argerror(L, --arg, badvalue(L,s));
         done: ;
@@ -653,6 +720,7 @@ static int pushwidgetlayoutstates(lua_State *L, nk_flags flags)
     CASE(NK_WIDGET_INVALID, "invalid");
     CASE(NK_WIDGET_VALID, "valid");
     CASE(NK_WIDGET_ROM, "rom");
+    CASE(NK_WIDGET_DISABLED, "disabled");
 #undef CASE
 
     return n;
@@ -670,6 +738,7 @@ static int WidgetLayoutStates(lua_State *L)
     ADD(WIDGET_INVALID);\
     ADD(WIDGET_VALID);\
     ADD(WIDGET_ROM);\
+    ADD(WIDGET_DISABLED);\
 
 /*----------------------------------------------------------------------*
  | nk_style_header_align
@@ -728,6 +797,7 @@ static int AddConstants(lua_State *L) /* nk.XXX constants for NK_XXX values */
     Add_ConvertResult(L);
     Add_PanelFlags(L);
     Add_WidgetStates(L);
+    Add_WidgetAlign(L);
     Add_TextAlign(L);
     Add_EditFlags(L);
     Add_EditEvents(L);
@@ -744,6 +814,7 @@ static const struct luaL_Reg Functions[] =
         { "convertresultflags", ConvertResult },
         { "panelflags", PanelFlags },
         { "widgetstatesflags", WidgetStates },
+        { "widgetalignflags", WidgetAlign },
         { "textalignflags", TextAlign },
         { "editflags", EditFlags },
         { "editeventsflags", EditEvents },
